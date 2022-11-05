@@ -1,17 +1,31 @@
-FROM node:14.16.1-alpine3.13
+FROM node:14.16.1-alpine3.13 as build-stage
 
-ARG NODE_ENV="development"
+ARG NODE_ENV="production"
 
-RUN mkdir -p ./client
+RUN mkdir ./client
 
-WORKDIR /client
+WORKDIR ./client
 
 COPY package*.json ./
 
-COPY . .
-
-EXPOSE 5000
-
 RUN npm install
 
-CMD npm start
+COPY . .
+
+RUN npm run build
+
+FROM nginx:1.13.12-alpine as production-stage
+
+RUN mkdir -p /var/www/html/
+
+COPY --from=build-stage /client/build /var/www/html/
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+COPY ./nginx.vh.default.conf /etc/nginx/nginx.vh.default.conf
+
+STOPSIGNAL SIGTERM
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
