@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { authActionLogin, clearAuth } from '../../actions/actionCreator';
 import styles from './LoginForm.module.sass';
 import FormInput from '../FormInput/FormInput';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 import { selectBundle } from '../../actions/actionCreator';
 import BundleBox from '../../components/BundleBox/BundleBox';
 import CONSTANTS from '../../constants';

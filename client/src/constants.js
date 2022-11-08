@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 const serverIP = 'localhost';
 const serverPort = 5000;
-export default {
+const CONSTANTS = {
   USER_INFO: {
     firstName: 'First Name',
     lastName: 'Last Name',
@@ -86,3 +86,5 @@ export default {
     },
   ],
 };
+
+export default CONSTANTS;

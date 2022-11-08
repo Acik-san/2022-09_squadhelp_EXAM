@@ -15,6 +15,7 @@ const Home = (props) => {
   let timeout;
 
   useEffect(() => {
+    // eslint-disable-next-line
     timeout = setInterval(() => {
       setIndex(index + 1);
       setStyle(styles.headline__isloading);

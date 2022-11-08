@@ -7,7 +7,7 @@ const PayInput = (props) => {
   const {
     label, changeFocus, classes, isInputMask, mask,
   } = props;
-  const [field, meta, helpers] = useField(props.name);
+  const [field, meta] = useField(props.name);
   const { touched, error } = meta;
 
   if (field.name === 'sum') {

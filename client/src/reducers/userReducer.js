@@ -6,7 +6,7 @@ const initialState = {
   data: null,
 };
 
-export default function (state = initialState, action) {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTION.GET_USER_REQUEST: {
       return {
@@ -61,4 +61,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default userReducer;
