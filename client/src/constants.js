@@ -10,6 +10,9 @@ const CONSTANTS = {
     role: 'Role',
     balance: 'Balance',
   },
+  CONTACTS: {
+    PHONE: '(877) 355-3585',
+  },
   CUSTOMER: 'customer',
   CREATOR: 'creator',
   CONTEST_STATUS_ACTIVE: 'active',

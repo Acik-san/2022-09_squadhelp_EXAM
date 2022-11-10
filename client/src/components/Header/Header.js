@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import styles from './Header.module.sass';
 import CONSTANTS from '../../constants';
 import { clearUserStore, headerRequest } from '../../actions/actionCreator';
+import Logo from '../Logo';
 
 class Header extends React.Component {
   componentDidMount() {
@@ -86,16 +87,16 @@ class Header extends React.Component {
             <a href="http://www.google.com">Read Announcement</a>
           </div>
           <div className={styles.loginSignnUpHeaders}>
-            <div className={styles.numberContainer}>
+            <a href={`tel:${CONSTANTS.CONTACTS.PHONE}`} className={styles.numberContainer}>
               <img src={`${CONSTANTS.STATIC_IMAGES_PATH}phone.png`} alt="phone" />
-              <span>(877)&nbsp;355-3585</span>
-            </div>
+              <span>{CONSTANTS.CONTACTS.PHONE}</span>
+            </a>
             <div className={styles.userButtonsContainer}>
               {this.renderLoginButtons()}
             </div>
           </div>
           <div className={styles.navContainer}>
-            <img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt="blue_logo" />
+            <Logo className={styles.logo}/>
             <div className={styles.leftNav}>
               <div className={styles.nav}>
                 <ul>

@@ -24,14 +24,14 @@ const ImageUpload = props => {
           name={name}
           id='fileInput'
           type='file'
-          accept='.jpg, .png, .jpeg'
+          accept='.png, .gif, .jpeg'
           onChange={onChange}
         />
         <label htmlFor='fileInput'>Choose file</label>
       </div>
       <img
         id='imagePreview'
-        className={formikProps.values.file ? imgStyle : imgNone}
+        className={formikProps.values[name] ? imgStyle : imgNone}
         alt='user'
       />
     </div>
