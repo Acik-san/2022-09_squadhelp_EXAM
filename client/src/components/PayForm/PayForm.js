@@ -24,9 +24,9 @@ const PayForm = (props) => {
       <Formik
         initialValues={{
           focusOnElement: '', name: '', number: '', cvc: '', expiry: '',
-        }}
+        sum:''}}
         onSubmit={pay}
-        validationSchema={Schems.PaymentSchema}
+        validationSchema={isPayForOrder ? Schems.PaymentSchema : Schems.CashoutSchema}
       >
         {({ values }) => {
           const {
@@ -80,7 +80,7 @@ const PayForm = (props) => {
                   <span>Card Number</span>
                   <PayInput
                     isInputMask
-                    mask="9999 9999 9999 9999 999"
+                    mask="9999 9999 9999 9999"
                     name="number"
                     classes={{
                         container: styles.inputContainer,

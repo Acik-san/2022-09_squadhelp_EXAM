@@ -14,16 +14,7 @@
     "database": "todo-test",
     "host": "localhost",
     "dialect": "postgres",
-    "operatorsAliases": "Op",
-    "seederStorage": "sequelize"
+    "operatorsAliases": "Op"
   },
-  "production": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "todo-prod",
-    "host": "localhost",
-    "dialect": "postgres",
-    "operatorsAliases": "Op",
-    "seederStorage": "sequelize"
-  }
+  "production": {}
 }
