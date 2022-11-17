@@ -45,8 +45,7 @@ export function* getDataForContestSaga(action) {
 export function* getContestByIdSaga(action) {
   yield put({ type: ACTION.GET_CONTEST_BY_ID_REQUEST });
   try {
-    const { data } = yield restController.getContestById(action.data);
-    const { Offers } = data;
+    const { data, data:{Offers} } = yield restController.getContestById(action.data.contestId);
     delete data.Offers;
     yield put({ type: ACTION.GET_CONTEST_BY_ID_SUCCESS, data: { contestData: data, offers: Offers } });
   } catch (e) {

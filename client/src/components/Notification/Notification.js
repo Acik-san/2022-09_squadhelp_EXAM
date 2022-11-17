@@ -8,7 +8,7 @@ const Notification = (props) => (
     <span>{props.message}</span>
     <br />
     {props.contestId
-            && <span onClick={() => props.history.push(`/contest/${props.contestId}`)} className={styles.goToContest}>Go to contest</span>}
+            && <span onClick={() => props.history.push(`/contests/${props.contestId}`)} className={styles.goToContest}>Go to contest</span>}
   </div>
 );
 
