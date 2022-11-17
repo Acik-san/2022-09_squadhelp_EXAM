@@ -6,13 +6,11 @@ const controller = require('../socketInit');
 const UtilFunctions = require('../utils/functions');
 const CONSTANTS = require('../constants');
 
-module.exports.dataForContest = async (req, res, next) => {
+module.exports.getDataForContest = async (req, res, next) => {
+ try { 
+  const {params:{contestName}}=req
   const response = {};
-  try {
-    const { body: { characteristic1, characteristic2 } } = req;
-    console.log(req.body, characteristic1, characteristic2);
-    const types = [characteristic1, characteristic2, 'industry'].filter(Boolean);
-
+  const types = contestName==='nameContest' ? ['nameStyle', 'typeOfName', 'industry']: contestName==='taglineContest' ? ['typeOfTagline', 'industry'] : ['brandStyle', 'industry']
     const characteristics = await db.Selects.findAll({
       where: {
         type: {
@@ -29,7 +27,7 @@ module.exports.dataForContest = async (req, res, next) => {
       }
       response[ characteristic.type ].push(characteristic.describe);
     });
-    res.send(response);
+    return res.send(response);
   } catch (err) {
     console.log(err);
     next(new ServerError('cannot get contest preferences'));

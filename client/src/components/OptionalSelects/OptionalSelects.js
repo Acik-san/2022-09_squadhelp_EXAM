@@ -9,7 +9,7 @@ const OptionalSelects = props => {
   if (props.isFetching) {
     return <Spinner />;
   }
-  switch (props.contestType) {
+  switch (props.initialValues.contestType) {
     case CONSTANTS.NAME_CONTEST: {
       return (
         <>

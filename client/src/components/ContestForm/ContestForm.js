@@ -30,37 +30,14 @@ const variableOptions = {
 };
 
 class ContestForm extends React.Component {
-  getPreference = () => {
-    const { contestType } = this.props;
-    switch (contestType) {
-      case CONSTANTS.NAME_CONTEST: {
-        this.props.getData({
-          characteristic1: 'nameStyle',
-          characteristic2: 'typeOfName',
-        });
-        break;
-      }
-      case CONSTANTS.TAGLINE_CONTEST: {
-        this.props.getData({ characteristic1: 'typeOfTagline' });
-        break;
-      }
-      case CONSTANTS.LOGO_CONTEST: {
-        this.props.getData({ characteristic1: 'brandStyle' });
-        break;
-      }
-      default:
-        return;
-    }
-  };
-
   componentDidMount () {
-    this.getPreference();
+    this.props.getDataForContest(this.props.contestType)
   }
 
   render () {
     const { isFetching, error } = this.props.dataForContest;
     if (error) {
-      return <TryAgain getData={this.getPreference} />;
+      return <TryAgain getData={this.getDataForContest} />;
     }
     if (isFetching) {
       return <Spinner />;
@@ -75,7 +52,7 @@ class ContestForm extends React.Component {
               focusOfWork: '',
               targetCustomer: '',
               file: '',
-              ...variableOptions[this.props.contestType],
+              ...variableOptions[this.props.initialValues.contestType],
               ...this.props.initialValues,
             }}
             onSubmit={this.props.handleSubmit}
@@ -175,7 +152,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  getData: data => dispatch(getDataForContest(data)),
+  getDataForContest: data => dispatch(getDataForContest(data)),
 });
 
 export default withRouter(

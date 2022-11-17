@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styles from './ContestCreationPage.module.sass';
 import { saveContestToStore, clearDataForContest } from '../../actions/actionCreator';
 import NextButton from '../../components/NextButton/NextButton';
@@ -9,13 +10,16 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
+
 const ContestCreationPage = (props) => {
+  const {contestType}= props.history.location.state
+  const {contestName}=useParams()
   const formRef = useRef();
-  const contestData = props.contestStore.contests[props.contestType] ? props.contestStore.contests[props.contestType] : { contestType: props.contestType };
+  const contestData = props.contestStore.contests[contestType] ? props.contestStore.contests[contestType] : { contestType: contestType }; 
 
   const handleSubmit = (values) => {
-    props.saveContest({ type: props.contestType, info: values });
-    const route = props.bundleStore.bundle[props.contestType] === 'payment' ? '/payment' : `${props.bundleStore.bundle[props.contestType]}Contest`;
+    props.saveContest({ type: contestType, info: values });
+    const route = props.bundleStore.bundle[contestType] === 'payment' ? '/payment' : `${props.bundleStore.bundle[contestType]}Contest`;
     props.history.push(route);
   };
 
@@ -33,7 +37,7 @@ const ContestCreationPage = (props) => {
       <div className={styles.startContestHeader}>
         <div className={styles.startContestInfo}>
           <h2>
-            {props.title}
+            {props.history.location.state.title}
           </h2>
           <span>
             Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for
@@ -44,7 +48,7 @@ const ContestCreationPage = (props) => {
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <ContestForm
-            contestType={props.contestType}
+            contestType={contestName}
             handleSubmit={handleSubmit}
             formRef={formRef}
             defaultData={contestData}

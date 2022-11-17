@@ -34,12 +34,12 @@ const BundleBox = (props) => {
 
   const getBackClass = () => (props.path.length === 1 ? ' ' : ` ${styles.combinedBundle}`);
 
-  const { setBundle, header, describe } = props;
+  const { setBundle, header, describe,title } = props;
   return (
     <div
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
-      onClick={() => setBundle(header)}
+      onClick={() => setBundle(header,title)}
       id={header}
       className={styles.bundleContainer + getBackClass()}
     >

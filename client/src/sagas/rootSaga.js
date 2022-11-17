@@ -9,7 +9,7 @@ import {
   activeContestsSaga,
   customerContestsSaga,
   updateContestSaga,
-  dataForContestSaga,
+  getDataForContestSaga,
   getContestByIdSaga,
   downloadContestFileSaga,
 } from './contestsSagas';
@@ -33,7 +33,7 @@ function* rootSaga() {
   yield takeLatest(ACTION.AUTH_ACTION_LOGIN, loginSaga);
   yield takeLatest(ACTION.PAYMENT_ACTION, paymentSaga);
   yield takeEvery(ACTION.GET_USER_ACTION, privateSaga);
-  yield takeEvery(ACTION.GET_DATA_FOR_CONTEST_ACTION, dataForContestSaga);
+  yield takeEvery(ACTION.GET_DATA_FOR_CONTEST_ACTION, getDataForContestSaga);
   yield takeLatest(ACTION.CASHOUT_ACTION, cashoutSaga);
   yield takeLeading(ACTION.GET_CONTESTS_FOR_CUSTOMER, customerContestsSaga);
   yield takeLatest(ACTION.GET_CONTEST_BY_ID_ACTION, getContestByIdSaga);

@@ -13,7 +13,7 @@ const StartContestPage = (props) => {
     props.history.replace('/');
   }
 
-  const setBundle = (bundleStr) => {
+  const setBundle = (bundleStr,title) => {
     const array = bundleStr.toLowerCase().split('+');
     const bundleList = {};
     bundleList.first = array[0];
@@ -21,7 +21,7 @@ const StartContestPage = (props) => {
       bundleList[array[i]] = i === array.length - 1 ? 'payment' : array[i + 1];
     }
     props.choseBundle(bundleList);
-    props.history.push(`/startContest/${bundleList.first}Contest`);
+    props.history.push(`/startContest/${bundleList.first}Contest`,{title,contestType:bundleList.first});
   };
 
   return (
@@ -53,18 +53,21 @@ const StartContestPage = (props) => {
           <BundleBox
             path={['Name.png']}
             header="Name"
+            title="Company Name"
             describe="Get up and running with the perfect name."
             setBundle={setBundle}
           />
           <BundleBox
             path={['Logo.png']}
             header="Logo"
+            title= 'LOGO'
             describe="Kickstart your venture with a unique, memorable logo."
             setBundle={setBundle}
           />
           <BundleBox
             path={['Tagline.png']}
             header="Tagline"
+            title= 'TAGLINE'
             describe="Connect deeply with your target audience with an on-target tagline."
             setBundle={setBundle}
           />
@@ -81,24 +84,28 @@ const StartContestPage = (props) => {
           <BundleBox
             path={['Name.png', 'Logo.png']}
             header="Name+Logo"
+            title='Company Name + Logo'
             describe="Get the essentials needed to establish your brand together and save."
             setBundle={setBundle}
           />
           <BundleBox
             path={['Name.png', 'Tagline.png']}
             header="Name+Tagline"
+            title='Company Name + Tagline'
             describe="Communicate your vision with the perfect Name/Tagline combo."
             setBundle={setBundle}
           />
           <BundleBox
             path={['Logo.png', 'Tagline.png']}
             header="Tagline+Logo"
+            title='Tagline + Logo'
             describe="Description for Logo + Tagline will come here."
             setBundle={setBundle}
           />
           <BundleBox
             path={['Name.png', 'Logo.png', 'Tagline.png']}
             header="Name+Tagline+Logo"
+            title='Company Name + Tagline + Logo'
             describe="Establish your entire brand identity and save with this bundle."
             setBundle={setBundle}
           />
