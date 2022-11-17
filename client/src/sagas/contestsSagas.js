@@ -25,7 +25,7 @@ export function* customerContestsSaga(action) {
 export function* updateContestSaga(action) {
   yield put({ type: ACTION.UPDATE_CONTEST_REQUEST });
   try {
-    const { data } = yield restController.updateContest(action.data);
+    const { data } = yield restController.updateContest(action.data,action.contestId);
     yield put({ type: ACTION.UPDATE_STORE_AFTER_UPDATE_CONTEST, data });
   } catch (e) {
     yield put({ type: ACTION.UPDATE_CONTEST_ERROR, error: e.response });

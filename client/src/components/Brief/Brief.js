@@ -7,7 +7,8 @@ import styles from './Brief.module.sass';
 import ContestInfo from '../Contest/ContestInfo/ContestInfo';
 import Error from '../Error/Error';
 
-const Brief = (props) => {
+const Brief = (props) => {   
+  const { params } = props.match;
   const setNewContestData = (values) => {
     const data = new FormData();
     Object.keys(values).forEach((key) => {
@@ -16,8 +17,7 @@ const Brief = (props) => {
     if (values.file instanceof File) {
       data.append('file', values.file);
     }
-    data.append('contestId', props.contestData.id);
-    props.update(data);
+    props.update(data,params.id);
   };
 
   const getContestObjInfo = () => {
@@ -95,7 +95,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  update: (data) => dispatch(updateContest(data)),
+  update: (data,contestId) => dispatch(updateContest(data,contestId)),
   changeEditContest: (data) => dispatch(changeEditContest(data)),
   clearUpdateContestStore: () => dispatch(clearUpdateContestStore()),
 });

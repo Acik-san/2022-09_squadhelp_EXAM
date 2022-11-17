@@ -72,9 +72,8 @@ router.get(
   contestController.downloadFile,
 );
 
-router.post(
-  '/updateContest',
-  
+router.patch(
+  '/contests/:contestId',
   upload.updateContestFile,
   contestController.updateContest,
 );

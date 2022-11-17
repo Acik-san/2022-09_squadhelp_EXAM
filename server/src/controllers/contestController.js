@@ -108,12 +108,11 @@ module.exports.updateContest = async (req, res, next) => {
     req.body.fileName = req.file.filename;
     req.body.originalFileName = req.file.originalname;
   }
-  const contestId = req.body.contestId;
-  delete req.body.contestId;
+  const {params:{contestId},body,tokenData:{userId}} = req;
   try {
-    const updatedContest = await contestQueries.updateContest(req.body, {
+    const updatedContest = await contestQueries.updateContest(body, {
       id: contestId,
-      userId: req.tokenData.userId,
+      userId,
     });
     res.send(updatedContest);
   } catch (e) {

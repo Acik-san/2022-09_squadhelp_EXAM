@@ -74,9 +74,10 @@ export const clearBundle = () => ({
   type: ACTION.CLEAR_BUNDLE_ACTION,
 });
 
-export const updateContest = (data) => ({
+export const updateContest = (data,contestId) => ({
   type: ACTION.UPDATE_CONTEST_ACTION,
   data,
+  contestId
 });
 
 export const saveContestToStore = (data) => ({
