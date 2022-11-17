@@ -103,7 +103,7 @@ module.exports.downloadFile = async (req, res, next) => {
   res.download(file);
 };
 
-module.exports.updateContest = async (req, res, next) => {
+module.exports.updateContestById = async (req, res, next) => {
   if (req.file) {
     req.body.fileName = req.file.filename;
     req.body.originalFileName = req.file.originalname;
@@ -214,10 +214,11 @@ module.exports.setOfferStatus = async (req, res, next) => {
 };
 
 module.exports.getCustomersContests = (req, res, next) => {
+  const {query:{limit,offset,contestStatus},tokenData:{userId}} =req
   db.Contests.findAll({
-    where: { status: req.headers.status, userId: req.tokenData.userId },
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    where: { status: contestStatus, userId },
+    limit: limit > 8 || limit <=0 ? limit:8,
+    offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
       {

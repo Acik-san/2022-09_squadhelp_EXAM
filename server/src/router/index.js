@@ -31,7 +31,6 @@ router.use(checkToken.checkToken)
 
 router.get(
   '/startContest/:contestName',
-  
   contestController.getDataForContest,
 );
 
@@ -45,9 +44,8 @@ router.post(
   userController.payment,
 );
 
-router.post(
-  '/getCustomersContests',
-  
+router.get(
+  '/dashboard',
   contestController.getCustomersContests,
 );
 
@@ -75,7 +73,7 @@ router.get(
 router.patch(
   '/contests/:contestId',
   upload.updateContestFile,
-  contestController.updateContest,
+  contestController.updateContestById,
 );
 
 router.post(
