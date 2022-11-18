@@ -28,4 +28,16 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
+  CONTEST_NAMES: {
+    CONTEST_NAME: "nameContest",
+    CONTEST_TAGLINE: "taglineContest",
+    CONTEST_LOGO: "logoContest"
+  },
+  CONTEST_TYPES: {
+    NAME_STYLE: "nameStyle",
+    TYPE_OF_NAME: "typeOfName",
+    TYPE_OF_TAGLINE: "typeOfTagline",
+    BRAND_STYLE: "brandStyle",
+    INDUSTRY: "industry"
+  }
 };

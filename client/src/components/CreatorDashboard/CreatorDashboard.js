@@ -86,7 +86,7 @@ class CreatorDashboard extends React.Component {
       Object.keys(creatorFilter).forEach((el) => {
         if (creatorFilter[el]) obj[el] = creatorFilter[el];
       });
-      this.props.history.push(`/Dashboard?${queryString.stringify(obj)}`);
+      this.props.history.push(`/dashboard?${queryString.stringify(obj)}`);
     };
 
     parseUrlForParams = (search) => {

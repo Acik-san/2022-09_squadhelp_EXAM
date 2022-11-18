@@ -5,12 +5,13 @@ const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
 const UtilFunctions = require('../utils/functions');
 const CONSTANTS = require('../constants');
+const {CONTEST_TYPES:{NAME_STYLE,TYPE_OF_NAME,TYPE_OF_TAGLINE,BRAND_STYLE,INDUSTRY},CONTEST_NAMES:{CONTEST_NAME,CONTEST_TAGLINE,CONTEST_LOGO}} = CONSTANTS
 
 module.exports.getDataForContest = async (req, res, next) => {
  try { 
   const {params:{contestName}}=req
   const response = {};
-  const types = contestName==='nameContest' ? ['nameStyle', 'typeOfName', 'industry']: contestName==='taglineContest' ? ['typeOfTagline', 'industry'] : ['brandStyle', 'industry']
+  const types = contestName===CONTEST_NAME ? [NAME_STYLE, TYPE_OF_NAME, INDUSTRY]: contestName===CONTEST_TAGLINE ? [TYPE_OF_TAGLINE, INDUSTRY] :contestName===CONTEST_LOGO? [BRAND_STYLE, INDUSTRY]:[INDUSTRY]
     const characteristics = await db.Selects.findAll({
       where: {
         type: {
@@ -27,7 +28,7 @@ module.exports.getDataForContest = async (req, res, next) => {
       }
       response[ characteristic.type ].push(characteristic.describe);
     });
-    return res.send(response);
+    res.send(response);
   } catch (err) {
     console.log(err);
     next(new ServerError('cannot get contest preferences'));
@@ -213,11 +214,12 @@ module.exports.setOfferStatus = async (req, res, next) => {
   }
 };
 
-module.exports.getCustomersContests = (req, res, next) => {
+module.exports.getCustomersContests = async (req, res, next) => {
+  try {
   const {query:{limit,offset,contestStatus},tokenData:{userId}} =req
-  db.Contests.findAll({
+  const contests = await db.Contests.findAll({
     where: { status: contestStatus, userId },
-    limit: limit > 8 || limit <=0 ? limit:8,
+    limit: limit > 8 || limit <=0 ? 8:limit,
     offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
@@ -228,45 +230,38 @@ module.exports.getCustomersContests = (req, res, next) => {
       },
     ],
   })
-    .then(contests => {
-      contests.forEach(
-        contest => contest.dataValues.count = contest.dataValues.Offers.length);
-      let haveMore = true;
-      if (contests.length === 0) {
-        haveMore = false;
-      }
-      res.send({ contests, haveMore });
-    })
-    .catch(err => next(new ServerError(err)));
+  contests.forEach( contest => contest.dataValues.count = contest.dataValues.Offers.length);
+  const haveMore = contests.length > 0 ? true : false;
+  res.status(200).send({ contests, haveMore });
+  } catch (error) {
+    next(new ServerError(error));
+  }
 };
 
-module.exports.getContests = (req, res, next) => {
-  const predicates = UtilFunctions.createWhereForAllContests(req.body.typeIndex,
-    req.body.contestId, req.body.industry, req.body.awardSort);
-  db.Contests.findAll({
+module.exports.getCreativeContests = async (req, res, next) => {
+  try {
+  const {query:{offset, limit, typeIndex, contestId, industry, awardSort, ownEntries},tokenData:{userId}}=req
+  const entries = ownEntries==="true"?true:false
+  const predicates = UtilFunctions.createWhereForAllContests(typeIndex,
+    contestId, industry, awardSort);
+  const contests = await db.Contests.findAll({
     where: predicates.where,
     order: predicates.order,
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    limit,
+    offset: offset ? offset : 0,
     include: [
       {
         model: db.Offers,
-        required: req.body.ownEntries,
-        where: req.body.ownEntries ? { userId: req.tokenData.userId } : {},
+        required: entries,
+        where: entries ? { userId } : {},
         attributes: ['id'],
       },
     ],
   })
-    .then(contests => {
-      contests.forEach(
-        contest => contest.dataValues.count = contest.dataValues.Offers.length);
-      let haveMore = true;
-      if (contests.length === 0) {
-        haveMore = false;
-      }
-      res.send({ contests, haveMore });
-    })
-    .catch(err => {
-      next(new ServerError());
-    });
+  contests.forEach( contest => contest.dataValues.count = contest.dataValues.Offers.length);
+  const haveMore = contests.length > 0 ? true : false;
+  res.status(200).send({ contests, haveMore });
+  } catch (error) {
+    next(new ServerError());
+  }
 };

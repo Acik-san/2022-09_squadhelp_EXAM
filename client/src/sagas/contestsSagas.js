@@ -2,10 +2,10 @@ import { put } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
 import * as restController from '../api/rest/restController';
 
-export function* activeContestsSaga(action) {
+export function* creatorContestsSaga(action) {
   yield put({ type: ACTION.GET_CONTESTS_ACTION_REQUEST });
   try {
-    const { data } = yield restController.getActiveContests(action.data);
+    const { data } = yield restController.getCreatorContests(action.data);
     yield put({ type: ACTION.GET_CONTESTS_ACTION_SUCCESS, data });
   } catch (e) {
     yield put({ type: ACTION.GET_CONTESTS_ACTION_ERROR, error: e.response });

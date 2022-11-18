@@ -24,12 +24,8 @@ export const createCatalog = (data) => http.post('createCatalog', data);
 export const deleteCatalog = (data) => http.post('deleteCatalog', data);
 export const removeChatFromCatalog = (data) => http.post('removeChatFromCatalog', data);
 export const changeCatalogName = (data) => http.post('updateNameCatalog', data);
-export const getCustomersContests = ({limit,offset,contestStatus}) => http.get(`dashboard?${qs.stringify({limit,offset,contestStatus})}`);
-
-export const getActiveContests = ({
+export const getCustomersContests = ({limit,offset,contestStatus}) => http.get(`dashboard/customerContests?${qs.stringify({limit,offset,contestStatus})}`);
+export const getCreatorContests = ({
   offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
-}) => http.post('getAllContests', {
-  offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
-});
-
+}) => http.get(`dashboard/creatorContests?${qs.stringify({  offset, limit, typeIndex, contestId, industry, awardSort, ownEntries})}`);
 export const getContestById = (id) => http.get(`contests/${id}`);

@@ -6,12 +6,12 @@ import {
 } from './userSaga';
 import { paymentSaga, cashoutSaga } from './paymentSaga';
 import {
-  activeContestsSaga,
   customerContestsSaga,
   updateContestSaga,
   getDataForContestSaga,
   getContestByIdSaga,
   downloadContestFileSaga,
+  creatorContestsSaga,
 } from './contestsSagas';
 import { changeMarkSaga, setOfferStatusSaga, addOfferSaga } from './offerSagas';
 import {
@@ -37,7 +37,7 @@ function* rootSaga() {
   yield takeLatest(ACTION.CASHOUT_ACTION, cashoutSaga);
   yield takeLeading(ACTION.GET_CONTESTS_FOR_CUSTOMER, customerContestsSaga);
   yield takeLatest(ACTION.GET_CONTEST_BY_ID_ACTION, getContestByIdSaga);
-  yield takeEvery(ACTION.GET_CONTESTS_FOR_CREATIVE, activeContestsSaga);
+  yield takeEvery(ACTION.GET_CONTESTS_FOR_CREATIVE, creatorContestsSaga);
   yield takeLatest(ACTION.DOWNLOAD_CONTEST_FILE_ACTION, downloadContestFileSaga);
   yield takeLatest(ACTION.UPDATE_CONTEST_ACTION, updateContestSaga);
   yield takeEvery(ACTION.SET_OFFER_ACTION, addOfferSaga);

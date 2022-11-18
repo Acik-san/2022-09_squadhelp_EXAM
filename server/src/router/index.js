@@ -45,7 +45,7 @@ router.post(
 );
 
 router.get(
-  '/dashboard',
+  '/dashboard/customerContests',
   contestController.getCustomersContests,
 );
 
@@ -55,14 +55,11 @@ router.get(
   contestController.getContestById,
 );
 
-router.post(
-  '/getAllContests',
-  
+router.get(
+  '/dashboard/creatorContests',
   basicMiddlewares.onlyForCreative,
-  contestController.getContests,
+  contestController.getCreativeContests,
 );
-
-
 
 router.get(
   '/downloadFile/:fileName',
