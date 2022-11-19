@@ -18,12 +18,12 @@ export const updateUser = (data) => http.post('updateUser', data);
 export const newMessage = (data) => http.post('newMessage', data);
 export const changeChatFavorite = (data) => http.post('favorite', data);
 export const changeChatBlock = (data) => http.post('blackList', data);
-export const getCatalogList = (data) => http.post('getCatalogs', data);
-export const addChatToCatalog = (data) => http.post('addNewChatToCatalog', data);
-export const createCatalog = (data) => http.post('createCatalog', data);
-export const deleteCatalog = (data) => http.post('deleteCatalog', data);
-export const removeChatFromCatalog = (data) => http.post('removeChatFromCatalog', data);
-export const changeCatalogName = (data) => http.post('updateNameCatalog', data);
+export const getCatalogList = () => http.get('catalogs');
+export const addChatToCatalog = ({chatId,catalogId}) => http.post(`catalogs/${catalogId}`,{chatId});
+export const createCatalog = (data) => http.post('catalogs', data);
+export const deleteCatalog = ({catalogId}) => http.delete(`catalogs/${catalogId}`);
+export const removeChatFromCatalog = ({catalogId,chatId}) => http.delete(`catalogs/${catalogId}/${chatId}`);
+export const changeCatalogName = ({catalogName,catalogId}) => http.patch(`catalogs/${catalogId}`, {catalogName});
 export const getCustomersContests = ({limit,offset,contestStatus}) => http.get(`dashboard/customerContests?${qs.stringify({limit,offset,contestStatus})}`);
 export const getCreatorContests = ({
   offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,

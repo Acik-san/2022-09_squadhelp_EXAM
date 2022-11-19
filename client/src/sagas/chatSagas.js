@@ -84,7 +84,7 @@ export function* changeChatBlock(action) {
 
 export function* getCatalogListSaga(action) {
   try {
-    const { data } = yield restController.getCatalogList(action.data);
+    const { data } = yield restController.getCatalogList();
     yield put({ type: ACTION.RECEIVE_CATALOG_LIST, data });
   } catch (err) {
     yield put({ type: ACTION.RECEIVE_CATALOG_LIST_ERROR, error: err.response });

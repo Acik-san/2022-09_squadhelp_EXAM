@@ -140,38 +140,32 @@ router.post(
 );
 
 router.post(
-  '/createCatalog',
-  
+  '/catalogs',
   chatController.createCatalog,
 );
 
-router.post(
-  '/updateNameCatalog',
-  
+router.patch(
+  '/catalogs/:catalogId',
   chatController.updateNameCatalog,
 );
 
 router.post(
-  '/addNewChatToCatalog',
-  
+  '/catalogs/:catalogId',
   chatController.addNewChatToCatalog,
 );
 
-router.post(
-  '/removeChatFromCatalog',
-  
+router.delete(
+  '/catalogs/:catalogId/:chatId',
   chatController.removeChatFromCatalog,
 );
 
-router.post(
-  '/deleteCatalog',
-  
+router.delete(
+  '/catalogs/:catalogId',
   chatController.deleteCatalog,
 );
 
-router.post(
-  '/getCatalogs',
-  
+router.get(
+  '/catalogs',
   chatController.getCatalogs,
 );
 

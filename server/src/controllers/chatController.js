@@ -1,7 +1,6 @@
 const Conversation = require('../models/mongoModels/conversation');
 const Message = require('../models/mongoModels/Message');
 const Catalog = require('../models/mongoModels/Catalog');
-const moment = require('moment');
 const db = require('../models');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
@@ -210,13 +209,13 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  console.log(req.body);
-  const catalog = new Catalog({
-    userId: req.tokenData.userId,
-    catalogName: req.body.catalogName,
-    chats: [req.body.chatId],
-  });
   try {
+    const { body: {catalogName,chatId},tokenData:{userId} } = req
+    const catalog = new Catalog({
+      userId,
+      catalogName,
+      chats: [chatId],
+    });
     await catalog.save();
     res.send(catalog);
   } catch (err) {
@@ -226,10 +225,11 @@ module.exports.createCatalog = async (req, res, next) => {
 
 module.exports.updateNameCatalog = async (req, res, next) => {
   try {
+    const {params:{catalogId}, body: {catalogName},tokenData:{userId} } = req
     const catalog = await Catalog.findOneAndUpdate({
-      _id: req.body.catalogId,
-      userId: req.tokenData.userId,
-    }, { catalogName: req.body.catalogName }, { new: true });
+      _id: catalogId,
+      userId,
+    }, { catalogName }, { new: true });
     res.send(catalog);
   } catch (err) {
     next(err);
@@ -238,10 +238,11 @@ module.exports.updateNameCatalog = async (req, res, next) => {
 
 module.exports.addNewChatToCatalog = async (req, res, next) => {
   try {
+    const { params: {catalogId},body:{chatId},tokenData:{userId} } = req
     const catalog = await Catalog.findOneAndUpdate({
-      _id: req.body.catalogId,
-      userId: req.tokenData.userId,
-    }, { $addToSet: { chats: req.body.chatId } }, { new: true });
+      _id: catalogId,
+      userId,
+    }, { $addToSet: { chats: chatId } }, { new: true });
     res.send(catalog);
   } catch (err) {
     next(err);
@@ -250,10 +251,11 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
   try {
+    const { params:{catalogId,chatId},tokenData:{userId}} = req
     const catalog = await Catalog.findOneAndUpdate({
-      _id: req.body.catalogId,
-      userId: req.tokenData.userId,
-    }, { $pull: { chats: req.body.chatId } }, { new: true });
+      _id: catalogId,
+      userId,
+    }, { $pull: { chats: chatId } }, { new: true });
     res.send(catalog);
   } catch (err) {
     next(err);
@@ -262,8 +264,9 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 
 module.exports.deleteCatalog = async (req, res, next) => {
   try {
+    const {params:{catalogId},tokenData:{userId}} = req
     await Catalog.remove(
-      { _id: req.body.catalogId, userId: req.tokenData.userId });
+      { _id: catalogId, userId });
     res.end();
   } catch (err) {
     next(err);
@@ -272,8 +275,9 @@ module.exports.deleteCatalog = async (req, res, next) => {
 
 module.exports.getCatalogs = async (req, res, next) => {
   try {
+    const { tokenData: {userId} } = req
     const catalogs = await Catalog.aggregate([
-      { $match: { userId: req.tokenData.userId } },
+      { $match: { userId } },
       {
         $project: {
           _id: 1,
