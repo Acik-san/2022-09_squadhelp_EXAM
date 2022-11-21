@@ -132,8 +132,8 @@ export const clearAuth = () => ({
   type: ACTION.AUTH_ACTION_CLEAR,
 });
 
-export const getPreviewChat = () => ({
-  type: ACTION.GET_PREVIEW_CHAT_ASYNC,
+export const getChats = () => ({
+  type: ACTION.GET_CHATS_REQUEST,
 });
 
 export const backToDialogList = () => ({
@@ -145,9 +145,9 @@ export const goToExpandedDialog = (data) => ({
   data,
 });
 
-export const getDialogMessages = (data) => ({
+export const getChat = (data) => ({
 
-  type: ACTION.GET_DIALOG_MESSAGES_ASYNC,
+  type: ACTION.GET_CHAT_REQUEST,
   data,
 });
 
@@ -185,7 +185,7 @@ export const setPreviewChatMode = (mode) => ({
 });
 
 export const changeChatFavorite = (data) => ({
-  type: ACTION.SET_CHAT_FAVORITE_FLAG,
+  type: ACTION.SET_CHAT_FAVORITE_REQUEST,
   data,
 });
 

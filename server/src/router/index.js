@@ -23,7 +23,7 @@ router.post(
 );
 
 router.get(
-  '/getUser',
+  '/profile',
   checkToken.checkAuth,
 );
 
@@ -74,16 +74,14 @@ router.patch(
 );
 
 router.post(
-  '/setNewOffer',
-  
+  '/contests/:contestId/offer',
   upload.uploadLogoFiles,
   basicMiddlewares.canSendOffer,
   contestController.setNewOffer,
 );
 
-router.post(
-  '/setOfferStatus',
-  
+router.patch(
+  '/contests/:contestId/offer',
   basicMiddlewares.onlyForCustomerWhoCreateContest,
   contestController.setOfferStatus,
 );
@@ -95,9 +93,8 @@ router.post(
   userController.changeMark,
 );
 
-router.post(
-  '/updateUser',
-  
+router.patch(
+  '/profile',
   upload.uploadAvatar,
   userController.updateUser,
 );
@@ -110,33 +107,28 @@ router.post(
 );
 
 router.post(
-  '/newMessage',
-  
+  '/chats/:recipient',
   chatController.addMessage,
 );
 
-router.post(
-  '/getChat',
-  
+router.get(
+  '/chats/:interlocutorId',
   chatController.getChat,
 );
 
-router.post(
-  '/getPreview',
-  
-  chatController.getPreview,
+router.get(
+  '/chats',
+  chatController.getChats,
 );
 
-router.post(
-  '/blackList',
-  
-  chatController.blackList,
+router.patch(
+  '/chats/blackList',
+  chatController.addChatToBlackList,
 );
 
-router.post(
-  '/favorite',
-  
-  chatController.favoriteChat,
+router.patch(
+  '/chats/favorite',
+  chatController.addChatToFavorite,
 );
 
 router.post(

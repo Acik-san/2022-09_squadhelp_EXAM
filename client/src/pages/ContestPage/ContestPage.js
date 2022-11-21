@@ -69,9 +69,8 @@ class ContestPage extends React.Component {
         creatorId,
         orderId,
         priority,
-        contestId: id,
       };
-      this.props.setOfferStatus(obj);
+      this.props.setOfferStatus({contestId: id,data:obj});
     };
 
     findConversationInfo = (interlocutorId) => {

@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPreviewChat } from '../../../../actions/actionCreator';
+import { getChats } from '../../../../actions/actionCreator';
 import DialogList from '../DialogList/DialogList';
 
 class DialogListContainer extends React.Component {
-  componentDidMount() {
-    // this.props.getChatPreview();
-  }
 
   render() {
     const { messagesPreview, userId } = this.props;
@@ -17,7 +14,7 @@ class DialogListContainer extends React.Component {
 const mapStateToProps = (state) => state.chatStore;
 
 const mapDispatchToProps = (dispatch) => ({
-  getChatPreview: () => dispatch(getPreviewChat()),
+  getChats: () => dispatch(getChats()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogListContainer);

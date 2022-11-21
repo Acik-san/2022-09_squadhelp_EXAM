@@ -4,21 +4,21 @@ import isEqual from 'lodash/isEqual';
 import ACTION from '../actions/actionTypes';
 import * as restController from '../api/rest/restController';
 
-export function* previewSaga() {
+export function* getChatsSaga() {
   try {
-    const { data } = yield restController.getPreviewChat();
-    yield put({ type: ACTION.GET_PREVIEW_CHAT, data });
+    const { data } = yield restController.getChats();
+    yield put({ type: ACTION.GET_CHATS_SUCCESS, data });
   } catch (err) {
-    yield put({ type: ACTION.GET_PREVIEW_CHAT_ERROR, error: err.response });
+    yield put({ type: ACTION.GET_CHATS_ERROR, error: err.response });
   }
 }
 
-export function* getDialog(action) {
+export function* getChatSaga(action) {
   try {
-    const { data } = yield restController.getDialog(action.data);
-    yield put({ type: ACTION.GET_DIALOG_MESSAGES, data });
+    const { data } = yield restController.getChat(action.data);
+    yield put({ type: ACTION.GET_CHAT_SUCCESS, data });
   } catch (err) {
-    yield put({ type: ACTION.GET_DIALOG_MESSAGES_ERROR, error: err.response });
+    yield put({ type: ACTION.GET_CHAT_ERROR, error: err.response });
   }
 }
 
@@ -63,7 +63,7 @@ export function* changeChatFavorite(action) {
     messagesPreview.forEach((preview) => {
       if (isEqual(preview.participants, data.participants)) preview.favoriteList = data.favoriteList;
     });
-    yield put({ type: ACTION.CHANGE_CHAT_FAVORITE, data: { changedPreview: data, messagesPreview } });
+    yield put({ type: ACTION.SET_CHAT_FAVORITE_SUCCESS, data: { changedPreview: data, messagesPreview } });
   } catch (err) {
     yield put({ type: ACTION.SET_CHAT_FAVORITE_ERROR, error: err.response });
   }

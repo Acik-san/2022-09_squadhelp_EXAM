@@ -22,7 +22,7 @@ const initialState = {
 
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ACTION.GET_PREVIEW_CHAT: {
+    case ACTION.GET_CHATS_SUCCESS: {
       return {
         ...state,
         messagesPreview: action.data,
@@ -36,7 +36,7 @@ const chatReducer = (state = initialState, action) => {
         error: action.error,
       };
     }
-    case ACTION.GET_PREVIEW_CHAT_ERROR: {
+    case ACTION.GET_CHATS_ERROR: {
       return {
         ...state,
         error: action.error,
@@ -78,14 +78,14 @@ const chatReducer = (state = initialState, action) => {
         messages: [],
       };
     }
-    case ACTION.GET_DIALOG_MESSAGES: {
+    case ACTION.GET_CHAT_SUCCESS: {
       return {
         ...state,
         messages: action.data.messages,
         interlocutor: action.data.interlocutor,
       };
     }
-    case ACTION.GET_DIALOG_MESSAGES_ERROR: {
+    case ACTION.GET_CHAT_ERROR: {
       return {
         ...state,
         messages: [],
@@ -126,7 +126,7 @@ const chatReducer = (state = initialState, action) => {
         chatMode: action.mode,
       };
     }
-    case ACTION.CHANGE_CHAT_FAVORITE: {
+    case ACTION.SET_CHAT_FAVORITE_SUCCESS: {
       return {
         ...state,
         chatData: action.data.changedPreview,

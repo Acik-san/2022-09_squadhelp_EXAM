@@ -61,13 +61,14 @@ module.exports.onlyForCustomer = (req, res, next) => {
 };
 
 module.exports.canSendOffer = async (req, res, next) => {
-  if (req.tokenData.role === CONSTANTS.CUSTOMER) {
-    return next(new RightsError());
-  }
   try {
+    const {params:{contestId},tokenData:{role}} = req
+    if (role === CONSTANTS.CUSTOMER) {
+      return next(new RightsError());
+    }
     const result = await bd.Contests.findOne({
       where: {
-        id: req.body.contestId,
+        id: contestId,
       },
       attributes: ['status'],
     });
@@ -85,10 +86,11 @@ module.exports.canSendOffer = async (req, res, next) => {
 
 module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
   try {
+    const {params:{contestId},tokenData:{userId}} = req
     const result = await bd.Contests.findOne({
       where: {
-        userId: req.tokenData.userId,
-        id: req.body.contestId,
+        userId,
+        id: contestId,
         status: CONSTANTS.CONTEST_STATUS_ACTIVE,
       },
     });

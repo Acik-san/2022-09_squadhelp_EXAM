@@ -9,7 +9,7 @@ import {
   setPreviewChatMode,
   changeShowModeCatalog,
   clearChatError,
-  getPreviewChat,
+  getChats,
 } from '../../../../actions/actionCreator';
 import { chatController } from '../../../../api/ws/socketController';
 import CONSTANTS from '../../../../constants';
@@ -21,7 +21,7 @@ import ChatError from '../../../ChatError/ChatError';
 class Chat extends React.Component {
   componentDidMount() {
     chatController.subscribeChat(this.props.userStore.data.id);
-    this.props.getPreviewChat();
+    this.props.getChats();
   }
 
   componentWillUnmount() {
@@ -84,10 +84,10 @@ class Chat extends React.Component {
         isExpanded, isShow, isShowCatalogCreation, error,
       } = this.props.chatStore;
       const { id } = this.props.userStore.data;
-      const { changeShow, getPreviewChat } = this.props;
+      const { changeShow, getChats } = this.props;
       return (
         <div className={classNames(styles.chatContainer, { [styles.showChat]: isShow })}>
-          {error && <ChatError getData={getPreviewChat} />}
+          {error && <ChatError getData={getChats} />}
           {isShowCatalogCreation && <CatalogCreation />}
           {isExpanded ? <Dialog userId={id} /> : this.renderDialogList()}
           <div
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) => ({
   setChatPreviewMode: (mode) => dispatch(setPreviewChatMode(mode)),
   changeShowModeCatalog: () => dispatch(changeShowModeCatalog()),
   clearChatError: () => dispatch(clearChatError()),
-  getPreviewChat: () => dispatch(getPreviewChat()),
+  getChats: () => dispatch(getChats()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

@@ -15,8 +15,8 @@ import {
 } from './contestsSagas';
 import { changeMarkSaga, setOfferStatusSaga, addOfferSaga } from './offerSagas';
 import {
-  previewSaga,
-  getDialog,
+  getChatsSaga,
+  getChatSaga,
   sendMessage,
   changeChatFavorite,
   changeChatBlock,
@@ -46,10 +46,10 @@ function* rootSaga() {
   yield takeLatest(ACTION.UPDATE_USER_DATA, updateUserData);
   yield takeLatest(ACTION.ONLY_FOR_NOT_AUTHORIZE_USERS, notAuthorizeSaga);
   yield takeLatest(ACTION.HEADER_REQUEST_AUTHORIZE, headerRequest);
-  yield takeLatest(ACTION.GET_PREVIEW_CHAT_ASYNC, previewSaga);
-  yield takeLatest(ACTION.GET_DIALOG_MESSAGES_ASYNC, getDialog);
+  yield takeLatest(ACTION.GET_CHATS_REQUEST, getChatsSaga);
+  yield takeLatest(ACTION.GET_CHAT_REQUEST, getChatSaga);
   yield takeLatest(ACTION.SEND_MESSAGE_ACTION, sendMessage);
-  yield takeLatest(ACTION.SET_CHAT_FAVORITE_FLAG, changeChatFavorite);
+  yield takeLatest(ACTION.SET_CHAT_FAVORITE_REQUEST, changeChatFavorite);
   yield takeLatest(ACTION.SET_CHAT_BLOCK_FLAG, changeChatBlock);
   yield takeLatest(ACTION.GET_CATALOG_LIST_ASYNC, getCatalogListSaga);
   yield takeLatest(ACTION.ADD_CHAT_TO_CATALOG_ASYNC, addChatToCatalog);

@@ -54,13 +54,12 @@ const OfferForm = props => {
     clearOfferError();
     const data = new FormData();
     const contestData = {
-      contestId,
       contestType,
       offerData: values.offerData,
       customerId,
     };
     Object.keys(contestData).map(key => data.append(key, contestData[key]));
-    setNewOffer(data);
+    setNewOffer({contestId,data});
     resetForm();
   };
 

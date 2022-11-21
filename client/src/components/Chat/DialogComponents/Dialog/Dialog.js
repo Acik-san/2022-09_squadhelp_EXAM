@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import className from 'classnames';
-import { getDialogMessages, clearMessageList } from '../../../../actions/actionCreator';
+import { getChat, clearMessageList } from '../../../../actions/actionCreator';
 import ChatHeader from '../../ChatComponents/ChatHeader/ChatHeader';
 import styles from './Dialog.module.sass';
 import ChatInput from '../../ChatComponents/ChatInut/ChatInput';
 
 class Dialog extends React.Component {
   componentDidMount() {
-    this.props.getDialog({ interlocutorId: this.props.interlocutor.id });
+    this.props.getChat({ interlocutorId: this.props.interlocutor.id });
     this.scrollToBottom();
   }
 
@@ -20,7 +20,7 @@ class Dialog extends React.Component {
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-      if (nextProps.interlocutor.id !== this.props.interlocutor.id) this.props.getDialog({ interlocutorId: nextProps.interlocutor.id });
+      if (nextProps.interlocutor.id !== this.props.interlocutor.id) this.props.getChat({ interlocutorId: nextProps.interlocutor.id });
     }
 
     componentWillUnmount() {
@@ -93,7 +93,7 @@ class Dialog extends React.Component {
 const mapStateToProps = (state) => state.chatStore;
 
 const mapDispatchToProps = (dispatch) => ({
-  getDialog: (data) => dispatch(getDialogMessages(data)),
+  getChat: (data) => dispatch(getChat(data)),
   clearMessageList: () => dispatch(clearMessageList()),
 });
 

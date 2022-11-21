@@ -15,7 +15,7 @@ class CatalogListContainer extends React.Component {
       event.stopPropagation();
     };
 
-    getDialogsPreview = () => {
+    getChats = () => {
       const { messagesPreview, currentCatalog } = this.props.chatStore;
       const { chats } = currentCatalog;
       const dialogsInCatalog = [];
@@ -37,7 +37,7 @@ class CatalogListContainer extends React.Component {
           {isShowChatsInCatalog ? (
             <DialogList
               userId={id}
-              preview={this.getDialogsPreview()}
+              preview={this.getChats()}
               removeChat={this.removeChatFromCatalog}
             />
           )

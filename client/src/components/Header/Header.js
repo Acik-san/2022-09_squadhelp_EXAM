@@ -43,7 +43,7 @@ class Header extends React.Component {
                     <span>View Dashboard</span>
                   </Link>
                 </li>
-                <li><Link to="/account" style={{ textDecoration: 'none' }}><span>My Account</span></Link></li>
+                <li><Link to="/profile" style={{ textDecoration: 'none' }}><span>My Account</span></Link></li>
                 <li>
                   <Link
                     to="http:/www.google.com"

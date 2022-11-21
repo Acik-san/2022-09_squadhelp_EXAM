@@ -4,13 +4,14 @@ const Catalog = require('../models/mongoModels/Catalog');
 const db = require('../models');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
-const _ = require('lodash');
 
 module.exports.addMessage = async (req, res, next) => {
-  const participants = [req.tokenData.userId, req.body.recipient];
-  participants.sort(
+
+  try {  
+    const {params:{recipient},body:{messageBody,interlocutor},tokenData:{userId,firstName,lastName,displayName,avatar,email}} = req
+    const participants = [userId, recipient];
+    participants.sort(
     (participant1, participant2) => participant1 - participant2);
-  try {
     const newConversation = await Conversation.findOneAndUpdate({
       participants,
     },
@@ -22,18 +23,18 @@ module.exports.addMessage = async (req, res, next) => {
       useFindAndModify: false,
     });
     const message = new Message({
-      sender: req.tokenData.userId,
-      body: req.body.messageBody,
+      sender: userId,
+      body: messageBody,
       conversation: newConversation._id,
     });
     await message.save();
     message._doc.participants = participants;
     const interlocutorId = participants.filter(
-      (participant) => participant !== req.tokenData.userId)[ 0 ];
+      (participant) => participant !== userId)[ 0 ];
     const preview = {
       _id: newConversation._id,
-      sender: req.tokenData.userId,
-      text: req.body.messageBody,
+      sender: userId,
+      text: messageBody,
       createAt: message.createdAt,
       participants,
       blackList: newConversation.blackList,
@@ -43,25 +44,25 @@ module.exports.addMessage = async (req, res, next) => {
       message,
       preview: {
         _id: newConversation._id,
-        sender: req.tokenData.userId,
-        text: req.body.messageBody,
+        sender: userId,
+        text: messageBody,
         createAt: message.createdAt,
         participants,
         blackList: newConversation.blackList,
         favoriteList: newConversation.favoriteList,
         interlocutor: {
-          id: req.tokenData.userId,
-          firstName: req.tokenData.firstName,
-          lastName: req.tokenData.lastName,
-          displayName: req.tokenData.displayName,
-          avatar: req.tokenData.avatar,
-          email: req.tokenData.email,
+          id: userId,
+          firstName,
+          lastName,
+          displayName,
+          avatar,
+          email,
         },
       },
     });
     res.send({
       message,
-      preview: Object.assign(preview, { interlocutor: req.body.interlocutor }),
+      preview: Object.assign(preview, { interlocutor }),
     });
   } catch (err) {
     next(err);
@@ -69,10 +70,13 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
-  const participants = [req.tokenData.userId, req.body.interlocutorId];
+  try {  
+  const {params:{interlocutorId},tokenData:{userId}} = req
+
+  const participants = [userId, Number(interlocutorId)];
   participants.sort(
-    (participant1, participant2) => participant1 - participant2);
-  try {
+    (participant1, participant2) => participant1 - participant2);  
+    console.log(participants)
     const messages = await Message.aggregate([
       {
         $lookup: {
@@ -97,7 +101,7 @@ module.exports.getChat = async (req, res, next) => {
     ]);
 
     const interlocutor = await userQueries.findUser(
-      { id: req.body.interlocutorId });
+      { id: interlocutorId });
     res.send({
       messages,
       interlocutor: {
@@ -113,7 +117,7 @@ module.exports.getChat = async (req, res, next) => {
   }
 };
 
-module.exports.getPreview = async (req, res, next) => {
+module.exports.getChats = async (req, res, next) => {
   try {
     const conversations = await Message.aggregate([
       {
@@ -179,32 +183,32 @@ module.exports.getPreview = async (req, res, next) => {
   }
 };
 
-module.exports.blackList = async (req, res, next) => {
-  const predicate = 'blackList.' +
-    req.body.participants.indexOf(req.tokenData.userId);
-  try {
+module.exports.addChatToBlackList = async (req, res, next) => {
+  try { 
+    const {body:{participants,blackListFlag},tokenData:{userId}} = req
+    const predicate = 'blackList.' + participants.indexOf(userId);
     const chat = await Conversation.findOneAndUpdate(
-      { participants: req.body.participants },
-      { $set: { [ predicate ]: req.body.blackListFlag } }, { new: true });
+      { participants },
+      { $set: { [ predicate ]: blackListFlag } }, { new: true });
     res.send(chat);
-    const interlocutorId = req.body.participants.filter(
-      (participant) => participant !== req.tokenData.userId)[ 0 ];
+    const interlocutorId = participants.filter(
+      (participant) => participant !== userId)[ 0 ];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 };
 
-module.exports.favoriteChat = async (req, res, next) => {
-  const predicate = 'favoriteList.' +
-    req.body.participants.indexOf(req.tokenData.userId);
+module.exports.addChatToFavorite = async (req, res, next) => {
   try {
+    const {body:{participants,favoriteFlag},tokenData:{userId}} = req 
+    const predicate = 'favoriteList.' + participants.indexOf(userId);
     const chat = await Conversation.findOneAndUpdate(
-      { participants: req.body.participants },
-      { $set: { [ predicate ]: req.body.favoriteFlag } }, { new: true });
+      { participants },
+      { $set: { [ predicate ]: favoriteFlag } }, { new: true });
     res.send(chat);
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 };
 
