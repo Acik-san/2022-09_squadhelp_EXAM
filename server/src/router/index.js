@@ -27,6 +27,11 @@ router.get(
   checkToken.checkAuth,
 );
 
+router.get(
+  '/contests/:contestId/:fileName',
+  contestController.downloadFile,
+);
+
 router.use(checkToken.checkToken)
 
 router.get(
@@ -35,8 +40,7 @@ router.get(
 );
 
 router.post(
-  '/pay',
-  
+  '/payment',
   basicMiddlewares.onlyForCustomer,
   upload.uploadContestFiles,
   basicMiddlewares.parseBody,
@@ -61,11 +65,7 @@ router.get(
   contestController.getCreativeContests,
 );
 
-router.get(
-  '/downloadFile/:fileName',
-  
-  contestController.downloadFile,
-);
+
 
 router.patch(
   '/contests/:contestId',

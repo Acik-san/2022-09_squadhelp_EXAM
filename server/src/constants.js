@@ -12,7 +12,7 @@ module.exports = {
   CONTEST_STATUS_ACTIVE: 'active',
   CONTEST_STATUS_FINISHED: 'finished',
   CONTEST_STATUS_PENDING: 'pending',
-  CONTESTS_DEFAULT_DIR: 'public/contestFiles/',
+  CONTESTS_DEFAULT_DIR: 'public/images/',
   NAME_CONTEST: 'name',
   LOGO_CONTEST: 'logo',
   TAGLINE_CONTEST: 'tagline',

@@ -37,13 +37,11 @@ export const getCreatorContests = ({
   );
 export const getContestById = id => http.get(`contests/${id}`);
 export const updateContest = (data, id) => http.patch(`contests/${id}`, data);
-export const downloadContestFile = data =>
-  http.get(`downloadFile/${data.fileName}`);
 export const setNewOffer = ({ contestId, data }) =>
   http.post(`contests/${contestId}/offer`, data);
 export const setOfferStatus = ({ contestId, data }) =>
   http.patch(`contests/${contestId}/offer`, data);
-export const payMent = data => http.post('pay', data.formData);
+export const payMent = data => http.post('payment', data.formData);
 export const cashOut = data => http.post('cashout', data);
 export const changeMark = data => http.post('changeMark', data);
 export const getChats = () => http.get('chats');

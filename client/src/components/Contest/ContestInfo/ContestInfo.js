@@ -65,11 +65,11 @@ const ContestInfo = (props) => {
           <div className={styles.dataContainer}>
             <span className={styles.label}>Additional File</span>
             <a
-              target="_blank"
+              // target="_blank"
               className={styles.file}
-              href={`${CONSTANTS.publicURL}${fileName}`}
-              download={originalFileName}
-              rel="noreferrer"
+              href={`${CONSTANTS.BASE_URL}contests/${contestData.id}/${fileName}`}
+              // download={originalFileName}
+              // rel="noreferrer"
             >
               {originalFileName}
             </a>

@@ -100,7 +100,8 @@ module.exports.getContestById = async (req, res, next) => {
 };
 
 module.exports.downloadFile = async (req, res, next) => {
-  const file = CONSTANTS.CONTESTS_DEFAULT_DIR + req.params.fileName;
+  const {params:{fileName}} = req
+  const file = `${CONSTANTS.CONTESTS_DEFAULT_DIR}${fileName}`;
   res.download(file);
 };
 
@@ -239,7 +240,6 @@ module.exports.getCustomersContests = async (req, res, next) => {
 module.exports.getCreativeContests = async (req, res, next) => {
   try {
   const {query:{offset, limit, typeIndex, contestId, industry, awardSort, ownEntries},tokenData:{userId}}=req
-  const entries = ownEntries==="true"?true:false
   const predicates = UtilFunctions.createWhereForAllContests(typeIndex,
     contestId, industry, awardSort);
   const contests = await db.Contests.findAll({
@@ -250,8 +250,8 @@ module.exports.getCreativeContests = async (req, res, next) => {
     include: [
       {
         model: db.Offers,
-        required: entries,
-        where: entries ? { userId } : {},
+        required: JSON.parse(ownEntries),
+        where: JSON.parse(ownEntries) ? { userId } : {},
         attributes: ['id'],
       },
     ],
