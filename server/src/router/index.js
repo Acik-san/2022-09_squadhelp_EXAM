@@ -87,8 +87,7 @@ router.patch(
 );
 
 router.post(
-  '/changeMark',
-  
+  '/contests/:contestId/rating',
   basicMiddlewares.onlyForCustomer,
   userController.changeMark,
 );
@@ -100,8 +99,7 @@ router.patch(
 );
 
 router.post(
-  '/cashout',
-  
+  '/profile/cashout',
   basicMiddlewares.onlyForCreative,
   userController.cashout,
 );

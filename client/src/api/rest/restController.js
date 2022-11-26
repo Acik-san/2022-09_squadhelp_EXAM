@@ -41,9 +41,10 @@ export const setNewOffer = ({ contestId, data }) =>
   http.post(`contests/${contestId}/offer`, data);
 export const setOfferStatus = ({ contestId, data }) =>
   http.patch(`contests/${contestId}/offer`, data);
+export const changeMark = data =>
+  http.post(`contests/${data.contestId}/rating`, data);
 export const payMent = data => http.post('payment', data.formData);
-export const cashOut = data => http.post('cashout', data);
-export const changeMark = data => http.post('changeMark', data);
+export const cashOut = data => http.post('profile/cashout', data);
 export const getChats = () => http.get('chats');
 export const getChat = ({ interlocutorId }) =>
   http.get(`chats/${interlocutorId}`);
