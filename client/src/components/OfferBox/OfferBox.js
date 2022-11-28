@@ -92,10 +92,10 @@ const OfferBox = (props) => {
   };
 
   const {
-    data, role, id, contestType,
+    data, role, id, contestType,avatar
   } = props;
   const {
-    avatar, firstName, lastName, email, rating,
+    firstName, lastName, email, rating,
   } = props.data.User;
   return (
     <div className={styles.offerContainer}>
@@ -136,7 +136,7 @@ const OfferBox = (props) => {
                             <img
                               onClick={() => props.changeShowImage({ imagePath: data.fileName, isShowOnFull: true })}
                               className={styles.responseLogo}
-                              src={`${CONSTANTS.publicURL}${data.fileName}`}
+                              src={`${CONSTANTS.CONTESTS_DEFAULT_DIR}${data.fileName}`}
                               alt="logo"
                             />
                           )
@@ -174,10 +174,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
   const { changeMarkError, isShowModal,contestData } = state.contestByIdStore;
-  const { id, role } = state.userStore.data;
+  const { id, role,avatar } = state.userStore.data;
   const { messagesPreview } = state.chatStore;
   return {
-    changeMarkError, id, role, messagesPreview, isShowModal,contestData
+    changeMarkError, id, role,avatar, messagesPreview, isShowModal,contestData
   };
 };
 

@@ -123,7 +123,7 @@ class ContestPage extends React.Component {
           {/* <Chat/> */}
           {isShowOnFull && (
           <LightBox
-            mainSrc={`${CONSTANTS.publicURL}${imagePath}`}
+            mainSrc={`${CONSTANTS.CONTESTS_DEFAULT_DIR}${imagePath}`}
             onCloseRequest={() => changeShowImage({ isShowOnFull: false, imagePath: null })}
           />
           )}
