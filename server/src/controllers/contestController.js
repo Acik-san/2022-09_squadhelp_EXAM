@@ -12,7 +12,7 @@ module.exports.getDataForContest = async (req, res, next) => {
   const {params:{contestName}}=req
   const response = {};
   const types = contestName===CONTEST_NAME ? [NAME_STYLE, TYPE_OF_NAME, INDUSTRY]: contestName===CONTEST_TAGLINE ? [TYPE_OF_TAGLINE, INDUSTRY] :contestName===CONTEST_LOGO? [BRAND_STYLE, INDUSTRY]:[INDUSTRY]
-    const characteristics = await db.Selects.findAll({
+    const characteristics = await db.Select.findAll({
       where: {
         type: {
           [ db.Sequelize.Op.or ]: types,
@@ -38,14 +38,14 @@ module.exports.getDataForContest = async (req, res, next) => {
 module.exports.getContestById = async (req, res, next) => {
   try {
     const {params:{contestId},tokenData:{role,userId}} = req
-    let contestInfo = await db.Contests.findOne({
+    let contestInfo = await db.Contest.findOne({
       where: { id: contestId },
       order: [
-        [db.Offers, 'id', 'asc'],
+        [db.Offer, 'id', 'asc'],
       ],
       include: [
         {
-          model: db.Users,
+          model: db.User,
           required: true,
           attributes: {
             exclude: [
@@ -57,7 +57,7 @@ module.exports.getContestById = async (req, res, next) => {
           },
         },
         {
-          model: db.Offers,
+          model: db.Offer,
           required: false,
           where: role === CONSTANTS.CREATOR
             ? { userId: req.tokenData.userId }
@@ -65,7 +65,7 @@ module.exports.getContestById = async (req, res, next) => {
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
             {
-              model: db.Users,
+              model: db.User,
               required: true,
               attributes: {
                 exclude: [
@@ -77,7 +77,7 @@ module.exports.getContestById = async (req, res, next) => {
               },
             },
             {
-              model: db.Ratings,
+              model: db.Rating,
               required: false,
               where: { userId: userId },
               attributes: { exclude: ['userId', 'offerId'] },
@@ -216,14 +216,14 @@ module.exports.setOfferStatus = async (req, res, next) => {
 module.exports.getCustomersContests = async (req, res, next) => {
   try {
   const {query:{limit,offset,contestStatus},tokenData:{userId}} =req
-  const contests = await db.Contests.findAll({
+  const contests = await db.Contest.findAll({
     where: { status: contestStatus, userId },
     limit: limit > 8 || limit <=0 ? 8:limit,
     offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
       {
-        model: db.Offers,
+        model: db.Offer,
         required: false,
         attributes: ['id'],
       },
@@ -242,14 +242,14 @@ module.exports.getCreativeContests = async (req, res, next) => {
   const {query:{offset, limit, typeIndex, contestId, industry, awardSort, ownEntries},tokenData:{userId}}=req
   const predicates = UtilFunctions.createWhereForAllContests(typeIndex,
     contestId, industry, awardSort);
-  const contests = await db.Contests.findAll({
+  const contests = await db.Contest.findAll({
     where: predicates.where,
     order: predicates.order,
     limit,
     offset: offset ? offset : 0,
     include: [
       {
-        model: db.Offers,
+        model: db.Offer,
         required: JSON.parse(ownEntries),
         where: JSON.parse(ownEntries) ? { userId } : {},
         attributes: ['id'],

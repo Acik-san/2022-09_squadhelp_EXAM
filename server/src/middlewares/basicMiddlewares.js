@@ -21,11 +21,11 @@ module.exports.canGetContest = async (req, res, next) => {
   try {
     const {params:{contestId},tokenData:{role,userId}} =req
     if (role === CONSTANTS.CUSTOMER) {
-      result = await db.Contests.findOne({
+      result = await db.Contest.findOne({
         where: { id: contestId, userId },
       });
     } else if (role === CONSTANTS.CREATOR) {
-      result = await db.Contests.findOne({
+      result = await db.Contest.findOne({
         where: {
           id: contestId,
           status: {
@@ -66,7 +66,7 @@ module.exports.canSendOffer = async (req, res, next) => {
     if (role === CONSTANTS.CUSTOMER) {
       return next(new RightsError());
     }
-    const result = await db.Contests.findOne({
+    const result = await db.Contest.findOne({
       where: {
         id: contestId,
       },
@@ -87,7 +87,7 @@ module.exports.canSendOffer = async (req, res, next) => {
 module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
   try {
     const {params:{contestId},tokenData:{userId}} = req
-    const result = await db.Contests.findOne({
+    const result = await db.Contest.findOne({
       where: {
         userId,
         id: contestId,
@@ -105,7 +105,7 @@ module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
 
 module.exports.canUpdateContest = async (req, res, next) => {
   try {
-    const result = db.Contests.findOne({
+    const result = db.Contest.findOne({
       where: {
         userId: req.tokenData.userId,
         id: req.body.contestId,
