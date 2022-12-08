@@ -44,6 +44,15 @@ class Header extends React.Component {
                   </Link>
                 </li>
                 <li><Link to="/profile" style={{ textDecoration: 'none' }}><span>My Account</span></Link></li>
+               {this.props.data.role === 'customer' ? ( 
+               <li>
+                  <Link
+                    to="/events"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span>Events</span>
+                  </Link>
+                </li>):null}
                 <li>
                   <Link
                     to="http:/www.google.com"

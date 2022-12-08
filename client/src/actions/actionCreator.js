@@ -293,3 +293,18 @@ export const changeModalShow = (data) => ({
   type: ACTION.CHANGE_SHOW_MODAL,
   data,
 });
+
+export const createEvent = (data) => ({
+  type: ACTION.CREATE_EVENT,
+  payload: { data }
+})
+
+export const eventFinished = (event) => ({
+  type: ACTION.SET_FINISHED_EVENT,
+  payload: { event }
+})
+
+export const clearFinishedEvent = (event) => ({
+  type: ACTION.CLEAR_FINISHED_EVENT,
+  payload: { event }
+})
