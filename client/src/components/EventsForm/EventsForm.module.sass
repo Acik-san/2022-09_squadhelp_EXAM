@@ -1,0 +1,63 @@
+.formContainer
+  margin: auto
+  margin-top: 50px
+  width: 240px
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+
+  button
+    align-self: flex-end
+    background-color: #4e618d
+    color: white
+    border-radius: 6px
+    padding: 5px 10px
+    font-size: 16px
+    font-weight: 500
+    border: none
+
+    &:hover
+      background-color: #f27e51
+
+  .container
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+
+    .label
+      margin-bottom: 2px
+      font-size: 16px
+      font-weight: 500
+      color: #585859
+
+    .inputContainer
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: flex-start
+      margin-bottom: 20px
+
+      .notValid
+        border: 2px solid red !important
+
+      .error
+        position: absolute
+        margin-top: 70px
+        align-self: stretch
+        margin-bottom: 5px
+        color: red
+        font-size: 14px
+
+      .input
+        outline: none
+        height: 48px
+        border: 2px solid #d0d0d0
+        padding: 0 8px
+        font-size: 17px
+        color: #555
+        border-radius: 4px
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+
+        &:focus
+          border-color: #66afe9

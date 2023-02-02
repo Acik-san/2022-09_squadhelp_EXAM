@@ -1,7 +1,9 @@
-.mainContainer
+.main_container
   width: 1200px
-  margin: 0 auto
+  margin: auto
   margin-top: 50px
+  padding: 100px
+  padding-top: 0px
   display: flex
   flex-direction: row
   justify-content: flex-start
@@ -10,13 +12,102 @@
   @media(max-width: 1000px)
     flex-direction: column
 
-  .eventsContainer
+  .finished_events_badge
+    position: absolute
+    bottom: -10px
+
+  .finished_events_less_10
+    position: absolute
+    left: 203px
+    bottom: 8px
+    color: white
+    @media(max-width: 1000px)
+     left: 183px
+    
+  .finished_events_less_100
+    position: absolute
+    left: 201px
+    bottom: 10px
+    color: white
+    font-size: 14px
+    @media(max-width: 1000px)
+      left: 180px
+
+  .finished_events_more_99
+    position: absolute
+    left: 198px
+    bottom: 10px
+    color: white
+    font-size: 14px
+    @media(max-width: 1000px)
+      left: 178px 
+
+  .events_container
     display: flex
     justify-content: center
     width: 100%
     margin-top: 15px
+
+    .event_box
+      width: 800px
+      @media(max-width: 1400px)
+        width: 100%
+    .clear_event
+      margin-right: 10px
+      cursor: pointer
+    .events_title
+      margin-bottom: 10px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      span
+        font-size: 14px
+    .events_list
+      border: 1px solid #e7e7e7
+      height: 335px
+      width: 100%
+      overflow-y: auto
+      &::-webkit-scrollbar
+        width: 7px
+      &::-webkit-scrollbar-track
+        background-color: #e7e7e7
+        border-radius: 10px
+      &::-webkit-scrollbar-thumb
+        background-color: #adadad
+        border-radius: 10px
+      li:last-child
+        margin-bottom: 10px
+      .progress_line_bg 
+        height: 40px
+        position: relative
+        margin: auto
+        margin-top: 10px
+        border-radius: 5px
+        width: 750px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        background-color: #efefef
+        @media(max-width: 1400px)
+          width: 93%
+      .event_name 
+        margin-left: 10px
+        position: relative
+        z-index: 1
+        flex-basis: 519px
+        overflow: hidden
+        text-overflow: ellipsis
+        
+
+
+    h2
+      font-size: 20px
+      margin-left: 20px
+    .remaining_time
+      margin-left: 10px
+      margin-right: 30px
   
-  .filterContainer
+  .filter_container
     min-width: 250px
     height: 350px
     padding-top: 30px
@@ -35,6 +126,7 @@
       height: 80px
     
     .filter
+      position: relative
       margin-top: 15px
       align-self: stretch
       text-align: center
@@ -44,13 +136,15 @@
       padding: 10px
       @media(max-width: 1000px)
         height: 20px
+        width: 190px
         margin: 0 5px
 
       &:hover
         background-color: #eefaea
         cursor: pointer
       
-    .activeFilter
+    .active_filter
+      position: relative
       transition: 0.5s background-color
       margin-top: 15px
       align-self: stretch
@@ -63,4 +157,6 @@
       cursor: pointer
       @media(max-width: 1000px)
         height: 20px
+        width: 190px
         margin: 0 5px
+

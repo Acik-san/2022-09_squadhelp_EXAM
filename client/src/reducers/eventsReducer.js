@@ -1,4 +1,3 @@
-import produce from 'immer';
 import ACTION from '../actions/actionTypes';
 
 const eventsFromLocalStorage = JSON.parse(localStorage.getItem('events'));
@@ -22,10 +21,6 @@ const eventsReducer = (state = initialState, action) => {
       const { data } = action.payload;
       localStorage.setItem('events', JSON.stringify([...events, { ...data }]));
       return { ...state, events: [...events, { ...data }] };
-      // return produce(state, draftState => {
-      //   draftState.isFetching = true;
-      //   draftState.events.push(data);
-      // });
     }
 
     case ACTION.SET_FINISHED_EVENT: {

@@ -10,6 +10,7 @@ const CONSTANTS = {
     role: 'Role',
     balance: 'Balance',
   },
+  FINISHED_EVENTS_MORE_THEN_99: '99+',
   CONTACTS: {
     PHONE: '(877) 355-3585',
   },

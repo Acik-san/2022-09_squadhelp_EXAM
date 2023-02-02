@@ -5,13 +5,13 @@ const Schems = {
   EventSchem: Yup.object().shape({
     eventName: Yup.string('Must be string')
       .matches(/^.{1,64}$/, 'Invalid amount of symbols')
-      .required(),
+      .required('required'),
     date: Yup.string('Must be string')
       .matches(
         /^(20[2][2-9]|20[3-9]\d|2099)\-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|3[0-1]) (0\d|1\d|2[0-3]):(0\d|[1-5][0-9]):(0\d|[1-5][0-9])$/,
         'Invalid date'
       )
-      .required(),
+      .required('required'),
   }),
   LoginSchem: Yup.object().shape({
     email: Yup.string()

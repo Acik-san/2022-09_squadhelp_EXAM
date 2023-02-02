@@ -14,6 +14,7 @@ import {
   toNotificationDate,
 } from '../../utils/functions';
 import * as ACTION_CREATORS from '../../actions/actionCreator';
+import styles from './EventTimers.module.sass';
 
 const EventsTimer = props => {
   const { event } = props;
@@ -49,7 +50,7 @@ const EventsTimer = props => {
     if (isTimeout) {
       eventFinished(event);
       clearInterval(timerId);
-    }
+    } // eslint-disable-next-line
   }, [isTimeout, timerId]);
 
   useEffect(() => {
@@ -60,8 +61,53 @@ const EventsTimer = props => {
     return () => clearInterval(timerID);
   }, [tick]);
 
+  useEffect(() => {
+    const elem = document.getElementById(progressLine);
+    const one =
+      differenceInMilliseconds(finishTime, new Date(event.started)) / 100;
+    const diff = differenceInMilliseconds(
+      new Date(Date.now()),
+      new Date(event.started)
+    );
+    let width = 0;
+    diff < one * 10
+      ? (width = 1)
+      : diff > one * 10 && diff < one * 20
+      ? (width = 15)
+      : diff > one * 20 && diff < one * 30
+      ? (width = 25)
+      : diff > one * 30 && diff < one * 40
+      ? (width = 35)
+      : diff > one * 40 && diff < one * 50
+      ? (width = 45)
+      : diff > one * 50 && diff < one * 60
+      ? (width = 55)
+      : diff > one * 60 && diff < one * 70
+      ? (width = 65)
+      : diff > one * 70 && diff < one * 80
+      ? (width = 75)
+      : diff > one * 80 && diff < one * 90
+      ? (width = 85)
+      : (width = 95);
+
+    elem.style.width = width + '%';
+
+    const progressStatus = () => {
+      if (width >= 99) {
+        clearInterval(id);
+      }
+      width++;
+      elem.style.width = width + '%';
+    };
+    const id = setInterval(progressStatus, one);
+    return () => {
+      clearInterval(id);
+    }; // eslint-disable-next-line
+  }, []);
+
+  const progressLine = `progress_line${event.started + Math.random()}`;
   return (
-    <>
+    <div className={styles.progress_line_bg}>
       {formatDistanceStrict(
         Date.now(),
         toNotificationDate(toCorrectMonth(event.date), event.notificationTime)
@@ -74,8 +120,8 @@ const EventsTimer = props => {
             closeOnClickOutside: false,
           })
         : null}
-      <h3>{event.eventName}</h3>
-      <div>
+      <h3 className={styles.event_name}>{event.eventName}</h3>
+      <div className={styles.timer}>
         {diffYears > 0 ? diffYears + 'y : ' : null}
         {diffMonths > 0 ? diffMonths + 'mth : ' : null}
         {diffDays > 0 ? diffDays + 'd : ' : null}
@@ -83,7 +129,8 @@ const EventsTimer = props => {
         {diffM > 0 ? diffM + 'm : ' : null}
         {diffS + 's'}
       </div>
-    </>
+      <div className={styles.progress_line} id={progressLine}></div>
+    </div>
   );
 };
 
