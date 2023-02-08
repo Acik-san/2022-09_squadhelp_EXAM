@@ -1,5 +1,5 @@
 .main_container
-  width: 1200px
+  max-width: 1200px
   margin: auto
   margin-top: 50px
   padding: 100px
@@ -7,10 +7,14 @@
   display: flex
   flex-direction: row
   justify-content: flex-start
-  @media(max-width: 1400px)
-    width: auto
   @media(max-width: 1000px)
     flex-direction: column
+  @media(max-width: 500px)
+    padding: 70px
+    padding-top: 0px
+  @media(max-width: 400px)
+    padding: 50px
+    padding-top: 0px
 
   .finished_events_badge
     position: absolute
@@ -22,7 +26,7 @@
     bottom: 8px
     color: white
     @media(max-width: 1000px)
-     left: 183px
+     left: 152px
     
   .finished_events_less_100
     position: absolute
@@ -31,7 +35,7 @@
     color: white
     font-size: 14px
     @media(max-width: 1000px)
-      left: 180px
+      left: 149px
 
   .finished_events_more_99
     position: absolute
@@ -40,7 +44,7 @@
     color: white
     font-size: 14px
     @media(max-width: 1000px)
-      left: 178px 
+      left: 147px 
 
   .events_container
     display: flex
@@ -62,6 +66,11 @@
       align-items: center
       span
         font-size: 14px
+        @media(max-width: 655px)
+          font-size: 12px
+        @media(max-width: 550px)
+          font-size: 10px
+        
     .events_list
       border: 1px solid #e7e7e7
       height: 335px
@@ -103,9 +112,24 @@
     h2
       font-size: 20px
       margin-left: 20px
+      @media(max-width: 655px)
+        font-size: 16px
+        margin-left: 16px
+      @media(max-width: 550px)
+        font-size: 13px
+        margin-left: 0
+
     .remaining_time
       margin-left: 10px
       margin-right: 30px
+      @media(max-width: 655px)
+        margin-right: 13px
+      @media(max-width: 550px)
+        margin-left: 5px
+        margin-right: 5px
+      @media(max-width: 360px)
+        display: none
+   
   
   .filter_container
     min-width: 250px
@@ -119,11 +143,16 @@
     background-color: white
     margin-bottom: 15px
     @media(max-width: 1000px)
+      min-width: 100px
       padding-top: 10px
       flex-direction: row
       margin-right: 0
       justify-content: center
       height: 80px
+    @media(max-width: 655px)
+      flex-direction: column
+      justify-content: space-evenly
+      height: 110px
     
     .filter
       position: relative
@@ -136,8 +165,10 @@
       padding: 10px
       @media(max-width: 1000px)
         height: 20px
-        width: 190px
+        max-width: 190px
         margin: 0 5px
+      @media(max-width: 655px)
+        margin: 0 auto
 
       &:hover
         background-color: #eefaea
@@ -157,6 +188,8 @@
       cursor: pointer
       @media(max-width: 1000px)
         height: 20px
-        width: 190px
+        max-width: 190px
         margin: 0 5px
+      @media(max-width: 655px)
+        margin: 0 auto
 

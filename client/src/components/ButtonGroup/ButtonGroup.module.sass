@@ -1,0 +1,121 @@
+.buttonGroup
+  margin-top: 50px
+  margin-bottom: 50px
+  margin-left: auto
+  margin-right: auto
+  padding:0 100px
+  max-width: 1200px
+  @media(max-width: 340px)
+    padding: 0 80px
+  .heading
+    margin-bottom: 8px
+    font-size: 16px
+    font-weight: 500
+    font-family: "Poppins",Helvetica,Arial,sans-serif
+    line-height: 24px
+    @media(max-width: 1000px)
+      margin-bottom: 15px
+      font-size: 20px
+    @media(max-width: 500px)
+      font-size: 20px
+    @media(max-width: 400px)
+      font-size: 16px
+    @media(max-width: 340px)
+      font-size: 21px
+  .headingText
+    margin-bottom: 16px
+    font-size: 12px
+    font-family: "Poppins",Helvetica,Arial,sans-serif
+    line-height: 18px
+    color: #77838f
+    @media(max-width: 1000px)
+      font-size: 16px
+    @media(max-width: 500px)
+      font-size: 16px
+    @media(max-width: 400px)
+      font-size: 12px
+    @media(max-width: 340px)
+      font-size: 15px
+  .buttonsContainer
+    display: flex
+    width: 100%
+    text-align: center
+    @media(max-width: 1000px)
+      flex-direction: column
+    .button,.buttonChecked
+      &:hover
+        border-color: rgba(44,185,183,.2)
+        box-shadow: 0 0 10px rgb(44 185 183 / 13%)
+      &:first-child
+        margin-left: 0
+      &:last-child
+        margin-right: 0
+      display: flex
+      flex-direction: column
+      margin: 0 15px
+      height: 78px
+      width: 100%
+      padding: 16px
+      border: 2px solid #e7eaf3
+      border-radius: 5px
+      transition: 0.3s
+      cursor: pointer
+      @media(max-width: 1000px)
+        margin: 0
+        width: initial
+        height: 84px
+        margin-bottom: 32px
+        &:last-child
+          margin-bottom: 0 
+      @media(max-width: 500px)
+        height: 98px
+      @media(max-width: 400px)
+        height: 78px
+      @media(max-width: 360px)
+        height: 102px
+        
+      
+      .badge,.badgeChecked
+        padding: 7px 15px
+        margin: auto
+        margin-top: 0
+        margin-bottom: 16px
+        font-size: 12px
+        font-weight: 500
+        font-family: "Poppins",Helvetica,Arial,sans-serif
+        line-height: 12px
+        color: #fff
+        background-color: #77838f
+        border-radius: 14px
+        @media(max-width: 1000px)
+          padding: 10px 18px
+          font-size: 18px
+        @media(max-width: 500px)
+          padding: 8px 16px
+          font-size: 16px
+        @media(max-width: 400px)
+          margin-bottom: 4px
+          padding: 7px 15px
+          font-size: 12px
+          
+
+      .badgeChecked
+        background-color: #2cb9b7
+
+      .buttonText
+        font-size: 12px
+        font-family: "Poppins",Helvetica,Arial,sans-serif
+        line-height: 18px
+        color: #77838f
+        @media(max-width: 1000px)
+          font-size: 18px
+        @media(max-width: 500px)
+          font-size: 16px
+        @media(max-width: 400px)
+          font-size: 12px
+
+    .buttonChecked
+      &:hover
+        border-color: #2cb9b7
+        box-shadow: 0
+      border: 2px solid #2cb9b7
