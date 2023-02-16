@@ -22,10 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
       },
       contestType: {
         allowNull: false,
@@ -95,6 +91,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Contest',
+      tableName: 'contests',
       timestamps: false,
     },
   );
