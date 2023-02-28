@@ -1,0 +1,3 @@
+use('shm-chat');
+
+db.messages.countDocuments({body: {$regex: /паровоз/} })
