@@ -39,5 +39,6 @@ module.exports = {
     TYPE_OF_TAGLINE: "typeOfTagline",
     BRAND_STYLE: "brandStyle",
     INDUSTRY: "industry"
-  }
+  },
+  ERROS_LOG_PATH: './errorsLogs/errorsData.json'
 };

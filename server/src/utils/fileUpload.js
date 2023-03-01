@@ -4,15 +4,23 @@ const multer = require('multer');
 const ServerError = require('../errors/ServerError');
 const env = process.env.NODE_ENV || 'development';
 const devFilePath = path.resolve(__dirname, '../../public/images');
-const contestsFilesPath = path.resolve(__dirname, '../../public/contestsFiles');
-
+const devContestsFilesPath = path.resolve(__dirname, '../../public/contestsFiles');
 
 const filePath = env === 'production'
   ? '/var/www/html/images/'
   : devFilePath;
 
+const contestsFilesPath = env === 'production'
+  ? '/var/www/html/contestsFiles'
+  : devContestsFilesPath;
+
 if (!fs.existsSync(filePath)) {
   fs.mkdirSync(filePath, {
+    recursive: true,
+  });
+}
+if (!fs.existsSync(contestsFilesPath)) {
+  fs.mkdirSync(contestsFilesPath, {
     recursive: true,
   });
 }

@@ -1,5 +1,6 @@
 const db = require('../../models');
 const NotFound = require('../../errors/UserNotFoundError');
+const UncorrectPassword = require('../../errors/UncorrectPassword')
 const ServerError = require('../../errors/ServerError');
 const bcrypt = require('bcrypt');
 
@@ -33,6 +34,6 @@ module.exports.userCreation = async (data) => {
 module.exports.passwordCompare = async (pass1, pass2) => {
   const passwordCompare = await bcrypt.compare(pass1, pass2);
   if (!passwordCompare) {
-    throw new NotFound('Wrong password');
+    throw new UncorrectPassword('Wrong password');
   }
 };
