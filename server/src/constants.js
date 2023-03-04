@@ -40,5 +40,6 @@ module.exports = {
     BRAND_STYLE: "brandStyle",
     INDUSTRY: "industry"
   },
-  ERROS_LOG_PATH: './errorsLogs/errorsData.json'
+  TIME_ERRORS_LOG: '00 00 10 * * 0-6',
+  ERRORS_LOG_PATH: './errorsLogs/errorsData.json'
 };

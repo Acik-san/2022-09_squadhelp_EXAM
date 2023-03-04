@@ -1,7 +1,7 @@
-const { errosLogger } = require("../utils/errorsLogger")
+const { errorsLogger } = require("../utils/errorsLogger")
 
 module.exports = (err, req, res, next) => {
-  errosLogger(err)
+  errorsLogger(err)
 
   console.log(err)
   if (err.message ===
