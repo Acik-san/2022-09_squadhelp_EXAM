@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const CONSTANTS = require('../constants');
 
 const generateUser = key => ({
-  id: key,
   firstName: `Name${key}`,
   lastName: `Lastname${key}`,
   displayName: `Displayname${key}`,

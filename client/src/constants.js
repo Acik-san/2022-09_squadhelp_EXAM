@@ -45,6 +45,7 @@ const CONSTANTS = {
   STATIC_IMAGES_PATH: '/staticImages/',
   ANONYM_IMAGE_PATH: '/staticImages/anonym.png',
   BASE_URL: `http://${serverIP}:${serverPort}/`,
+  WS_BASE_URL: `ws://${serverIP}:${serverPort}/`,
   CONTESTS_DEFAULT_DIR: `http://${serverIP}:${serverPort}/contestsFiles/`,
   ACCESS_TOKEN: 'accessToken',
   publicURL:

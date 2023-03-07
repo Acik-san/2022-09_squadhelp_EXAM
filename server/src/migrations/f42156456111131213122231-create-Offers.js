@@ -37,6 +37,11 @@ module.exports = {
         allowNull: false,
         defaultValue: 'pending',
       },
+      moderateStatus: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'pending'
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

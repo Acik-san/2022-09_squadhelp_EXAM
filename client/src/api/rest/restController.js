@@ -62,3 +62,5 @@ export const removeChatFromCatalog = ({ catalogId, chatId }) =>
   httpClient.delete(`catalogs/${catalogId}/${chatId}`);
 export const changeCatalogName = ({ catalogName, catalogId }) =>
   httpClient.patch(`catalogs/${catalogId}`, { catalogName });
+export const getOffers = () => httpClient.get('offers')
+export const setModerateOfferStatus = ({ id, customerId, status }) => httpClient.patch(`offers/${id}`, { customerId, status })

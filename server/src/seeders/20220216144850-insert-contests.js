@@ -7,7 +7,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const users = await User.findAll({ where: { role: "customer" }, attributes: ['id'] })
     const generateContest = key => ({
-      id: key,
       contestType: _.sample(['name', 'tagline', 'logo']),
       status: "finished",
       prize: 100,

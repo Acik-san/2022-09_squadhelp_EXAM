@@ -9,7 +9,7 @@ module.exports.addMessage = async (req, res, next) => {
 
   try {  
     const {params:{recipient},body:{messageBody,interlocutor},tokenData:{userId,firstName,lastName,displayName,avatar,email}} = req
-    const participants = [userId, recipient];
+    const participants = [userId, Number(recipient)];
     participants.sort(
     (participant1, participant2) => participant1 - participant2);
     const newConversation = await Conversation.findOneAndUpdate({
@@ -76,7 +76,6 @@ module.exports.getChat = async (req, res, next) => {
   const participants = [userId, Number(interlocutorId)];
   participants.sort(
     (participant1, participant2) => participant1 - participant2);  
-    console.log(participants)
     const messages = await Message.aggregate([
       {
         $lookup: {

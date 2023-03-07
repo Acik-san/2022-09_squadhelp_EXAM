@@ -1,5 +1,6 @@
 import { put, select } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
+import * as actionCreator from '../actions/actionCreator'
 import * as restController from '../api/rest/restController';
 import CONSTANTS from '../constants';
 
@@ -46,5 +47,23 @@ export function* setOfferStatusSaga(action) {
     yield put({ type: ACTION.CHANGE_STORE_FOR_STATUS, data: offers });
   } catch (e) {
     yield put({ type: ACTION.SET_OFFER_STATUS_ERROR, error: e.response });
+  }
+}
+
+export function* getOffers(action) {
+  try {
+    const { data: { data: offers } } = yield restController.getOffers()
+    yield put(actionCreator.getOffersSuccess(offers))
+  } catch (error) {
+    yield put(actionCreator.getOffersError(error))
+  }
+}
+
+export function* setModerateOfferStatus(action) {
+  try {
+    const { data: { data: offerId } } = yield restController.setModerateOfferStatus(action.payload)
+    yield put(actionCreator.setModerateOfferStatusSuccess(offerId))
+  } catch (error) {
+    yield put(actionCreator.setModerateOfferStatusError(error))
   }
 }

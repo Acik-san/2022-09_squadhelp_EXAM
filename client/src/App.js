@@ -14,6 +14,7 @@ import OnlyNotAuthorizedUserHoc from './components/OnlyNotAuthorizedUserHoc/Only
 import ContestPage from './pages/ContestPage/ContestPage';
 import UserProfile from './pages/UserProfile/UserProfile';
 import EventsPage from './pages/EventsPage';
+import OffersPage from './pages/OffersPage'
 import 'react-toastify/dist/ReactToastify.css';
 import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
 import browserHistory from './browserHistory';
@@ -50,6 +51,7 @@ class App extends Component {
           <Route exact path="/contests/:id" component={PrivateHoc(ContestPage)} />
           <Route exact path="/profile" component={PrivateHoc(UserProfile)} />
           <Route exact path="/events" component={PrivateHoc(EventsPage)} />
+          <Route exact path="/offers" component={PrivateHoc(OffersPage)} />
           <Route component={NotFound} />
         </Switch>
         <ChatContainer />

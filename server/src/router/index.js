@@ -6,6 +6,7 @@ const contestController = require('../controllers/contestController');
 const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
+const offerController = require('../controllers/offerController')
 const upload = require('../utils/fileUpload');
 const router = express.Router();
 
@@ -158,5 +159,8 @@ router.get(
   '/catalogs',
   chatController.getCatalogs,
 );
+
+router.get('/offers', offerController.getOffersForModerator)
+router.patch('/offers/:id', basicMiddlewares.findOfferById, offerController.setModerateOfferStatus)
 
 module.exports = router;

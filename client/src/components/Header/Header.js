@@ -53,6 +53,15 @@ class Header extends React.Component {
                     <span>Events</span>
                   </Link>
                 </li>):null}
+                {this.props.data.role === 'moderator' ? ( 
+               <li>
+                  <Link
+                    to="/offers"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span>Offers</span>
+                  </Link>
+                </li>):null}
                 <li>
                   <Link
                     to="http:/www.google.com"
@@ -198,7 +207,7 @@ class Header extends React.Component {
                   </li>
                 </ul>
               </div>
-              {this.props.data && this.props.data.role !== CONSTANTS.CREATOR
+              {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER
                         && <div className={styles.startContestBtn} onClick={this.startContests}>START CONTEST</div>}
             </div>
           </div>

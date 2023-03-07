@@ -1,5 +1,5 @@
 const db = require('../models');
-const NotFound = require('../errors/UserNotFoundError');
+const OfferNotFoundError = require('../errors/UserNotFoundError');
 const RightsError = require('../errors/RightsError');
 const ServerError = require('../errors/ServerError');
 const CONSTANTS = require('../constants');
@@ -7,10 +7,10 @@ const CONSTANTS = require('../constants');
 module.exports.parseBody = (req, res, next) => {
   req.body.contests = JSON.parse(req.body.contests);
   for (let i = 0; i < req.body.contests.length; i++) {
-    if (req.body.contests[ i ].haveFile) {
+    if (req.body.contests[i].haveFile) {
       const file = req.files.splice(0, 1);
-      req.body.contests[ i ].fileName = file[ 0 ].filename;
-      req.body.contests[ i ].originalFileName = file[ 0 ].originalname;
+      req.body.contests[i].fileName = file[0].filename;
+      req.body.contests[i].originalFileName = file[0].originalname;
     }
   }
   next();
@@ -19,7 +19,7 @@ module.exports.parseBody = (req, res, next) => {
 module.exports.canGetContest = async (req, res, next) => {
   let result = null;
   try {
-    const {params:{contestId},tokenData:{role,userId}} =req
+    const { params: { contestId }, tokenData: { role, userId } } = req
     if (role === CONSTANTS.CUSTOMER) {
       result = await db.Contest.findOne({
         where: { id: contestId, userId },
@@ -29,7 +29,7 @@ module.exports.canGetContest = async (req, res, next) => {
         where: {
           id: contestId,
           status: {
-            [ db.Sequelize.Op.or ]: [
+            [db.Sequelize.Op.or]: [
               CONSTANTS.CONTEST_STATUS_ACTIVE,
               CONSTANTS.CONTEST_STATUS_FINISHED,
             ],
@@ -62,7 +62,7 @@ module.exports.onlyForCustomer = (req, res, next) => {
 
 module.exports.canSendOffer = async (req, res, next) => {
   try {
-    const {params:{contestId},tokenData:{role}} = req
+    const { params: { contestId }, tokenData: { role } } = req
     if (role === CONSTANTS.CUSTOMER) {
       return next(new RightsError());
     }
@@ -86,7 +86,7 @@ module.exports.canSendOffer = async (req, res, next) => {
 
 module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
   try {
-    const {params:{contestId},tokenData:{userId}} = req
+    const { params: { contestId }, tokenData: { userId } } = req
     const result = await db.Contest.findOne({
       where: {
         userId,
@@ -109,7 +109,7 @@ module.exports.canUpdateContest = async (req, res, next) => {
       where: {
         userId: req.tokenData.userId,
         id: req.body.contestId,
-        status: { [ db.Sequelize.Op.not ]: CONSTANTS.CONTEST_STATUS_FINISHED },
+        status: { [db.Sequelize.Op.not]: CONSTANTS.CONTEST_STATUS_FINISHED },
       },
     });
     if (!result) {
@@ -121,3 +121,16 @@ module.exports.canUpdateContest = async (req, res, next) => {
   }
 };
 
+module.exports.findOfferById = async (req, res, next) => {
+  try {
+    const { params: { id } } = req
+    const offer = await db.Offer.findByPk(id)
+    if (!offer) {
+      next(new OfferNotFoundError())
+    }
+    req.offer = offer
+    next()
+  } catch (error) {
+    next(error)
+  }
+}

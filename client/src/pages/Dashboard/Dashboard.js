@@ -14,9 +14,9 @@ const Dashboard = props => {
         history.replace('./login')
       ) : role === CONSTANTS.CUSTOMER ? (
         <CustomerDashboard history={history} match={props.match} />
-      ) : (
+      ) : role === CONSTANTS.CREATOR ? (
         <CreatorDashboard history={history} match={props.match} />
-      )}
+      ) : history.replace('./')}
     </div>
   );
 };

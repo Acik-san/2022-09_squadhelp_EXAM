@@ -74,7 +74,7 @@ export const clearBundle = () => ({
   type: ACTION.CLEAR_BUNDLE_ACTION,
 });
 
-export const updateContest = (data,contestId) => ({
+export const updateContest = (data, contestId) => ({
   type: ACTION.UPDATE_CONTEST_ACTION,
   data,
   contestId
@@ -307,4 +307,38 @@ export const eventFinished = (event) => ({
 export const clearFinishedEvent = (event) => ({
   type: ACTION.CLEAR_FINISHED_EVENT,
   payload: { event }
+})
+
+export const getOffersRequest = () => ({
+  type: ACTION.GET_OFFERS_REQUEST,
+  payload: {}
+})
+
+export const getOffersSuccess = (newOffers) => ({
+  type: ACTION.GET_OFFERS_SUCCESS,
+  payload: { newOffers }
+})
+
+export const getOffersError = (error) => ({
+  type: ACTION.GET_OFFERS_ERROR,
+  payload: { error }
+})
+
+export const clearOffers = () => ({
+  type: ACTION.CLEAR_OFFERS,
+  payload: {}
+})
+
+export const setModerateOfferStatusRequest = (id,customerId,status) => ({
+  type: ACTION.SET_MODERATE_OFFER_STATUS_REQUEST,
+  payload: {id,customerId,status}
+})
+
+export const setModerateOfferStatusSuccess = (offerId) => ({
+  type: ACTION.SET_MODERATE_OFFER_STATUS_SUCCESS,
+  payload: {offerId}
+})
+export const setModerateOfferStatusError = (error) => ({
+  type: ACTION.SET_MODERATE_OFFER_STATUS_ERROR,
+  payload: {error}
 })

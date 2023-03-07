@@ -5,7 +5,7 @@ import { addMessage, changeBlockStatusInStore } from '../../../actions/actionCre
 
 class ChatSocket extends WebSocket {
   constructor(dispatch, getState, room) {
-    super();
+    super(dispatch, getState, room);
   }
 
     anotherSubscribes = () => {
