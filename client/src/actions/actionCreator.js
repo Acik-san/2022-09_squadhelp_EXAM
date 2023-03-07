@@ -309,14 +309,14 @@ export const clearFinishedEvent = (event) => ({
   payload: { event }
 })
 
-export const getOffersRequest = () => ({
+export const getOffersRequest = (limit, offset) => ({
   type: ACTION.GET_OFFERS_REQUEST,
-  payload: {}
+  payload: { limit, offset }
 })
 
-export const getOffersSuccess = (newOffers) => ({
+export const getOffersSuccess = (newOffers, haveMore) => ({
   type: ACTION.GET_OFFERS_SUCCESS,
-  payload: { newOffers }
+  payload: { newOffers, haveMore }
 })
 
 export const getOffersError = (error) => ({
@@ -329,16 +329,16 @@ export const clearOffers = () => ({
   payload: {}
 })
 
-export const setModerateOfferStatusRequest = (id,customerId,status) => ({
+export const setModerateOfferStatusRequest = (id, customerId, status) => ({
   type: ACTION.SET_MODERATE_OFFER_STATUS_REQUEST,
-  payload: {id,customerId,status}
+  payload: { id, customerId, status }
 })
 
 export const setModerateOfferStatusSuccess = (offerId) => ({
   type: ACTION.SET_MODERATE_OFFER_STATUS_SUCCESS,
-  payload: {offerId}
+  payload: { offerId }
 })
 export const setModerateOfferStatusError = (error) => ({
   type: ACTION.SET_MODERATE_OFFER_STATUS_ERROR,
-  payload: {error}
+  payload: { error }
 })

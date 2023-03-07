@@ -52,8 +52,8 @@ export function* setOfferStatusSaga(action) {
 
 export function* getOffers(action) {
   try {
-    const { data: { data: offers } } = yield restController.getOffers()
-    yield put(actionCreator.getOffersSuccess(offers))
+    const { data: { data: { offers, haveMore } } } = yield restController.getOffers(action.payload)
+    yield put(actionCreator.getOffersSuccess(offers,haveMore))
   } catch (error) {
     yield put(actionCreator.getOffersError(error))
   }

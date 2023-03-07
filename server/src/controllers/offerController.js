@@ -3,13 +3,17 @@ const controller = require('../socketInit');
 
 module.exports.getOffersForModerator = async (req, res, next) => {
   try {
+    const { query: { limit, offset } } = req
     const offers = await Offer.findAll({
-      where: { status: "pending", moderateStatus: "pending" }, order: [['id', 'ASC']], include: [
+      where: { status: "pending", moderateStatus: "pending" }, order: [['id', 'ASC']],
+      limit: limit > 8 || limit <= 0 ? 8 : limit,
+      offset: offset ? offset : 0,
+      include: [
         { model: Contest },
         { model: User },]
     })
-
-    res.status(200).send({ data: offers })
+    const haveMore = offers.length > 0 ? true : false;
+    res.status(200).send({ data: { offers, haveMore } })
   } catch (error) {
     next(error)
   }

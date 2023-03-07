@@ -12,6 +12,9 @@ const OffersPage = (props) => {
   const {
     data: { role },
   } = useSelector(({ userStore }) => userStore);
+  const { isFetching, offers, haveMore, limit, offset } = useSelector(
+    ({ offersStore }) => offersStore
+  );
   const { isShowOnFull, imagePath } = useSelector(
     ({ contestByIdStore }) => contestByIdStore
   );
@@ -19,12 +22,22 @@ const OffersPage = (props) => {
     ACTION_CREATORS,
     useDispatch()
   );
+  const handlerScroll = () => {
+    window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight && haveMore && getOffersRequest(limit, offset)
+  }
   useEffect(() => {
-    getOffersRequest()
+    getOffersRequest(limit, offset)
     return () => {
       clearOffers()
     }
   }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", handlerScroll)
+    return () => {
+      window.removeEventListener("scroll", handlerScroll)
+    }
+  }, [offset]
+  )
   return (
     <>
       {isShowOnFull && (
@@ -37,7 +50,7 @@ const OffersPage = (props) => {
       {role !== 'moderator' ? (
         history.replace('./')
       ) : (
-        <OffersForModerate />
+        <OffersForModerate offers={offers} isFetching={isFetching} />
       )
       }
     </>
