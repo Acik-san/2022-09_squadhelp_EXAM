@@ -17,11 +17,19 @@ const generateUsers = (amount) => {
     .map((e, i) => generateUser(i));
 };
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('users', generateUsers(100), {});
+    await queryInterface.bulkInsert('users', [{
+      firstName: `Moder`,
+      lastName: `Moder`,
+      displayName: `Moder`,
+      email: `moder@gmail.com`,
+      passwordHash: bcrypt.hashSync('qwerty', bcrypt.genSaltSync(CONSTANTS.SALT_ROUNDS)),
+      role: 'moderator'
+    }], {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('users', null, {});
   },
 };

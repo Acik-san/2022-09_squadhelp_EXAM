@@ -1,5 +1,6 @@
 const express = require('express');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
+const mailMiddlewares = require('../middlewares/mailMiddlewares')
 const hashPass = require('../middlewares/hashPassMiddle');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
@@ -160,7 +161,16 @@ router.get(
   chatController.getCatalogs,
 );
 
-router.get('/offers', offerController.getOffersForModerator)
-router.patch('/offers/:id', basicMiddlewares.findOfferById, offerController.setModerateOfferStatus)
+router.get(
+  '/offers',
+  offerController.getOffersForModerator
+);
+
+router.patch(
+  '/offers/:id',
+  basicMiddlewares.findOfferById,
+  mailMiddlewares.messagePrepair,
+  offerController.setModerateOfferStatus
+);
 
 module.exports = router;

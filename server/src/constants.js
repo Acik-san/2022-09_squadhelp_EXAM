@@ -41,5 +41,6 @@ module.exports = {
     INDUSTRY: "industry"
   },
   TIME_ERRORS_LOG: '00 00 10 * * 0-6',
-  ERRORS_LOG_PATH: './errorsLogs/errorsData.json'
+  ERRORS_LOG_PATH: './errorsLogs/errorsData.json',
+  MAIL_MESSAGE: { SUBJECT: 'Squadhelp, offer\'s moderation' }
 };

@@ -63,4 +63,4 @@ export const removeChatFromCatalog = ({ catalogId, chatId }) =>
 export const changeCatalogName = ({ catalogName, catalogId }) =>
   httpClient.patch(`catalogs/${catalogId}`, { catalogName });
 export const getOffers = ({ limit, offset }) => httpClient.get(`offers?${qs.stringify({ limit, offset })}`)
-export const setModerateOfferStatus = ({ id, customerId, status }) => httpClient.patch(`offers/${id}`, { customerId, status })
+export const setModerateOfferStatus = ({ id, customerId, status, email, firstName }) => httpClient.patch(`offers/${id}`, { customerId, status, email, firstName })

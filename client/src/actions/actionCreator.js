@@ -329,9 +329,9 @@ export const clearOffers = () => ({
   payload: {}
 })
 
-export const setModerateOfferStatusRequest = (id, customerId, status) => ({
+export const setModerateOfferStatusRequest = (id, customerId, status, email, firstName) => ({
   type: ACTION.SET_MODERATE_OFFER_STATUS_REQUEST,
-  payload: { id, customerId, status }
+  payload: { id, customerId, status, email, firstName }
 })
 
 export const setModerateOfferStatusSuccess = (offerId) => ({
