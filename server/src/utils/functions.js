@@ -45,3 +45,5 @@ const types = [
   'logo,tagline',
   'name,logo',
 ];
+
+module.exports.getArrayOfValues = (arr, modelName, value) => arr.flatMap(e => e[modelName]).map(e => e.dataValues[value])

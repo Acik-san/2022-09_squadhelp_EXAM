@@ -1,6 +1,7 @@
 const express = require('express');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const mailMiddlewares = require('../middlewares/mailMiddlewares')
+const chatMiddlewares = require('../middlewares/chatMiddlewares')
 const hashPass = require('../middlewares/hashPassMiddle');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
@@ -123,11 +124,13 @@ router.get(
 
 router.patch(
   '/chats/blackList',
+  chatMiddlewares.addToListPrepare,
   chatController.addChatToBlackList,
 );
 
 router.patch(
   '/chats/favorite',
+  chatMiddlewares.addToListPrepare,
   chatController.addChatToFavorite,
 );
 

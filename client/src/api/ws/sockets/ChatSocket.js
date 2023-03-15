@@ -4,6 +4,7 @@ import CONTANTS from '../../../constants';
 import { addMessage, changeBlockStatusInStore } from '../../../actions/actionCreator';
 
 class ChatSocket extends WebSocket {
+  // eslint-disable-next-line
   constructor(dispatch, getState, room) {
     super(dispatch, getState, room);
   }
@@ -33,7 +34,7 @@ class ChatSocket extends WebSocket {
           if (isEqual(preview.participants, message.participants)) {
             preview.text = message.body;
             preview.sender = message.sender;
-            preview.createAt = message.createdAt;
+            preview.createdAt = message.createdAt;
             isNew = false;
           }
         });

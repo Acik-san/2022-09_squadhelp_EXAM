@@ -30,12 +30,14 @@ const OffersPage = (props) => {
     return () => {
       clearOffers()
     }
+    // eslint-disable-next-line
   }, []);
   useEffect(() => {
     window.addEventListener("scroll", handlerScroll)
     return () => {
       window.removeEventListener("scroll", handlerScroll)
     }
+    // eslint-disable-next-line
   }, [offset]
   )
   return (

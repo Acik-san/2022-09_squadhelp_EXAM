@@ -60,7 +60,7 @@ export const addChatToCatalog = ({ chatId, catalogId }) =>
   httpClient.post(`catalogs/${catalogId}`, { chatId });
 export const removeChatFromCatalog = ({ catalogId, chatId }) =>
   httpClient.delete(`catalogs/${catalogId}/${chatId}`);
-export const changeCatalogName = ({ catalogName, catalogId }) =>
-  httpClient.patch(`catalogs/${catalogId}`, { catalogName });
+export const changeCatalogName = ({ catalogName, catalogId, chats }) =>
+  httpClient.patch(`catalogs/${catalogId}`, { catalogName, chats });
 export const getOffers = ({ limit, offset }) => httpClient.get(`offers?${qs.stringify({ limit, offset })}`)
 export const setModerateOfferStatus = ({ id, customerId, status, email, firstName }) => httpClient.patch(`offers/${id}`, { customerId, status, email, firstName })

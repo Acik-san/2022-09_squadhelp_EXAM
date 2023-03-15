@@ -21,7 +21,7 @@ const CatalogList = (props) => {
     catalogList.forEach((catalog) => {
       elementList.push(<Catalog
         catalog={catalog}
-        key={catalog._id}
+        key={catalog.id}
         deleteCatalog={deleteCatalog}
         goToCatalog={goToCatalog}
       />);

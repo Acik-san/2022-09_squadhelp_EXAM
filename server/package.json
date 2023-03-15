@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "babel-node": "babel-node",
-    "start": "nodemon --exec babel-node ./src/index.js",
+    "start": "nodemon --watch ./src --exec babel-node ./src/index.js",
     "test": "jest",
     "build": "babel src -d dist"
   },

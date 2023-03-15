@@ -30,7 +30,6 @@ module.exports.getDataForContest = async (req, res, next) => {
     });
     res.send(response);
   } catch (err) {
-    console.log(err);
     next(new ServerError('cannot get contest preferences'));
   }
 };
@@ -183,11 +182,13 @@ const resolveOffer = async (
       arrayRoomsId.push(offer.userId);
     }
   });
-  controller.getNotificationController().emitChangeOfferStatus(arrayRoomsId,
-    'Someone of yours offers was rejected', contestId);
+  if(arrayRoomsId.length !==0){
+  controller.getNotificationController().emitChangeOfferStatus([...new Set(arrayRoomsId)],
+    'Someone of yours offers was rejected', contestId)
+  }
   controller.getNotificationController().emitChangeOfferStatus(creatorId,
     'Someone of your offers WIN', contestId);
-  return updatedOffers[ 0 ].dataValues;
+  return updatedOffers.filter( offer => offer.status === CONSTANTS.OFFER_STATUS_WON )[ 0 ].dataValues;
 };
 
 module.exports.setOfferStatus = async (req, res, next) => {
