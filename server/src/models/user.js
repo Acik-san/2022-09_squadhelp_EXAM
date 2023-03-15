@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate (models) {
+    static associate(models) {
       User.hasMany(models.Offer, {
         foreignKey: 'userId',
         targetKey: 'id',
@@ -15,6 +15,22 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Rating, {
         foreignKey: 'userId',
         targetKey: 'id',
+      });
+      User.hasMany(models.Message, {
+        foreignKey: 'sender',
+        targetKey: 'id',
+      });
+      User.hasMany(models.UserToConversation, {
+        foreignKey: 'userId',
+        targetKey: 'id',
+      });
+      User.hasMany(models.Catalog, {
+        foreignKey: 'userId',
+        targetKey: 'id',
+      });
+      User.belongsToMany(models.Conversation, {
+        through: 'users_to_conversations',
+        foreignKey: 'userId',
       });
     }
   }
