@@ -30,11 +30,15 @@ const variableOptions = {
 };
 
 class ContestForm extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.getDataForContest(this.props.contestType);
   }
-
-  render () {
+  componentDidUpdate(prevProps) {
+    if (this.props.contestType !== prevProps.contestType) {
+      this.props.getDataForContest(this.props.contestType);
+    }
+  }
+  render() {
     const { isFetching, error } = this.props.dataForContest;
     if (error) {
       return <TryAgain getData={this.getDataForContest} />;
@@ -52,7 +56,7 @@ class ContestForm extends React.Component {
               focusOfWork: '',
               targetCustomer: '',
               file: '',
-              ...variableOptions[this.props.initialValues.contestType],
+              ...variableOptions[this.props.contestType],
               ...this.props.initialValues,
             }}
             onSubmit={this.props.handleSubmit}

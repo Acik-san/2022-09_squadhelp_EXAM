@@ -29,9 +29,9 @@ module.exports = {
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
   CONTEST_NAMES: {
-    CONTEST_NAME: "nameContest",
-    CONTEST_TAGLINE: "taglineContest",
-    CONTEST_LOGO: "logoContest"
+    CONTEST_NAME: "name",
+    CONTEST_TAGLINE: "tagline",
+    CONTEST_LOGO: "logo"
   },
   CONTEST_TYPES: {
     NAME_STYLE: "nameStyle",

@@ -9,13 +9,14 @@ import BackButton from '../../components/BackButton/BackButton';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import CONSTANTS from '../../constants';
 
 
 const ContestCreationPage = (props) => {
-  const {contestType}= props.history.location.state
-  const {contestName}=useParams()
+  const { contestName } = useParams()
+  const contestType = contestName === 'nameContest' ? CONSTANTS.NAME_CONTEST : contestName === 'logoContest' ? CONSTANTS.LOGO_CONTEST : CONSTANTS.TAGLINE_CONTEST
   const formRef = useRef();
-  const contestData = props.contestStore.contests[contestType] ? props.contestStore.contests[contestType] : { contestType: contestType }; 
+  const contestData = props.contestStore.contests[contestType] ? props.contestStore.contests[contestType] : { contestType: contestType };
 
   const handleSubmit = (values) => {
     props.saveContest({ type: contestType, info: values });
@@ -37,7 +38,7 @@ const ContestCreationPage = (props) => {
       <div className={styles.startContestHeader}>
         <div className={styles.startContestInfo}>
           <h2>
-            {props.history.location.state.title}
+            {props.bundleStore.title}
           </h2>
           <span>
             Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for
@@ -48,7 +49,7 @@ const ContestCreationPage = (props) => {
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <ContestForm
-            contestType={contestName}
+            contestType={contestType}
             handleSubmit={handleSubmit}
             formRef={formRef}
             defaultData={contestData}

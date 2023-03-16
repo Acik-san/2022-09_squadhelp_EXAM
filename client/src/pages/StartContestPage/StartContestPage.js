@@ -20,8 +20,8 @@ const StartContestPage = (props) => {
     for (let i = 0; i < array.length; i++) {
       bundleList[array[i]] = i === array.length - 1 ? 'payment' : array[i + 1];
     }
-    props.choseBundle(bundleList);
-    props.history.push(`/startContest/${bundleList.first}Contest`,{title,contestType:bundleList.first});
+    props.choseBundle(bundleList,title);
+    props.history.push(`/startContest/${bundleList.first}Contest`);
   };
 
   return (
@@ -122,7 +122,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  choseBundle: (bundle) => dispatch(selectBundle(bundle)),
+  choseBundle: (bundle,title) => dispatch(selectBundle(bundle,title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StartContestPage);

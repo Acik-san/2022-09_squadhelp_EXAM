@@ -65,9 +65,9 @@ export const getContestById = (data) => ({
   data,
 });
 
-export const selectBundle = (bundle) => ({
+export const selectBundle = (bundle, title) => ({
   type: ACTION.SELECT_BUNDLE_ACTION,
-  bundle,
+  payload: { bundle, title },
 });
 
 export const clearBundle = () => ({
