@@ -1,0 +1,101 @@
+.hr
+  border: 0 solid #e7eaf3
+  border-top-width: 1px
+  margin-bottom: 0
+  margin-top: 0
+.section
+  padding: 128px 15px
+  margin: auto
+  max-width: 576px
+  text-align: center
+  @media(min-width: 768px)
+    max-width: 768px
+  @media(min-width: 990px)
+    max-width: 960px
+  @media(min-width: 1200px)
+    max-width: 1250px
+  .cup_img 
+    margin-bottom: 16px
+    width: 72px
+    height: 72px
+  h2
+    margin-bottom: 8px
+    font-size: 32px
+    font-weight: 400
+    line-height: 48px
+    text-aling: center
+  div
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 64px
+    @media(min-width: 1000px)
+      flex-direction: row
+    .how_contests_work
+      order: 1
+      width: 450px
+      height: 460px
+      @media(min-width: 1000px)
+        order: 0
+      @media(min-width: 1200px)
+        width: 562px
+        height: 643px
+    ul
+      padding-left: 40px
+      margin-bottom: 80px
+      @media(min-width: 1000px)
+        margin-bottom: 0px
+      li
+        display: flex
+        align-items: center
+        position: relative
+        padding: 32px
+        border: 1px solid #e7eaf3
+        border-radius: 5px
+        margin-bottom: 32px
+        text-align: left
+        &:last-child
+          margin-bottom: 0px
+          &::after
+            content: " "
+            position: absolute
+            top: -497px
+            bottom: 0
+            right: 0
+            left: -45px
+            height: 497px
+            border-left: 1px solid #e7eaf3
+            margin: auto auto auto 0 
+        &::before  
+          content: " "
+          position: absolute
+          top: 0
+          bottom: 0
+          right: 0
+          left: -45px
+          width: 32px
+          height: 0.0625rem
+          border-top: 1px solid #e7eaf3
+          margin: auto auto auto 0 
+        &:first-child
+          &::after
+            content: " "
+            position: absolute
+            top: 0
+            bottom: -495px
+            right: 0
+            left: -45px
+            height: 497px
+            border-left: 1px solid #e7eaf3
+            margin: auto auto auto 0 
+        span
+          margin-right: 16px
+          font-size: 56px
+          font-weight: 400
+          line-height: 67.2px
+          color: #377dff
+        p
+          font-size: 16px
+          font-weight: 400
+          line-height: 27px
+          color: #77838f

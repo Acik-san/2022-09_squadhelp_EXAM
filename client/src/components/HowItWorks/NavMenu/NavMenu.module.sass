@@ -1,0 +1,114 @@
+.nav_menu
+  background-color: white
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%)
+  margin: 0 auto
+  .nav_list
+    margin-left: 15px
+    .separator_stick
+      display: none
+      position: relative
+      @media(min-width: 768px)
+      display: inline-block
+      div
+        position: absolute
+        margin: 0 0.75rem
+        top: 10px
+        border-top-width: 1px
+        border-color: #ebebeb
+        border-top-style: solid
+        border-right-width: 1px
+        border-right-style: solid
+        height: 1.25rem
+        align-self: center
+    li
+      position: relative
+      font-size: 14px
+      line-height: 20px
+      font-weight: 500
+      color: #4a4a4a
+      background: transparent
+      &:hover
+        color: #377dff
+      &:hover > ul
+        display: inline-block
+        width: 100%
+        cursor: pointer
+      a
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 14px 11.5px
+        img
+          @media(min-width: 768px)
+            margin-left: 8px
+      @media(min-width: 768px)
+        display: flex
+      .short_domain
+        @media(min-width: 768px)
+          flex-direction: column
+          ul
+            padding: 0
+            display: block
+            position: relative
+            border: none
+            box-shadow: none
+            top: 0
+            right: 0
+      .resources_list
+        @media(min-width: 768px)
+          right: 0
+      ul
+        display: none
+        padding: 7px 0px 12px
+        min-width: 220px
+        @media(min-width: 768px)
+          position: absolute
+          top: 48px
+          border: 1px solid #ebebeb
+          border-radius: 8px
+          width: 220px
+          background-color: white
+          box-shadow: -1px 2px 6px rgb(0 0 0 / 25%)
+        .industry_name
+          &>a
+            font-size: 14px
+            font-weight: 500
+          &>ul
+              display: none
+              li
+                padding: 0
+          &:hover > ul
+            display: block
+        li
+          a
+            font-size: 13px
+            line-height: 20px
+            color: #4a4a4a
+            text-decoration: none
+            padding: 0.3rem 1.5rem
+            font-weight: 300
+            &:hover
+              color: #377dff
+          ul
+            padding: 0
+            display: block
+            @media(min-width: 768px)
+              border-top-right-radius: 0px
+              right: 220px
+              top: 0px
+            li
+              font-size: 13px
+              line-height: 20px
+              color: #77838f
+              padding: 0.1rem 2rem
+              font-weight: 400
+    @media(min-width: 768px)
+      display: flex
+      justify-content: space-between
+      margin: 0 auto
+      max-width: 1188px
+    @media(min-width: 1536px)
+      max-width: 1280px
+    @media(min-width: 1600px)
+      max-width: 1536px
+    

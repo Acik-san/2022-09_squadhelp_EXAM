@@ -1,0 +1,54 @@
+.section
+  background-image: linear-gradient(150deg,#2d1582 0%,#19a0ff 100%)
+  background-repeat: repeat-x
+  position: relative
+  text-align: center
+  img
+    z-index: 0
+    position: absolute
+    width: 208px
+    height: 150px
+    &:first-child
+      left:0
+    &:last-child
+      bottom: 0
+      right: 0
+  .get_started
+    z-index: 1
+    display: inline-block
+    position: relative
+    padding: 32px 15px
+    margin: auto
+    max-width: 576px
+    text-align: center
+    h2
+      margin-bottom: 8px
+      font-size: 32px
+      font-weight: 500
+      line-height: 48px
+      color: #00dffc
+    p
+      margin-bottom: 16px
+      font-size: 20px
+      font-weight: 400
+      line-height: 34px
+      color: white
+    a
+      display: inline-block
+      padding: 13px 20px
+      font-size: 16px
+      font-weight: 400
+      line-height: 24px
+      background-color: #fff
+      border-color: #fff
+      border-radius: 5px
+      transition: all 0.2s ease-in-out
+      &:hover
+        transform: translateY(-3px)
+        box-shadow: 0 4px 11px rgb(255 255 255 / 35%)
+    @media(min-width: 768px)
+      max-width: 768px
+    @media(min-width: 990px)
+      max-width: 960px
+    @media(min-width: 1200px)
+      max-width: 1250px

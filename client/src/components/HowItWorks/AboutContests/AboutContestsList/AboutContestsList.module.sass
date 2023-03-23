@@ -1,0 +1,63 @@
+.wrapper_list_item
+  padding-top: 64px
+  padding-bottom: 64px
+  border-color: #e7eaf3
+  border-style: solid
+  border-bottom-width: 1px
+  h2
+    margin-bottom: 8px
+    font-size: 30px
+    font-weight: 500
+    line-height: 42px
+    color: #377dff
+  .inner_list
+    font-size: 17px
+    line-height: 24px
+    .inner_list_item
+      display: flex
+      flex-direction: column
+      margin-bottom: 16px
+      transition: 0.3s ease-in-out
+      &:hover 
+        background-color: #f8fafd
+        div
+          h3
+            transition: 0.3s ease-in-out
+            color: #377dff
+      .inner_list_item_heading
+        display: flex
+        justify-content: space-between
+        padding: 16px
+        border: 1px solid #e7eaf3
+        border-radius: 5px
+        border-bottom-left-radius: 0
+        border-bottom-right-radius: 0
+        cursor: pointer
+        .arrow_right
+          transform: rotate(-90deg)
+          color: #377dff
+          transition: transform 0.3s linear
+        .arrow_down
+          transform: rotate(0deg)
+          color: #377dff
+          transition: transform 0.3s linear
+      .opened
+        border: 1px solid #e7eaf3
+        border-top-width: 0
+        border-radius: 5px
+        border-top-left-radius: 0
+        border-top-left-radius: 0
+        overflow: hidden
+        max-height: 0
+        transition: max-height 0.3s linear
+        div
+          padding: 16px
+          .sub_inner_list
+            list-style: disc
+            a
+              color: #377dff
+            .sub_inner_list_item
+              margin-left: 35px
+      .not_opened
+        max-height: 275px
+        transition: max-height 0.5s linear

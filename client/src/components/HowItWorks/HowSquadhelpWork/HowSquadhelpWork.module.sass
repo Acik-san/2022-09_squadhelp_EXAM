@@ -1,0 +1,72 @@
+.how_squadhelp_work
+  margin: auto
+  margin-top: 90px
+  @media(min-width: 768px)
+    max-width: 768px
+  @media(min-width: 990px)
+    max-width: 960px
+  @media(min-width: 1200px)
+    max-width: 1250px
+  .wrapper_container
+    display: flex
+    padding: 32px 15px
+    .inner_container
+      display: flex
+      flex-direction: column
+      justify-content: center
+      margin-bottom: 70px
+      span
+        &::before
+          content: "World's #1 Naming Platform"
+          padding: 9px 15px
+          border: 1px solid transparent
+          border-radius: 99px
+          background: rgba(55,125,255,.1)
+          font-size: 11px
+          font-weight: 400
+          line-height: 16.5px
+          color: #377dff
+      h1
+        margin-top: 8px
+        margin-bottom: 8px
+        font-size: 40px
+        font-weight: 600
+        line-height: 60px
+        text-aling: left
+      p
+        margin-bottom: 16px
+        font-size: 16px
+        font-weight: 400
+        line-height: 27px
+        text-aling: left
+        color: #77838f
+      button
+        padding: 12px 16px
+        border: 1px solid #377dff
+        border-radius: 99px
+        width: 155px
+        background-color: #377dff
+        color: white
+        font-size: 16px
+        font-weight: 500
+        line-height: 24px 
+        transition: all 0.2s ease-in-out
+        &:hover
+          transform: translateY(-3px)
+          box-shadow: 0 4px 11px rgb(55 125 255 / 35%)
+        &:active
+          box-shadow: 0 0 0 0 transparent
+          background-color: #045cff
+          border-color: #0056f6
+        small
+          margin-right: 18px
+          font-size: 14px
+    .how_squadhelp_work_img
+      display: none
+      width: 370px
+      height: 321px
+      @media(min-width: 992px)
+        display: block
+      @media(min-width: 1200px)
+        width: 503px
+        height: 437px

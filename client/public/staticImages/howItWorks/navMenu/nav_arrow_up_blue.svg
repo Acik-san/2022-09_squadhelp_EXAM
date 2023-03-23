@@ -1,0 +1,11 @@
+<svg class="hidden fill-current sh-navbar--nav-upicon navitem-group-hover:block" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<path d="M.114 7.414a.39.39 0 00.553 0l4.057-4.048a.391.391 0 01.553 0l4.056 4.049a.39.39 0 10.552-.553L5.83 2.814a1.168 1.168 0 00-.83-.343c-.3 0-.6.114-.827.342L.115 6.862a.39.39 0 000 .552z" fill="#377dff">
+</path>
+</g>
+<defs>
+<clipPath id="clip0">
+<path transform="rotate(180 5 5)" d="M0 0h10v10H0z"></path>
+</clipPath>
+</defs>
+</svg>
