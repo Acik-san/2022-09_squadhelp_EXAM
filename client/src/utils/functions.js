@@ -30,7 +30,8 @@ export const toNotificationDate = (date, notificationTime) => {
   }
   if (notificationTime.split(' ')[1] === 'hour') {
     const hours = (arrayOfHoursMinutesSeconds[0] =
-      Number(arrayOfHoursMinutesSeconds[0]) - Number(notificationTime.split(' ')[0]));
+      Number(arrayOfHoursMinutesSeconds[0]) -
+      Number(notificationTime.split(' ')[0]));
     arrayOfHoursMinutesSeconds.forEach((v, i) =>
       i === 0 ? (v = hours) : null
     );
@@ -40,7 +41,8 @@ export const toNotificationDate = (date, notificationTime) => {
     notificationTime.split(' ')[1] === 'minute'
   ) {
     const minutes = (arrayOfHoursMinutesSeconds[1] =
-      Number(arrayOfHoursMinutesSeconds[1]) - Number(notificationTime.split(' ')[0]));
+      Number(arrayOfHoursMinutesSeconds[1]) -
+      Number(notificationTime.split(' ')[0]));
     arrayOfHoursMinutesSeconds.forEach((v, i) =>
       i === 1 ? (v = minutes) : null
     );

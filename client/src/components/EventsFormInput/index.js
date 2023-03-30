@@ -4,7 +4,7 @@ import { ErrorMessage, useField, Field } from 'formik';
 import classNames from 'classnames';
 
 const EventsFormInput = props => {
-  const { name, placeholder, isInputMask, isSelect, mask,classes } = props;
+  const { name, placeholder, isInputMask, isSelect, mask, classes } = props;
   const [field, meta] = useField(name);
   const inputClassName = classNames(classes.input, {
     [classes.notValid]: meta.touched && meta.error,
@@ -20,7 +20,11 @@ const EventsFormInput = props => {
           placeholder={placeholder}
           className={inputClassName}
         />
-        <ErrorMessage name={name} component='span' className={classes.warning}/>
+        <ErrorMessage
+          name={name}
+          component='span'
+          className={classes.warning}
+        />
       </div>
     );
   }
@@ -38,8 +42,8 @@ const EventsFormInput = props => {
   }
   return (
     <div className={classes.container}>
-      <input {...field} placeholder={placeholder} className={inputClassName}/>
-      <ErrorMessage name={name} component='span' className={classes.warning}/>
+      <input {...field} placeholder={placeholder} className={inputClassName} />
+      <ErrorMessage name={name} component='span' className={classes.warning} />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('ratings', {
@@ -7,7 +6,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: { tableName: "offers" },
+          model: { tableName: 'offers' },
           key: 'id',
         },
       },
@@ -16,7 +15,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         references: {
-          model: { tableName: "users" },
+          model: { tableName: 'users' },
           key: 'id',
         },
       },

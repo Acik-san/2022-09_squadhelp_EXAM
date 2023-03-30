@@ -2,7 +2,10 @@ import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styles from './ContestCreationPage.module.sass';
-import { saveContestToStore, clearDataForContest } from '../../actions/actionCreator';
+import {
+  saveContestToStore,
+  clearDataForContest,
+} from '../../actions/actionCreator';
 import NextButton from '../../components/NextButton/NextButton';
 import ContestForm from '../../components/ContestForm/ContestForm';
 import BackButton from '../../components/BackButton/BackButton';
@@ -11,16 +14,25 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import CONSTANTS from '../../constants';
 
-
-const ContestCreationPage = (props) => {
-  const { contestName } = useParams()
-  const contestType = contestName === 'nameContest' ? CONSTANTS.NAME_CONTEST : contestName === 'logoContest' ? CONSTANTS.LOGO_CONTEST : CONSTANTS.TAGLINE_CONTEST
+const ContestCreationPage = props => {
+  const { contestName } = useParams();
+  const contestType =
+    contestName === 'nameContest'
+      ? CONSTANTS.NAME_CONTEST
+      : contestName === 'logoContest'
+      ? CONSTANTS.LOGO_CONTEST
+      : CONSTANTS.TAGLINE_CONTEST;
   const formRef = useRef();
-  const contestData = props.contestStore.contests[contestType] ? props.contestStore.contests[contestType] : { contestType: contestType };
+  const contestData = props.contestStore.contests[contestType]
+    ? props.contestStore.contests[contestType]
+    : { contestType: contestType };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     props.saveContest({ type: contestType, info: values });
-    const route = props.bundleStore.bundle[contestType] === 'payment' ? '/payment' : `${props.bundleStore.bundle[contestType]}Contest`;
+    const route =
+      props.bundleStore.bundle[contestType] === 'payment'
+        ? '/payment'
+        : `${props.bundleStore.bundle[contestType]}Contest`;
     props.history.push(route);
   };
 
@@ -37,11 +49,10 @@ const ContestCreationPage = (props) => {
       <Header />
       <div className={styles.startContestHeader}>
         <div className={styles.startContestInfo}>
-          <h2>
-            {props.bundleStore.title}
-          </h2>
+          <h2>{props.bundleStore.title}</h2>
           <span>
-            Tell us a bit more about your business as well as your preferences so that creatives get a better idea about what you are looking for
+            Tell us a bit more about your business as well as your preferences
+            so that creatives get a better idea about what you are looking for
           </span>
         </div>
         <ProgressBar currentStep={2} />
@@ -69,16 +80,17 @@ const ContestCreationPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { contestStore, bundleStore } = state;
   return { contestStore, bundleStore };
 };
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    saveContest: (data) => dispatch(saveContestToStore(data)),
-    clearDataForContest: () => dispatch(clearDataForContest()),
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  saveContest: data => dispatch(saveContestToStore(data)),
+  clearDataForContest: () => dispatch(clearDataForContest()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContestCreationPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContestCreationPage);

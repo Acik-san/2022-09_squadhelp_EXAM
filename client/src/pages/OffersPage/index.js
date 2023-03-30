@@ -7,7 +7,7 @@ import OffersForModerate from '../../components/OffersForModerate';
 import CONSTANTS from '../../constants';
 import * as ACTION_CREATORS from '../../actions/actionCreator';
 
-const OffersPage = (props) => {
+const OffersPage = props => {
   const { history } = props;
   const {
     data: { role },
@@ -23,29 +23,33 @@ const OffersPage = (props) => {
     useDispatch()
   );
   const handlerScroll = () => {
-    window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight && haveMore && getOffersRequest(limit, offset)
-  }
+    window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight &&
+      haveMore &&
+      getOffersRequest(limit, offset);
+  };
   useEffect(() => {
-    getOffersRequest(limit, offset)
+    getOffersRequest(limit, offset);
     return () => {
-      clearOffers()
-    }
+      clearOffers();
+    };
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
-    window.addEventListener("scroll", handlerScroll)
+    window.addEventListener('scroll', handlerScroll);
     return () => {
-      window.removeEventListener("scroll", handlerScroll)
-    }
+      window.removeEventListener('scroll', handlerScroll);
+    };
     // eslint-disable-next-line
-  }, [offset]
-  )
+  }, [offset]);
   return (
     <>
       {isShowOnFull && (
         <LightBox
           mainSrc={`${CONSTANTS.CONTESTS_DEFAULT_DIR}${imagePath}`}
-          onCloseRequest={() => changeShowImage({ isShowOnFull: false, imagePath: null })}
+          onCloseRequest={() =>
+            changeShowImage({ isShowOnFull: false, imagePath: null })
+          }
         />
       )}
       <Header />
@@ -53,10 +57,9 @@ const OffersPage = (props) => {
         history.replace('./')
       ) : (
         <OffersForModerate offers={offers} isFetching={isFetching} />
-      )
-      }
+      )}
     </>
   );
-}
+};
 
 export default OffersPage;

@@ -8,19 +8,19 @@ import Footer from '../../components/Footer/Footer';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Header from '../../components/Header/Header';
 
-const StartContestPage = (props) => {
+const StartContestPage = props => {
   if (props.userStore.data.role !== CONSTANTS.CUSTOMER) {
     props.history.replace('/');
   }
 
-  const setBundle = (bundleStr,title) => {
+  const setBundle = (bundleStr, title) => {
     const array = bundleStr.toLowerCase().split('+');
     const bundleList = {};
     bundleList.first = array[0];
     for (let i = 0; i < array.length; i++) {
       bundleList[array[i]] = i === array.length - 1 ? 'payment' : array[i + 1];
     }
-    props.choseBundle(bundleList,title);
+    props.choseBundle(bundleList, title);
     props.history.push(`/startContest/${bundleList.first}Contest`);
   };
 
@@ -29,13 +29,12 @@ const StartContestPage = (props) => {
       <Header />
       <div className={styles.startContestHeader}>
         <div className={styles.startContestInfo}>
-          <h2>
-            START A CONTEST
-          </h2>
+          <h2>START A CONTEST</h2>
           <span>
-            Launching a contest on Squadhelp is very simple. Select the type of contest you would like
-            to launch from the list below. Provide a detailed brief and select a pricing package.
-            Begin receiving submissions instantly!
+            Launching a contest on Squadhelp is very simple. Select the type of
+            contest you would like to launch from the list below. Provide a
+            detailed brief and select a pricing package. Begin receiving
+            submissions instantly!
           </span>
         </div>
         <ProgressBar currentStep={1} />
@@ -46,67 +45,73 @@ const StartContestPage = (props) => {
             Our Most Popular
             <span>Categories</span>
           </span>
-          <span className={styles.info}>Pick from our most popular categories, launch a contest and begin receiving submissions right away</span>
+          <span className={styles.info}>
+            Pick from our most popular categories, launch a contest and begin
+            receiving submissions right away
+          </span>
           <hr />
         </div>
         <div className={styles.baseBundles}>
           <BundleBox
             path={['Name.png']}
-            header="Name"
-            title="Company Name"
-            describe="Get up and running with the perfect name."
+            header='Name'
+            title='Company Name'
+            describe='Get up and running with the perfect name.'
             setBundle={setBundle}
           />
           <BundleBox
             path={['Logo.png']}
-            header="Logo"
-            title= 'LOGO'
-            describe="Kickstart your venture with a unique, memorable logo."
+            header='Logo'
+            title='LOGO'
+            describe='Kickstart your venture with a unique, memorable logo.'
             setBundle={setBundle}
           />
           <BundleBox
             path={['Tagline.png']}
-            header="Tagline"
-            title= 'TAGLINE'
-            describe="Connect deeply with your target audience with an on-target tagline."
+            header='Tagline'
+            title='TAGLINE'
+            describe='Connect deeply with your target audience with an on-target tagline.'
             setBundle={setBundle}
           />
         </div>
-
       </div>
       <div className={styles.combinedBundles}>
         <div className={styles.infoCombinedBundles}>
-          <span className={styles.headerInfo}>Save With Our Bundle Packages</span>
-          <span className={styles.info}>Launch multiple contests and pay a discounted bundle price</span>
+          <span className={styles.headerInfo}>
+            Save With Our Bundle Packages
+          </span>
+          <span className={styles.info}>
+            Launch multiple contests and pay a discounted bundle price
+          </span>
           <hr />
         </div>
         <div className={styles.baseBundles}>
           <BundleBox
             path={['Name.png', 'Logo.png']}
-            header="Name+Logo"
+            header='Name+Logo'
             title='Company Name + Logo'
-            describe="Get the essentials needed to establish your brand together and save."
+            describe='Get the essentials needed to establish your brand together and save.'
             setBundle={setBundle}
           />
           <BundleBox
             path={['Name.png', 'Tagline.png']}
-            header="Name+Tagline"
+            header='Name+Tagline'
             title='Company Name + Tagline'
-            describe="Communicate your vision with the perfect Name/Tagline combo."
+            describe='Communicate your vision with the perfect Name/Tagline combo.'
             setBundle={setBundle}
           />
           <BundleBox
             path={['Logo.png', 'Tagline.png']}
-            header="Tagline+Logo"
+            header='Tagline+Logo'
             title='Tagline + Logo'
-            describe="Description for Logo + Tagline will come here."
+            describe='Description for Logo + Tagline will come here.'
             setBundle={setBundle}
           />
           <BundleBox
             path={['Name.png', 'Logo.png', 'Tagline.png']}
-            header="Name+Tagline+Logo"
+            header='Name+Tagline+Logo'
             title='Company Name + Tagline + Logo'
-            describe="Establish your entire brand identity and save with this bundle."
+            describe='Establish your entire brand identity and save with this bundle.'
             setBundle={setBundle}
           />
         </div>
@@ -116,13 +121,13 @@ const StartContestPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { bundleStore, userStore } = state;
   return { bundleStore, userStore };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  choseBundle: (bundle,title) => dispatch(selectBundle(bundle,title)),
+const mapDispatchToProps = dispatch => ({
+  choseBundle: (bundle, title) => dispatch(selectBundle(bundle, title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StartContestPage);

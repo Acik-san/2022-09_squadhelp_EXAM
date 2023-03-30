@@ -1,12 +1,15 @@
 const db = require('../../models');
 const NotFound = require('../../errors/UserNotFoundError');
-const UncorrectPassword = require('../../errors/UncorrectPassword')
+const UncorrectPassword = require('../../errors/UncorrectPassword');
 const ServerError = require('../../errors/ServerError');
 const bcrypt = require('bcrypt');
 
 module.exports.updateUser = async (data, userId, transaction) => {
-  const [updatedCount, [updatedUser]] = await db.User.update(data,
-    { where: { id: userId }, returning: true, transaction });
+  const [updatedCount, [updatedUser]] = await db.User.update(data, {
+    where: { id: userId },
+    returning: true,
+    transaction,
+  });
   if (updatedCount !== 1) {
     throw new ServerError('cannot update user');
   }
@@ -22,7 +25,7 @@ module.exports.findUser = async (predicate, transaction) => {
   }
 };
 
-module.exports.userCreation = async (data) => {
+module.exports.userCreation = async data => {
   const newUser = await db.User.create(data);
   if (!newUser) {
     throw new ServerError('server error on user creation');

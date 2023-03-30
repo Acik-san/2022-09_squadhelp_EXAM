@@ -26,7 +26,7 @@ const appReducer = combineReducers({
   chatStore: chatReducer,
   userProfile: userProfileReducer,
   eventsStore: eventsReducer,
-  offersStore: offersReducer
+  offersStore: offersReducer,
 });
 
 export default appReducer;

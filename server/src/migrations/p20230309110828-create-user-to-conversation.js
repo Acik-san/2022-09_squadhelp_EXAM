@@ -1,5 +1,5 @@
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('users_to_conversations', {
       conversationId: {
         allowNull: false,
@@ -10,7 +10,7 @@ module.exports = {
           key: 'id',
         },
         onDelete: 'cascade',
-        onUpdate: 'restrict'
+        onUpdate: 'restrict',
       },
       userId: {
         allowNull: false,
@@ -21,31 +21,31 @@ module.exports = {
           key: 'id',
         },
         onDelete: 'cascade',
-        onUpdate: 'restrict'
+        onUpdate: 'restrict',
       },
       blackList: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: false,
       },
       favoriteList: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('users_to_conversations');
-  }
+  },
 };

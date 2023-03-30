@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import CONSTANTS from '../../constants';
 import styles from './ButtonGroup.module.sass';
 
-const {BUTTON_GROUP} = CONSTANTS;
+const { BUTTON_GROUP } = CONSTANTS;
 
 const ButtonGroup = () => {
   const [isChecked, setIsChecked] = useState(1);

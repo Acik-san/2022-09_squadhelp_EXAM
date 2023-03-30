@@ -1,5 +1,5 @@
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('catalogs_to_conversations', {
       conversationId: {
         allowNull: false,
@@ -10,7 +10,7 @@ module.exports = {
           key: 'id',
         },
         onDelete: 'cascade',
-        onUpdate: 'restrict'
+        onUpdate: 'restrict',
       },
       catalogId: {
         allowNull: false,
@@ -21,21 +21,21 @@ module.exports = {
           key: 'id',
         },
         onDelete: 'cascade',
-        onUpdate: 'restrict'
+        onUpdate: 'restrict',
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('catalogs_to_conversations');
-  }
+  },
 };

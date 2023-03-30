@@ -4,17 +4,19 @@ import { getChats } from '../../../../actions/actionCreator';
 import DialogList from '../DialogList/DialogList';
 
 class DialogListContainer extends React.Component {
-
-  render() {
+  render () {
     const { messagesPreview, userId } = this.props;
     return <DialogList preview={messagesPreview} userId={userId} />;
   }
 }
 
-const mapStateToProps = (state) => state.chatStore;
+const mapStateToProps = state => state.chatStore;
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getChats: () => dispatch(getChats()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogListContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DialogListContainer);

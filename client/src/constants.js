@@ -13,20 +13,20 @@ const CONSTANTS = {
   FINISHED_EVENTS_MORE_THEN_99: '99+',
   BUTTON_GROUP: [
     {
-      "id": 1,
-      "heading": "Yes",
-      "text": "The Domain should exactly match the name"
+      id: 1,
+      heading: 'Yes',
+      text: 'The Domain should exactly match the name',
     },
     {
-      "id": 2,
-      "heading": "Yes",
-      "text": "But minor variations are allowed (Recommended)"
+      id: 2,
+      heading: 'Yes',
+      text: 'But minor variations are allowed (Recommended)',
     },
     {
-      "id": 3,
-      "heading": "No",
-      "text": "I am only looking for a name, not a Domain"
-    }
+      id: 3,
+      heading: 'No',
+      text: 'I am only looking for a name, not a Domain',
+    },
   ],
   CONTACTS: {
     PHONE: '(877) 355-3585',

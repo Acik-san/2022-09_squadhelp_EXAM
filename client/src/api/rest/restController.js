@@ -36,7 +36,8 @@ export const getCreatorContests = ({
     })}`
   );
 export const getContestById = id => httpClient.get(`contests/${id}`);
-export const updateContest = (data, id) => httpClient.patch(`contests/${id}`, data);
+export const updateContest = (data, id) =>
+  httpClient.patch(`contests/${id}`, data);
 export const setNewOffer = ({ contestId, data }) =>
   httpClient.post(`contests/${contestId}/offer`, data);
 export const setOfferStatus = ({ contestId, data }) =>
@@ -50,8 +51,10 @@ export const getChat = ({ interlocutorId }) =>
   httpClient.get(`chats/${interlocutorId}`);
 export const newMessage = ({ recipient, messageBody, interlocutor }) =>
   httpClient.post(`chats/${recipient}`, { messageBody, interlocutor });
-export const changeChatFavorite = data => httpClient.patch('chats/favorite', data);
-export const changeChatBlock = data => httpClient.patch('chats/blackList', data);
+export const changeChatFavorite = data =>
+  httpClient.patch('chats/favorite', data);
+export const changeChatBlock = data =>
+  httpClient.patch('chats/blackList', data);
 export const getCatalogList = () => httpClient.get('catalogs');
 export const createCatalog = data => httpClient.post('catalogs', data);
 export const deleteCatalog = ({ catalogId }) =>
@@ -62,5 +65,13 @@ export const removeChatFromCatalog = ({ catalogId, chatId }) =>
   httpClient.delete(`catalogs/${catalogId}/${chatId}`);
 export const changeCatalogName = ({ catalogName, catalogId, chats }) =>
   httpClient.patch(`catalogs/${catalogId}`, { catalogName, chats });
-export const getOffers = ({ limit, offset }) => httpClient.get(`offers?${qs.stringify({ limit, offset })}`)
-export const setModerateOfferStatus = ({ id, customerId, status, email, firstName }) => httpClient.patch(`offers/${id}`, { customerId, status, email, firstName })
+export const getOffers = ({ limit, offset }) =>
+  httpClient.get(`offers?${qs.stringify({ limit, offset })}`);
+export const setModerateOfferStatus = ({
+  id,
+  customerId,
+  status,
+  email,
+  firstName,
+}) =>
+  httpClient.patch(`offers/${id}`, { customerId, status, email, firstName });

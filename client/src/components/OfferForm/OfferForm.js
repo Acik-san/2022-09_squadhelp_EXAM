@@ -30,7 +30,7 @@ const OfferForm = props => {
             uploadContainer: styles.imageUploadContainer,
             inputContainer: styles.uploadInputContainer,
             imgStyle: styles.imgStyle,
-            imgNone: styles.img
+            imgNone: styles.img,
           }}
         />
       );
@@ -59,7 +59,7 @@ const OfferForm = props => {
       customerId,
     };
     Object.keys(contestData).map(key => data.append(key, contestData[key]));
-    setNewOffer({contestId,data});
+    setNewOffer({ contestId, data });
     resetForm();
   };
 

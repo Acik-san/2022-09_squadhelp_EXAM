@@ -2,7 +2,10 @@ import { takeLatest, takeLeading, takeEvery } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
 import { registerSaga, loginSaga } from './authSagas';
 import {
-  privateSaga, updateUserData, notAuthorizeSaga, headerRequest,
+  privateSaga,
+  updateUserData,
+  notAuthorizeSaga,
+  headerRequest,
 } from './userSaga';
 import { paymentSaga, cashoutSaga } from './paymentSaga';
 import {
@@ -12,7 +15,13 @@ import {
   getContestByIdSaga,
   creatorContestsSaga,
 } from './contestsSagas';
-import { changeMarkSaga, setOfferStatusSaga, addOfferSaga, getOffers, setModerateOfferStatus } from './offerSagas';
+import {
+  changeMarkSaga,
+  setOfferStatusSaga,
+  addOfferSaga,
+  getOffers,
+  setModerateOfferStatus,
+} from './offerSagas';
 import {
   getChatsSaga,
   getChatSaga,
@@ -27,7 +36,7 @@ import {
   changeCatalogName,
 } from './chatSagas';
 
-function* rootSaga() {
+function * rootSaga () {
   yield takeLatest(ACTION.AUTH_ACTION_REGISTER, registerSaga);
   yield takeLatest(ACTION.AUTH_ACTION_LOGIN, loginSaga);
   yield takeLatest(ACTION.PAYMENT_ACTION, paymentSaga);
@@ -53,10 +62,16 @@ function* rootSaga() {
   yield takeLatest(ACTION.ADD_CHAT_TO_CATALOG_ASYNC, addChatToCatalog);
   yield takeLatest(ACTION.CREATE_CATALOG_REQUEST, createCatalog);
   yield takeLatest(ACTION.DELETE_CATALOG_REQUEST, deleteCatalog);
-  yield takeLatest(ACTION.REMOVE_CHAT_FROM_CATALOG_REQUEST, removeChatFromCatalogSaga);
+  yield takeLatest(
+    ACTION.REMOVE_CHAT_FROM_CATALOG_REQUEST,
+    removeChatFromCatalogSaga
+  );
   yield takeLatest(ACTION.CHANGE_CATALOG_NAME_REQUEST, changeCatalogName);
   yield takeLatest(ACTION.GET_OFFERS_REQUEST, getOffers);
-  yield takeLatest(ACTION.SET_MODERATE_OFFER_STATUS_REQUEST, setModerateOfferStatus);
+  yield takeLatest(
+    ACTION.SET_MODERATE_OFFER_STATUS_REQUEST,
+    setModerateOfferStatus
+  );
 }
 
 export default rootSaga;

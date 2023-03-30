@@ -1,23 +1,27 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateContest, changeEditContest, clearUpdateContestStore } from '../../actions/actionCreator';
+import {
+  updateContest,
+  changeEditContest,
+  clearUpdateContestStore,
+} from '../../actions/actionCreator';
 import ContestForm from '../ContestForm/ContestForm';
 import styles from './Brief.module.sass';
 import ContestInfo from '../Contest/ContestInfo/ContestInfo';
 import Error from '../Error/Error';
 
-const Brief = (props) => {   
+const Brief = props => {
   const { params } = props.match;
-  const setNewContestData = (values) => {
+  const setNewContestData = values => {
     const data = new FormData();
-    Object.keys(values).forEach((key) => {
+    Object.keys(values).forEach(key => {
       if (key !== 'file' && values[key]) data.append(key, values[key]);
     });
     if (values.file instanceof File) {
       data.append('file', values.file);
     }
-    props.update(data,params.id);
+    props.update(data, params.id);
   };
 
   const getContestObjInfo = () => {
@@ -48,7 +52,7 @@ const Brief = (props) => {
       contestType,
     };
     const defaultData = {};
-    Object.keys(data).forEach((key) => {
+    Object.keys(data).forEach(key => {
       if (data[key]) {
         if (key === 'originalFileName') {
           defaultData.file = { name: data[key] };
@@ -61,7 +65,12 @@ const Brief = (props) => {
   };
 
   const {
-    isEditContest, contestData, changeEditContest, role, goChat, clearUpdateContestStore,
+    isEditContest,
+    contestData,
+    changeEditContest,
+    role,
+    goChat,
+    clearUpdateContestStore,
   } = props;
   const { error } = props.updateContestStore;
   const { id } = props.userStore.data;
@@ -78,7 +87,13 @@ const Brief = (props) => {
   }
   return (
     <div className={styles.contestForm}>
-      {error && <Error data={error.data} status={error.status} clearError={clearUpdateContestStore} />}
+      {error && (
+        <Error
+          data={error.data}
+          status={error.status}
+          clearError={clearUpdateContestStore}
+        />
+      )}
       <ContestForm
         contestType={contestData.contestType}
         defaultData={getContestObjInfo()}
@@ -88,15 +103,15 @@ const Brief = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { isEditContest } = state.contestByIdStore;
   const { updateContestStore, userStore } = state;
   return { updateContestStore, userStore, isEditContest };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  update: (data,contestId) => dispatch(updateContest(data,contestId)),
-  changeEditContest: (data) => dispatch(changeEditContest(data)),
+const mapDispatchToProps = dispatch => ({
+  update: (data, contestId) => dispatch(updateContest(data, contestId)),
+  changeEditContest: data => dispatch(changeEditContest(data)),
   clearUpdateContestStore: () => dispatch(clearUpdateContestStore()),
 });
 

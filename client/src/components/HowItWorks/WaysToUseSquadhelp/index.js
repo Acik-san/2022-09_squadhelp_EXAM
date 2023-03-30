@@ -16,7 +16,10 @@ const WaysToUseSquadhelp = () => {
       <div className={styles.container}>
         {data.map(({ id, imgName, alt, head, text, button }) => (
           <article key={id}>
-            <img src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/waysToUseSquadhelp/${imgName}`} alt={alt} />
+            <img
+              src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/waysToUseSquadhelp/${imgName}`}
+              alt={alt}
+            />
             <h3>{head}</h3>
             <p>{text}</p>
             <button>{button}</button>

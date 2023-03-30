@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: { tableName: "users" },
+          model: { tableName: 'users' },
           key: 'id',
         },
       },
@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: { tableName: "contests" },
+          model: { tableName: 'contests' },
           key: 'id',
         },
       },
@@ -40,8 +40,8 @@ module.exports = {
       moderateStatus: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'pending'
-      }
+        defaultValue: 'pending',
+      },
     });
   },
   down: (queryInterface, Sequelize) => {

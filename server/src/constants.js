@@ -29,18 +29,18 @@ module.exports = {
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
   CONTEST_NAMES: {
-    CONTEST_NAME: "name",
-    CONTEST_TAGLINE: "tagline",
-    CONTEST_LOGO: "logo"
+    CONTEST_NAME: 'name',
+    CONTEST_TAGLINE: 'tagline',
+    CONTEST_LOGO: 'logo',
   },
   CONTEST_TYPES: {
-    NAME_STYLE: "nameStyle",
-    TYPE_OF_NAME: "typeOfName",
-    TYPE_OF_TAGLINE: "typeOfTagline",
-    BRAND_STYLE: "brandStyle",
-    INDUSTRY: "industry"
+    NAME_STYLE: 'nameStyle',
+    TYPE_OF_NAME: 'typeOfName',
+    TYPE_OF_TAGLINE: 'typeOfTagline',
+    BRAND_STYLE: 'brandStyle',
+    INDUSTRY: 'industry',
   },
   TIME_ERRORS_LOG: '00 00 10 * * 0-6',
   ERRORS_LOG_PATH: './errorsLogs/errorsData.json',
-  MAIL_MESSAGE: { SUBJECT: 'Squadhelp, offer\'s moderation' }
+  MAIL_MESSAGE: { SUBJECT: "Squadhelp, offer's moderation" },
 };

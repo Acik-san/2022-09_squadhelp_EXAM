@@ -3,7 +3,7 @@ import ACTION from '../actions/actionTypes';
 import * as restController from '../api/rest/restController';
 import { controller } from '../api/ws/socketController';
 
-export function* privateSaga(action) {
+export function * privateSaga (action) {
   yield put({ type: ACTION.GET_USER_REQUEST });
   try {
     const { data } = yield restController.getUser();
@@ -14,7 +14,7 @@ export function* privateSaga(action) {
   }
 }
 
-export function* notAuthorizeSaga(action) {
+export function * notAuthorizeSaga (action) {
   yield put({ type: ACTION.GET_USER_REQUEST });
   try {
     const { data } = yield restController.getUser();
@@ -25,7 +25,7 @@ export function* notAuthorizeSaga(action) {
   }
 }
 
-export function* updateUserData(action) {
+export function * updateUserData (action) {
   try {
     const { data } = yield restController.updateUser(action.data);
     yield put({ type: ACTION.UPDATE_USER_DATA_SUCCESS, data });
@@ -35,7 +35,7 @@ export function* updateUserData(action) {
   }
 }
 
-export function* headerRequest() {
+export function * headerRequest () {
   yield put({ type: ACTION.GET_USER_REQUEST });
   try {
     const { data } = yield restController.getUser();

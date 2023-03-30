@@ -14,20 +14,19 @@ import OnlyNotAuthorizedUserHoc from './components/OnlyNotAuthorizedUserHoc/Only
 import ContestPage from './pages/ContestPage/ContestPage';
 import UserProfile from './pages/UserProfile/UserProfile';
 import EventsPage from './pages/EventsPage';
-import OffersPage from './pages/OffersPage'
+import OffersPage from './pages/OffersPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import 'react-toastify/dist/ReactToastify.css';
 import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
 import browserHistory from './browserHistory';
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
 
-
 class App extends Component {
-  render() {
+  render () {
     return (
       <Router history={browserHistory}>
         <ToastContainer
-          position="top-center"
+          position='top-center'
           autoClose={5000}
           hideProgressBar
           newestOnTop={false}
@@ -38,22 +37,38 @@ class App extends Component {
           pauseOnHover
         />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={OnlyNotAuthorizedUserHoc(LoginPage)} />
-          <Route exact path="/registration" component={OnlyNotAuthorizedUserHoc(RegistrationPage)} />
-          <Route exact path="/payment" component={PrivateHoc(Payment)} />
-          <Route exact path="/startContest" component={PrivateHoc(StartContestPage)} />
+          <Route exact path='/' component={Home} />
           <Route
             exact
-            path="/startContest/:contestName"
+            path='/login'
+            component={OnlyNotAuthorizedUserHoc(LoginPage)}
+          />
+          <Route
+            exact
+            path='/registration'
+            component={OnlyNotAuthorizedUserHoc(RegistrationPage)}
+          />
+          <Route exact path='/payment' component={PrivateHoc(Payment)} />
+          <Route
+            exact
+            path='/startContest'
+            component={PrivateHoc(StartContestPage)}
+          />
+          <Route
+            exact
+            path='/startContest/:contestName'
             component={PrivateHoc(ContestCreationPage)}
           />
-          <Route exact path="/dashboard" component={PrivateHoc(Dashboard)} />
-          <Route exact path="/contests/:id" component={PrivateHoc(ContestPage)} />
-          <Route exact path="/profile" component={PrivateHoc(UserProfile)} />
-          <Route exact path="/events" component={PrivateHoc(EventsPage)} />
-          <Route exact path="/offers" component={PrivateHoc(OffersPage)} />
-          <Route exact path="/how-it-works" component={HowItWorksPage} />
+          <Route exact path='/dashboard' component={PrivateHoc(Dashboard)} />
+          <Route
+            exact
+            path='/contests/:id'
+            component={PrivateHoc(ContestPage)}
+          />
+          <Route exact path='/profile' component={PrivateHoc(UserProfile)} />
+          <Route exact path='/events' component={PrivateHoc(EventsPage)} />
+          <Route exact path='/offers' component={PrivateHoc(OffersPage)} />
+          <Route exact path='/how-it-works' component={HowItWorksPage} />
           <Route component={NotFound} />
         </Switch>
         <ChatContainer />

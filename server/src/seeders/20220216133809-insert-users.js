@@ -7,29 +7,41 @@ const generateUser = key => ({
   lastName: `Lastname${key}`,
   displayName: `Displayname${key}`,
   email: `user${key}@gmail.com`,
-  passwordHash: bcrypt.hashSync('qwerty', bcrypt.genSaltSync(CONSTANTS.SALT_ROUNDS)),
+  passwordHash: bcrypt.hashSync(
+    'qwerty',
+    bcrypt.genSaltSync(CONSTANTS.SALT_ROUNDS)
+  ),
   role: _.random(1, 10) > 5 ? 'customer' : 'creator',
 });
 
-const generateUsers = (amount) => {
+const generateUsers = amount => {
   return new Array(amount > 50 ? 50 : amount)
     .fill(null)
     .map((e, i) => generateUser(i));
 };
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('users', generateUsers(100), {});
-    await queryInterface.bulkInsert('users', [{
-      firstName: `Moder`,
-      lastName: `Moder`,
-      displayName: `Moder`,
-      email: `moder@gmail.com`,
-      passwordHash: bcrypt.hashSync('qwerty', bcrypt.genSaltSync(CONSTANTS.SALT_ROUNDS)),
-      role: 'moderator'
-    }], {});
+    await queryInterface.bulkInsert(
+      'users',
+      [
+        {
+          firstName: `Moder`,
+          lastName: `Moder`,
+          displayName: `Moder`,
+          email: `moder@gmail.com`,
+          passwordHash: bcrypt.hashSync(
+            'qwerty',
+            bcrypt.genSaltSync(CONSTANTS.SALT_ROUNDS)
+          ),
+          role: 'moderator',
+        },
+      ],
+      {}
+    );
   },
 
-  async down(queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('users', null, {});
   },
 };

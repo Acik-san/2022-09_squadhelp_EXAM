@@ -16,7 +16,9 @@ const Dashboard = props => {
         <CustomerDashboard history={history} match={props.match} />
       ) : role === CONSTANTS.CREATOR ? (
         <CreatorDashboard history={history} match={props.match} />
-      ) : history.replace('./')}
+      ) : (
+        history.replace('./')
+      )}
     </div>
   );
 };

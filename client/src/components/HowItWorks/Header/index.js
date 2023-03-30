@@ -205,7 +205,9 @@ const Header = props => {
               [styles.start_contest]: true,
             })}
           >
-            <a href='/somwhere' className={styles.start_button}>Start Contest</a>
+            <a href='/somwhere' className={styles.start_button}>
+              Start Contest
+            </a>
           </div>
           <div
             className={classNames(styles.button_container, {

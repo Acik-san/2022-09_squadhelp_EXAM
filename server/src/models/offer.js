@@ -2,7 +2,7 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Offer extends Model {
-    static associate(models) {
+    static associate (models) {
       Offer.belongsTo(models.User, {
         foreignKey: 'userId',
         sourceKey: 'id',
@@ -44,15 +44,15 @@ module.exports = (sequelize, DataTypes) => {
       moderateStatus: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'pending'
-      }
+        defaultValue: 'pending',
+      },
     },
     {
       sequelize,
       modelName: 'Offer',
       tableName: 'offers',
       timestamps: false,
-    },
+    }
   );
   return Offer;
 };

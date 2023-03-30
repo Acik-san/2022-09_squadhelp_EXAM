@@ -30,15 +30,15 @@ const variableOptions = {
 };
 
 class ContestForm extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.getDataForContest(this.props.contestType);
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (this.props.contestType !== prevProps.contestType) {
       this.props.getDataForContest(this.props.contestType);
     }
   }
-  render() {
+  render () {
     const { isFetching, error } = this.props.dataForContest;
     if (error) {
       return <TryAgain getData={this.getDataForContest} />;

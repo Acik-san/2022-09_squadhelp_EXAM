@@ -7,13 +7,19 @@ const Stats = () => {
     <section className={styles.section}>
       <ul className={styles.container}>
         <li>
-          <img src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/stats/stars.svg`} alt='stars' />
+          <img
+            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/stats/stars.svg`}
+            alt='stars'
+          />
           <p>
             <span>4.9 out of 5 stars</span> from 25,000+ customers.
           </p>
         </li>
         <li>
-          <img src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/stats/people.png`} alt='people' />
+          <img
+            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/stats/people.png`}
+            alt='people'
+          />
           <p>
             Our branding community stands <span>200,000+</span> strong.
           </p>

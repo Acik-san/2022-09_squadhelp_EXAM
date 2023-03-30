@@ -2,7 +2,11 @@ const db = require('../models');
 const CONSTANTS = require('../constants');
 
 module.exports.createWhereForAllContests = (
-  typeIndex, contestId, industry, awardSort) => {
+  typeIndex,
+  contestId,
+  industry,
+  awardSort
+) => {
   const object = {
     where: {},
     order: [],
@@ -21,7 +25,7 @@ module.exports.createWhereForAllContests = (
   }
   Object.assign(object.where, {
     status: {
-      [ db.Sequelize.Op.or ]: [
+      [db.Sequelize.Op.or]: [
         CONSTANTS.CONTEST_STATUS_FINISHED,
         CONSTANTS.CONTEST_STATUS_ACTIVE,
       ],
@@ -32,7 +36,7 @@ module.exports.createWhereForAllContests = (
 };
 
 function getPredicateTypes (index) {
-  return { [ db.Sequelize.Op.or ]: [types[ index ].split(',')] };
+  return { [db.Sequelize.Op.or]: [types[index].split(',')] };
 }
 
 const types = [
@@ -46,4 +50,5 @@ const types = [
   'name,logo',
 ];
 
-module.exports.getArrayOfValues = (arr, modelName, value) => arr.flatMap(e => e[modelName]).map(e => e.dataValues[value])
+module.exports.getArrayOfValues = (arr, modelName, value) =>
+  arr.flatMap(e => e[modelName]).map(e => e.dataValues[value]);

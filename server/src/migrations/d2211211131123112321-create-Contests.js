@@ -1,4 +1,3 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('contests', {
@@ -81,7 +80,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: { tableName: "users" },
+          model: { tableName: 'users' },
           key: 'id',
         },
       },

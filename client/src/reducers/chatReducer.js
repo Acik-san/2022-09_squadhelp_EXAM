@@ -83,7 +83,7 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         messages: action.data.messages,
         interlocutor: action.data.interlocutor,
-        chatData: action.data.chatData
+        chatData: action.data.chatData,
       };
     }
     case ACTION.GET_CHAT_ERROR: {

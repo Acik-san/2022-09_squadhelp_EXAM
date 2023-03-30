@@ -7,11 +7,11 @@ import styles from './Payment.module.sass';
 import CONSTANTS from '../../constants';
 import Error from '../../components/Error/Error';
 
-const Payment = (props) => {
-  const pay = (values) => {
+const Payment = props => {
+  const pay = values => {
     const { contests } = props.contestStore;
     const contestArray = [];
-    Object.keys(contests).forEach((key) => contestArray.push(contests[key]));
+    Object.keys(contests).forEach(key => contestArray.push(contests[key]));
     const { number, expiry, cvc } = values;
     const data = new FormData();
     for (let i = 0; i < contestArray.length; i++) {
@@ -44,12 +44,21 @@ const Payment = (props) => {
   return (
     <div>
       <div className={styles.header}>
-        <img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} alt="blue-logo" />
+        <img
+          src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`}
+          alt='blue-logo'
+        />
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.paymentContainer}>
           <span className={styles.headerLabel}>Checkout</span>
-          {error && <Error data={error.data} status={error.status} clearError={clearPaymentStore} />}
+          {error && (
+            <Error
+              data={error.data}
+              status={error.status}
+              clearError={clearPaymentStore}
+            />
+          )}
           <PayForm sendRequest={pay} back={goBack} isPayForOrder />
         </div>
         <div className={styles.orderInfoContainer}>
@@ -62,23 +71,21 @@ const Payment = (props) => {
             <span>Total:</span>
             <span>$100.00 USD</span>
           </div>
-          <a href="http://www.google.com">Have a promo code?</a>
+          <a href='http://www.google.com'>Have a promo code?</a>
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   payment: state.payment,
   contestStore: state.contestStore,
 });
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    pay: ({ data, history }) => dispatch(payRequest(data, history)),
-    clearPaymentStore: () => dispatch(clearPaymentStore()),
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  pay: ({ data, history }) => dispatch(payRequest(data, history)),
+  clearPaymentStore: () => dispatch(clearPaymentStore()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment);

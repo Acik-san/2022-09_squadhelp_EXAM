@@ -19,7 +19,10 @@ module.exports.parseBody = (req, res, next) => {
 module.exports.canGetContest = async (req, res, next) => {
   let result = null;
   try {
-    const { params: { contestId }, tokenData: { role, userId } } = req
+    const {
+      params: { contestId },
+      tokenData: { role, userId },
+    } = req;
     if (role === CONSTANTS.CUSTOMER) {
       result = await db.Contest.findOne({
         where: { id: contestId, userId },
@@ -49,7 +52,6 @@ module.exports.onlyForCreative = (req, res, next) => {
   } else {
     next();
   }
-
 };
 
 module.exports.onlyForCustomer = (req, res, next) => {
@@ -62,7 +64,10 @@ module.exports.onlyForCustomer = (req, res, next) => {
 
 module.exports.canSendOffer = async (req, res, next) => {
   try {
-    const { params: { contestId }, tokenData: { role } } = req
+    const {
+      params: { contestId },
+      tokenData: { role },
+    } = req;
     if (role === CONSTANTS.CUSTOMER) {
       return next(new RightsError());
     }
@@ -72,8 +77,9 @@ module.exports.canSendOffer = async (req, res, next) => {
       },
       attributes: ['status'],
     });
-    if (result.get({ plain: true }).status ===
-      CONSTANTS.CONTEST_STATUS_ACTIVE) {
+    if (
+      result.get({ plain: true }).status === CONSTANTS.CONTEST_STATUS_ACTIVE
+    ) {
       next();
     } else {
       return next(new RightsError());
@@ -81,12 +87,14 @@ module.exports.canSendOffer = async (req, res, next) => {
   } catch (e) {
     next(new ServerError());
   }
-
 };
 
 module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
   try {
-    const { params: { contestId }, tokenData: { userId } } = req
+    const {
+      params: { contestId },
+      tokenData: { userId },
+    } = req;
     const result = await db.Contest.findOne({
       where: {
         userId,
@@ -123,14 +131,16 @@ module.exports.canUpdateContest = async (req, res, next) => {
 
 module.exports.findOfferById = async (req, res, next) => {
   try {
-    const { params: { id } } = req
-    const offer = await db.Offer.findByPk(id)
+    const {
+      params: { id },
+    } = req;
+    const offer = await db.Offer.findByPk(id);
     if (!offer) {
-      next(new OfferNotFoundError())
+      next(new OfferNotFoundError());
     }
-    req.offer = offer
-    next()
+    req.offer = offer;
+    next();
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};

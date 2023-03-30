@@ -1,13 +1,15 @@
-const { errorsLogger } = require("../utils/errorsLogger")
+const { errorsLogger } = require('../utils/errorsLogger');
 
 module.exports = (err, req, res, next) => {
-  errorsLogger(err)
+  errorsLogger(err);
 
-  console.log(err)
-  if (err.message ===
-    'new row for relation "Banks" violates check constraint "Banks_balance_ck"' ||
+  console.log(err);
+  if (
     err.message ===
-    'new row for relation "Users" violates check constraint "Users_balance_ck"') {
+      'new row for relation "Banks" violates check constraint "Banks_balance_ck"' ||
+    err.message ===
+      'new row for relation "Users" violates check constraint "Users_balance_ck"'
+  ) {
     err.message = 'Not Enough money';
     err.code = 406;
   }

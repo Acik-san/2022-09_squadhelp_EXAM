@@ -5,14 +5,14 @@ import configureStore from './configureStore';
 import App from '../App';
 
 class Setup extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       store: initSocket(configureStore()),
     };
   }
 
-  render() {
+  render () {
     return (
       <Provider store={this.state.store}>
         <App />
