@@ -55,16 +55,16 @@ export const changeChatFavorite = data =>
   httpClient.patch('chats/favorite', data);
 export const changeChatBlock = data =>
   httpClient.patch('chats/blackList', data);
-export const getCatalogList = () => httpClient.get('catalogs');
-export const createCatalog = data => httpClient.post('catalogs', data);
+export const getCatalogList = () => httpClient.get('chats/catalogs');
+export const createCatalog = data => httpClient.post('chats/catalogs', data);
 export const deleteCatalog = ({ catalogId }) =>
-  httpClient.delete(`catalogs/${catalogId}`);
+  httpClient.delete(`chats/catalogs/${catalogId}`);
 export const addChatToCatalog = ({ chatId, catalogId }) =>
-  httpClient.post(`catalogs/${catalogId}`, { chatId });
+  httpClient.post(`chats/catalogs/${catalogId}`, { chatId });
 export const removeChatFromCatalog = ({ catalogId, chatId }) =>
-  httpClient.delete(`catalogs/${catalogId}/${chatId}`);
+  httpClient.delete(`chats/catalogs/${catalogId}/${chatId}`);
 export const changeCatalogName = ({ catalogName, catalogId, chats }) =>
-  httpClient.patch(`catalogs/${catalogId}`, { catalogName, chats });
+  httpClient.patch(`chats/catalogs/${catalogId}`, { catalogName, chats });
 export const getOffers = ({ limit, offset }) =>
   httpClient.get(`offers?${qs.stringify({ limit, offset })}`);
 export const setModerateOfferStatus = ({

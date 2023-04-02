@@ -104,31 +104,37 @@ module.exports.getChat = async (req, res, next) => {
       ],
     });
     const conversationIdList = await getConversationIdList(conversations);
-    const chatData = {};
-    conversations
-      .flatMap(({ UserToConversations }) => UserToConversations)
-      .map(({ dataValues }) => dataValues)
-      .filter(({ conversationId }) => conversationId === conversationIdList[0])
-      .sort(
-        (conversationData1, conversationData2) =>
-          conversationData1.userId - conversationData2.userId
-      )
-      .forEach(
-        ({ conversationId, userId, blackList, favoriteList }, i, arr) => {
-          if (conversationId === arr[i + 1]?.conversationId) {
-            Object.assign(chatData, {
-              id: conversationId,
-              participants: [userId, arr[i + 1].userId],
-              blackList: [blackList, arr[i + 1].blackList],
-              favoriteList: [favoriteList, arr[i + 1].favoriteList],
-            });
+    let chatData;
+    let messages = [];
+    if (conversationIdList.length > 0) {
+      chatData = {};
+      conversations
+        .flatMap(({ UserToConversations }) => UserToConversations)
+        .map(({ dataValues }) => dataValues)
+        .filter(
+          ({ conversationId }) => conversationId === conversationIdList[0]
+        )
+        .sort(
+          (conversationData1, conversationData2) =>
+            conversationData1.userId - conversationData2.userId
+        )
+        .forEach(
+          ({ conversationId, userId, blackList, favoriteList }, i, arr) => {
+            if (conversationId === arr[i + 1]?.conversationId) {
+              Object.assign(chatData, {
+                id: conversationId,
+                participants: [userId, arr[i + 1].userId],
+                blackList: [blackList, arr[i + 1].blackList],
+                favoriteList: [favoriteList, arr[i + 1].favoriteList],
+              });
+            }
           }
-        }
-      );
-    const messages = await Message.findAll({
-      where: { sender: participants, conversationId: conversationIdList[0] },
-      order: [['createdAt', 'ASC']],
-    });
+        );
+      messages = await Message.findAll({
+        where: { sender: participants, conversationId: conversationIdList[0] },
+        order: [['createdAt', 'ASC']],
+      });
+    }
     const interlocutor = await findUser({ id: Number(interlocutorId) });
     res.send({
       messages,
@@ -399,6 +405,7 @@ module.exports.getCatalogs = async (req, res, next) => {
           },
         }) => {
           acc[catalogId] = acc[catalogId] || {
+            catalogId,
             chats: [],
             catalogName: arr[i].dataValues.catalogName,
           };
@@ -408,7 +415,11 @@ module.exports.getCatalogs = async (req, res, next) => {
       return acc;
     }, {});
     const catalogs = Object.values(catalogMap).map(
-      ({ catalogName, chats }, i) => ({ id: i + 1, catalogName, chats })
+      ({ catalogId, catalogName, chats }) => ({
+        id: catalogId,
+        catalogName,
+        chats,
+      })
     );
     catalogs.push(...emptyCatalogs);
     res.send(catalogs);

@@ -3,10 +3,11 @@ const config = require('../config/nodemailerConfig.json');
 
 const sendMail = message =>
   nodemailer.createTransport(config).sendMail(message, (err, info) => {
-    if (err) {
-      throw err;
+    try {
+      console.log('Email sent: ', info);
+    } catch (err) {
+      console.log(err);
     }
-    console.log('Email sent: ', info);
   });
 
 module.exports = sendMail;
