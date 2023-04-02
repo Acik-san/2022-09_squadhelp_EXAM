@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../constants';
 import styles from './Pricing.module.sass';
 
@@ -35,13 +36,13 @@ const Pricing = () => {
             questions answered.
           </p>
           <button>Schedule Consultation</button>
-          <a href='/somwhere'>
+          <Link to='/somwhere'>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/pricing/phone_with_arrow.svg`}
               alt='phone_with_arrow'
             />
             <span>(877) 355-3585</span>
-          </a>
+          </Link>
           <span>Call us for assistance</span>
         </div>
       </div>

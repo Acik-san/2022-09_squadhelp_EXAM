@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../constants';
 import styles from './NavMenu.module.sass';
 
@@ -25,7 +26,7 @@ const NavMenu = props => {
               onMouseEnter={() => setIsHover({ isHover: true, id: '1' })}
               onMouseLeave={() => setIsHover({ isHover: false, id: null })}
             >
-              <a href='/some-page'>
+              <Link to='/some-page'>
                 Names For Sale
                 {isHover && id === '1' ? (
                   <img
@@ -38,16 +39,16 @@ const NavMenu = props => {
                     alt='nav_arrow'
                   />
                 )}
-              </a>
+              </Link>
               <ul>
                 <li>
-                  <a href='/some-page'>Popular Brandable Names</a>
+                  <Link to='/some-page'>Popular Brandable Names</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Premium Domains For Sale</a>
+                  <Link to='/some-page'>Premium Domains For Sale</Link>
                 </li>
                 <li className={styles.short_domain}>
-                  <a href='/some-page'>Short Domains</a>
+                  <Link to='/some-page'>Short Domains</Link>
                   <ul>
                     <li>3 Letter Domains</li>
                     <li>4 Letter Domains</li>
@@ -55,19 +56,19 @@ const NavMenu = props => {
                   </ul>
                 </li>
                 <li>
-                  <a href='/some-page'>One Word Names</a>
+                  <Link to='/some-page'>One Word Names</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Industry Domains</a>
+                  <Link to='/some-page'>Industry Domains</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Location Based Names</a>
+                  <Link to='/some-page'>Location Based Names</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Recommended For You</a>
+                  <Link to='/some-page'>Recommended For You</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Become A Seller</a>
+                  <Link to='/some-page'>Become A Seller</Link>
                 </li>
               </ul>
             </li>
@@ -76,7 +77,7 @@ const NavMenu = props => {
               onMouseEnter={() => setIsHover({ isHover: true, id: '2' })}
               onMouseLeave={() => setIsHover({ isHover: false, id: null })}
             >
-              <a href='/some-page'>
+              <Link to='/some-page'>
                 Naming Contests
                 {isHover && id === '2' ? (
                   <img
@@ -89,31 +90,31 @@ const NavMenu = props => {
                     alt='nav_arrow'
                   />
                 )}
-              </a>
+              </Link>
               <ul>
                 <li>
-                  <a href='/some-page'>Start A Contest</a>
+                  <Link to='/some-page'>Start A Contest</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>How It Works</a>
+                  <Link to='/some-page'>How It Works</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Contest Pricing</a>
+                  <Link to='/some-page'>Contest Pricing</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Agency Services</a>
+                  <Link to='/some-page'>Agency Services</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Our Work</a>
+                  <Link to='/some-page'>Our Work</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Recent Winners</a>
+                  <Link to='/some-page'>Recent Winners</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Active Contests</a>
+                  <Link to='/some-page'>Active Contests</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Become A Creative</a>
+                  <Link to='/some-page'>Become A Creative</Link>
                 </li>
               </ul>
             </li>
@@ -122,7 +123,7 @@ const NavMenu = props => {
               onMouseEnter={() => setIsHover({ isHover: true, id: '3' })}
               onMouseLeave={() => setIsHover({ isHover: false, id: null })}
             >
-              <a href='/some-page'>
+              <Link to='/some-page'>
                 Other Services
                 {isHover && id === '3' ? (
                   <img
@@ -135,30 +136,30 @@ const NavMenu = props => {
                     alt='nav_arrow'
                   />
                 )}
-              </a>
+              </Link>
               <ul>
                 <li>
-                  <a href='/some-page'>Logos</a>
+                  <Link to='/some-page'>Logos</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Taglines</a>
+                  <Link to='/some-page'>Taglines</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Audience Testing</a>
+                  <Link to='/some-page'>Audience Testing</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Trademark Research</a>
+                  <Link to='/some-page'>Trademark Research</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Trademark Filing</a>
+                  <Link to='/some-page'>Trademark Filing</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Video Creation</a>
+                  <Link to='/some-page'>Video Creation</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a href='/some-page'>Agency Experience</a>
+              <Link to='/some-page'>Agency Experience</Link>
             </li>
             <li className={styles.separator_stick}>
               <div></div>
@@ -168,7 +169,7 @@ const NavMenu = props => {
               onMouseEnter={() => setIsHover({ isHover: true, id: '4' })}
               onMouseLeave={() => setIsHover({ isHover: false, id: null })}
             >
-              <a href='/some-page'>
+              <Link to='/some-page'>
                 Resources
                 {isHover && id === '4' ? (
                   <img
@@ -181,16 +182,16 @@ const NavMenu = props => {
                     alt='nav_arrow'
                   />
                 )}
-              </a>
+              </Link>
               <ul className={styles.resources_list}>
                 <li>
-                  <a href='/some-page'>Business Name Generator</a>
+                  <Link to='/some-page'>Business Name Generator</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>How to Naming Your Business</a>
+                  <Link to='/some-page'>How to Naming Your Business</Link>
                 </li>
                 <li>
-                  <a href='/some-page'>Free Trademark Checker</a>
+                  <Link to='/some-page'>Free Trademark Checker</Link>
                 </li>
                 <li
                   className={styles.industry_name}
@@ -198,7 +199,7 @@ const NavMenu = props => {
                   onMouseEnter={() => setIsHover({ isHover: true, id: '5' })}
                   onMouseLeave={() => setIsHover({ isHover: false, id: null })}
                 >
-                  <a href='/some-page'>
+                  <Link to='/some-page'>
                     Industry Name Ideas
                     {isHover && id === '5' ? (
                       <img
@@ -211,39 +212,39 @@ const NavMenu = props => {
                         alt='nav_arrow'
                       />
                     )}
-                  </a>
+                  </Link>
                   <ul>
                     <li>
-                      <a href='/some-page'>Clothing Brand Name Ideas</a>
+                      <Link to='/some-page'>Clothing Brand Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Consulting Business Name Ideas</a>
+                      <Link to='/some-page'>Consulting Business Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>
+                      <Link to='/some-page'>
                         Health & Wellness Business Name Ideas
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Food Brand Name ideas</a>
+                      <Link to='/some-page'>Food Brand Name ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Beauty Business Names</a>
+                      <Link to='/some-page'>Beauty Business Names</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Tech Startup Name Ideas</a>
+                      <Link to='/some-page'>Tech Startup Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Shopping Website Name Ideas</a>
+                      <Link to='/some-page'>Shopping Website Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Real Estate Business Name Ideas</a>
+                      <Link to='/some-page'>Real Estate Business Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Insurance Business Name Ideas</a>
+                      <Link to='/some-page'>Insurance Business Name Ideas</Link>
                     </li>
                     <li>
-                      <a href='/some-page'>Finance Business Name Ideas</a>
+                      <Link to='/some-page'>Finance Business Name Ideas</Link>
                     </li>
                   </ul>
                 </li>

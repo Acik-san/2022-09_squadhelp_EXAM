@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../../constants';
 import styles from './FooterTrending.module.sass';
 
@@ -24,34 +25,34 @@ const FooterTrending = () => {
           </form>
         </div>
         <div className={styles.buttons_container}>
-          <a href='/somwhere'>
+          <Link to='/somwhere'>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
               alt='lightning'
             />
             <h4>Short Names</h4>
-          </a>
-          <a href='/somwhere'>
+          </Link>
+          <Link to='/somwhere'>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
               alt='lightning'
             />
             <h4>One Word</h4>
-          </a>
-          <a href='/somwhere'>
+          </Link>
+          <Link to='/somwhere'>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
               alt='lightning'
             />
             <h4>4-letter</h4>
-          </a>
-          <a href='/somwhere'>
+          </Link>
+          <Link to='/somwhere'>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
               alt='lightning'
             />
             <h4>5-letter</h4>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

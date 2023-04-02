@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './FooterNavList.module.sass';
 
 const FooterNavList = props => {
@@ -7,12 +8,12 @@ const FooterNavList = props => {
     <ul className={styles.wrapper_list}>
       {data.map(({ id, btnText, innerList }) => (
         <li key={id} className={styles.wrapper_list_item}>
-          <a href='/somwhere'>{btnText}</a>
+          <Link to='/somwhere'>{btnText}</Link>
           {innerList && (
             <ul className={styles.inner_list}>
               {innerList.map(({ id, innerBtnText }) => (
                 <li key={id} className={styles.inner_list_item}>
-                  <a href='/somwhere'>{innerBtnText}</a>
+                  <Link to='/somwhere'>{innerBtnText}</Link>
                 </li>
               ))}
             </ul>

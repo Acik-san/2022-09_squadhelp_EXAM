@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './AboutContestsList.module.sass';
 
@@ -44,7 +45,7 @@ const AboutContestsList = props => {
                   <ul className={styles.sub_inner_list}>
                     {subInnerList.map(({ id, li, link }) => (
                       <li key={id} className={styles.sub_inner_list_item}>
-                        {link ? <a href={link}>{li}</a> : <p>{li}</p>}
+                        {link ? <Link to={link}>{li}</Link> : <p>{li}</p>}
                       </li>
                     ))}
                   </ul>

@@ -1,5 +1,6 @@
 import React from 'react';
-import useState from '../../../hooks/useState';
+import { Link } from 'react-router-dom';
+import { useOnHoverState } from '../../../hooks';
 import classNames from 'classnames';
 import CONSTANTS from '../../../constants';
 import styles from './Header.module.sass';
@@ -18,16 +19,16 @@ const Header = props => {
       isBurgerMenuBtnHover,
     },
     dispatch,
-  ] = useState();
+  ] = useOnHoverState();
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <a href='/' className={styles.logo}>
+        <Link to='/' className={styles.logo}>
           <img
             src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/header/how_it_works_logo.svg`}
             alt='logo'
           />
-        </a>
+        </Link>
         <form className={styles.search_container}>
           <input
             placeholder='Search over 100,000 names'
@@ -55,10 +56,10 @@ const Header = props => {
                 />
                 <ul className={styles.account_list}>
                   <li>
-                    <a href='/login'>Login</a>
+                    <Link to='/login'>Login</Link>
                   </li>
                   <li>
-                    <a href='/registration'>Signup</a>
+                    <Link to='/registration'>Signup</Link>
                   </li>
                 </ul>
               </>
@@ -103,7 +104,7 @@ const Header = props => {
                         alt='contact_icon'
                       />
                     )}
-                    <a href='/somwhere'>(877)355-3585</a>
+                    <Link to='/somwhere'>(877)355-3585</Link>
                   </li>
                   <li
                     onMouseEnter={() =>
@@ -124,7 +125,7 @@ const Header = props => {
                         alt='chat_icon'
                       />
                     )}
-                    <a href='/somwhere'>Chat</a>
+                    <Link to='/somwhere'>Chat</Link>
                   </li>
                   <li
                     onMouseEnter={() =>
@@ -145,7 +146,7 @@ const Header = props => {
                         alt='email_icon'
                       />
                     )}
-                    <a href='/somwhere'>Email</a>
+                    <Link to='/somwhere'>Email</Link>
                   </li>
                   <li
                     onMouseEnter={() =>
@@ -166,7 +167,7 @@ const Header = props => {
                         alt='help_desk'
                       />
                     )}
-                    <a href='/somwhere'>Help Desk</a>
+                    <Link to='/somwhere'>Help Desk</Link>
                   </li>
                 </ul>
               </>
@@ -179,8 +180,8 @@ const Header = props => {
             )}
             <p>Contact</p>
           </div>
-          <a
-            href='/favorites'
+          <Link
+            to='/favorites'
             onMouseEnter={() => dispatch({ type: 'FAVORITE_BTN_MOUSE_ENTER' })}
             onMouseLeave={() => dispatch({ type: 'FAVORITE_BTN_MOUSE_LEAVE' })}
             className={styles.button_container}
@@ -199,15 +200,15 @@ const Header = props => {
               />
             )}
             <p>Favorites</p>
-          </a>
+          </Link>
           <div
             className={classNames(styles.button_container, {
               [styles.start_contest]: true,
             })}
           >
-            <a href='/somwhere' className={styles.start_button}>
+            <Link to='/somwhere' className={styles.start_button}>
               Start Contest
-            </a>
+            </Link>
           </div>
           <div
             className={classNames(styles.button_container, {

@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-const useState = () => {
+const useOnHoverState = () => {
   const [state, dispatch] = useReducer(reducer, {
     isAccountBtnHover: false,
     isContactBtnHover: false,
@@ -52,4 +52,4 @@ const useState = () => {
   return [state, dispatch];
 };
 
-export default useState;
+export default useOnHoverState;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../constants';
 import styles from './ReadyToGetStarted.module.sass';
 
@@ -15,7 +16,7 @@ const ReadyToGetStarted = () => {
           Fill out your contest brief and begin receiving custom name
           suggestions within minutes.
         </p>
-        <a href='/somwhere'>Start A Contest</a>
+        <Link to='/somwhere'>Start A Contest</Link>
       </article>
       <img
         src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/readyToGetStarted/get_started_2.svg`}
