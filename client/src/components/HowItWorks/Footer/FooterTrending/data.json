@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "imgPath": "howItWorks/footer/lightning.svg",
+    "alt": "lightning",
+    "text": "Short Names"
+  },
+  {
+    "id": 2,
+    "imgPath": "howItWorks/footer/lightning.svg",
+    "alt": "lightning",
+    "text": "One Word"
+  },
+  {
+    "id": 3,
+    "imgPath": "howItWorks/footer/lightning.svg",
+    "alt": "lightning",
+    "text": "4-letter"
+  },
+  {
+    "id": 4,
+    "imgPath": "howItWorks/footer/lightning.svg",
+    "alt": "lightning",
+    "text": "5-letter"
+  }
+]

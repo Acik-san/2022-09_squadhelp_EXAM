@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "statsPath": "howItWorks/stats/stars.svg",
+    "alt": "stars",
+    "pText1": " from 25,000+ customers.",
+    "spanText1": "4.9 out of 5 stars"
+  },
+  {
+    "id": 2,
+    "statsPath": "howItWorks/stats/people.png",
+    "alt": "people",
+    "pText1": "Our branding community stands ",
+    "pText2": " strong",
+    "spanText1": "200,000+"
+  },
+  {
+    "id": 3,
+    "statsPath": "howItWorks/stats/sharing-files.svg",
+    "alt": "file",
+    "pText1": " supported across more than",
+    "pText2": " – and counting.",
+    "spanText1": "140+ Industries",
+    "spanText2": "85 countries"
+  }
+]

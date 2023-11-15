@@ -6,17 +6,10 @@ const Schems = {
     eventName: Yup.string('Must be string')
       .matches(/^.{1,64}$/, 'Invalid amount of symbols')
       .required('required'),
-    date: Yup.string('Must be string')
-      .matches(
-        /^(20[2][2-9]|20[3-9]\d|2099)\-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|3[0-1]) (0\d|1\d|2[0-3]):(0\d|[1-5][0-9]):(0\d|[1-5][0-9])$/,
-        'Invalid date'
-      )
-      .required('required'),
+    date: Yup.date('Must be date').required('required'),
   }),
   LoginSchem: Yup.object().shape({
-    email: Yup.string()
-      .email('check email')
-      .required('required'),
+    email: Yup.string().email('check email').required('required'),
     password: Yup.string()
       .test(
         'test-password',
@@ -26,9 +19,7 @@ const Schems = {
       .required('required'),
   }),
   RegistrationSchem: Yup.object().shape({
-    email: Yup.string()
-      .email('check email')
-      .required('Email is required'),
+    email: Yup.string().email('check email').required('Email is required'),
     password: Yup.string()
       .test(
         'test-password',
@@ -148,9 +139,7 @@ const Schems = {
         valid.number(value, { type: 'visa' })
       )
       .required('required'),
-    name: Yup.string()
-      .min(1)
-      .required('required'),
+    name: Yup.string().min(1).required('required'),
     cvc: Yup.string()
       .test('test-cvc', 'cvc is invalid', value => valid.cvv(value).isValid)
       .required('required'),

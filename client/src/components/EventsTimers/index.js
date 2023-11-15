@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -20,17 +20,17 @@ const EventsTimer = props => {
   const { event } = props;
   const { eventFinished } = bindActionCreators(ACTION_CREATORS, useDispatch());
 
-  const [finishTime] = useState(toCorrectDate(toCorrectMonth(event.date)));
-  const [
-    [diffYears, diffMonths, diffDays, diffH, diffM, diffS],
-    setDiff,
-  ] = useState([0, 0, 0, 0, 0, 0]);
-  const [tick, setTick] = useState(false);
+  const [[diffYears, diffMonths, diffDays, diffH, diffM, diffS], setDiff] =
+    useState([0, 0, 0, 0, 0, 0]);
   const [isTimeout, setIsTimeout] = useState(false);
-  const [timerId, setTimerID] = useState(0);
+  const timerId = useRef(0);
+  const finishTime = useRef(toCorrectDate(toCorrectMonth(event.date)));
+  const progressLine = useRef(
+    `progress_line${event.eventName + event.started + Math.random()}`
+  );
 
-  useEffect(() => {
-    const diff = differenceInMilliseconds(finishTime, Date.now());
+  const recalculateDiff = useCallback(() => {
+    const diff = differenceInMilliseconds(finishTime.current, Date.now());
     if (diff < 0) {
       setIsTimeout(true);
       return;
@@ -40,11 +40,18 @@ const EventsTimer = props => {
       ...Object.values(
         intervalToDuration({
           start: Date.now(),
-          end: finishTime,
+          end: finishTime.current,
         })
       ),
     ]);
-  }, [tick, finishTime]);
+  }, [finishTime.current]);
+
+  useEffect(() => {
+    timerId.current = setInterval(() => {
+      recalculateDiff();
+    }, 1000);
+    return () => clearInterval(timerId.current);
+  }, []);
 
   useEffect(() => {
     if (isTimeout) {
@@ -54,46 +61,35 @@ const EventsTimer = props => {
   }, [isTimeout, timerId]);
 
   useEffect(() => {
-    const timerID = setInterval(() => {
-      setTick(!tick);
-    }, 1000);
-    setTimerID(timerID);
-    return () => clearInterval(timerID);
-  }, [tick]);
-
-  useEffect(() => {
-    const elem = document.getElementById(progressLine);
+    const elem = document.getElementById(progressLine.current);
     const one =
-      differenceInMilliseconds(finishTime, new Date(event.started)) / 100;
+      differenceInMilliseconds(finishTime.current, new Date(event.started)) /
+      100;
     const diff = differenceInMilliseconds(
       new Date(Date.now()),
       new Date(event.started)
     );
+
     let width = 0;
-    diff < one * 10
-      ? (width = 1)
-      : diff > one * 10 && diff < one * 20
-      ? (width = 15)
-      : diff > one * 20 && diff < one * 30
-      ? (width = 25)
-      : diff > one * 30 && diff < one * 40
-      ? (width = 35)
-      : diff > one * 40 && diff < one * 50
-      ? (width = 45)
-      : diff > one * 50 && diff < one * 60
-      ? (width = 55)
-      : diff > one * 60 && diff < one * 70
-      ? (width = 65)
-      : diff > one * 70 && diff < one * 80
-      ? (width = 75)
-      : diff > one * 80 && diff < one * 90
-      ? (width = 85)
-      : (width = 95);
+    const ranges = new Array(99)
+      .fill(null)
+      .map(
+        (range, i) =>
+          (range = { start: i * one, end: one * (i + 1), width: i + 1 })
+      );
+
+    for (const range of ranges) {
+      if (diff >= range.start && diff < range.end) {
+        width = range.width;
+        break;
+      }
+    }
 
     elem.style.width = width + '%';
 
     const progressStatus = () => {
       if (width >= 99) {
+        width = 99;
         clearInterval(id);
       }
       width++;
@@ -105,7 +101,6 @@ const EventsTimer = props => {
     }; // eslint-disable-next-line
   }, []);
 
-  const progressLine = `progress_line${event.started + Math.random()}`;
   return (
     <div className={styles.progress_line_bg}>
       {formatDistanceStrict(
@@ -129,7 +124,7 @@ const EventsTimer = props => {
         {diffM > 0 ? diffM + 'm : ' : null}
         {diffS + 's'}
       </div>
-      <div className={styles.progress_line} id={progressLine}></div>
+      <div className={styles.progress_line} id={progressLine.current}></div>
     </div>
   );
 };

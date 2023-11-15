@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../../constants';
+import data from './data.json';
 import styles from './FooterTrending.module.sass';
 
 const FooterTrending = () => {
@@ -25,34 +26,15 @@ const FooterTrending = () => {
           </form>
         </div>
         <div className={styles.buttons_container}>
-          <Link to='/somwhere'>
-            <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
-              alt='lightning'
-            />
-            <h4>Short Names</h4>
-          </Link>
-          <Link to='/somwhere'>
-            <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
-              alt='lightning'
-            />
-            <h4>One Word</h4>
-          </Link>
-          <Link to='/somwhere'>
-            <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
-              alt='lightning'
-            />
-            <h4>4-letter</h4>
-          </Link>
-          <Link to='/somwhere'>
-            <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/lightning.svg`}
-              alt='lightning'
-            />
-            <h4>5-letter</h4>
-          </Link>
+          {data.map(({ id, imgPath, alt, text }) => (
+            <Link key={id} to='/somwhere'>
+              <img
+                src={`${CONSTANTS.STATIC_IMAGES_PATH}${imgPath}`}
+                alt={alt}
+              />
+              <h4>{text}</h4>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

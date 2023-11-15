@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "imgPath": "/howItWorks/featuredIn/forbes.svg",
+    "alt": "forbes"
+  },
+  {
+    "id": 2,
+    "imgPath": "/howItWorks/featuredIn/TNW.svg",
+    "alt": "TNW"
+  },
+  {
+    "id": 3,
+    "imgPath": "/howItWorks/featuredIn/chicago.svg",
+    "alt": "chicago"
+  },
+  {
+    "id": 4,
+    "imgPath": "/howItWorks/featuredIn/mashable.svg",
+    "alt": "mashable"
+  }
+]

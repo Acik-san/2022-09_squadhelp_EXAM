@@ -15,25 +15,9 @@ export const getCustomersContests = ({ limit, offset, contestStatus }) =>
       contestStatus,
     })}`
   );
-export const getCreatorContests = ({
-  offset,
-  limit,
-  typeIndex,
-  contestId,
-  industry,
-  awardSort,
-  ownEntries,
-}) =>
+export const getCreatorContests = (data) =>
   httpClient.get(
-    `dashboard/creatorContests?${qs.stringify({
-      offset,
-      limit,
-      typeIndex,
-      contestId,
-      industry,
-      awardSort,
-      ownEntries,
-    })}`
+    `dashboard/creatorContests?${qs.stringify(data)}`
   );
 export const getContestById = id => httpClient.get(`contests/${id}`);
 export const updateContest = (data, id) =>

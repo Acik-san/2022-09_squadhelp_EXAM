@@ -1,25 +1,44 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { format, isBefore } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import EventsFormInput from '../EventsFormInput';
 import * as ACTION_CREATORS from '../../actions/actionCreator';
 import Schems from '../../validators/validationSchems';
+import 'react-datepicker/dist/react-datepicker.css';
 import styles from './EventsForm.module.sass';
+import FormikDatePicker from '../EventsFormInput/FormikDatePicker';
 
 const EventsForm = () => {
   const { createEvent } = bindActionCreators(ACTION_CREATORS, useDispatch());
 
   const onSubmit = (values, formikBag) => {
-    createEvent(values);
-    formikBag.resetForm();
+    if (isBefore(values.date, new Date())) {
+      formikBag.setFieldError('date', 'date must not be past ');
+    } else {
+      formikBag.setFormikState({
+        values: {
+          eventName: '',
+          date: new Date(),
+          notificationTime: '5 minutes',
+        },
+        touched: {
+          eventName: false,
+          date: false,
+          notificationTime: false,
+        },
+      });
+      values.started = Date.now();
+      values.date = format(new Date(values.date), 'yyyy-MM-dd HH:mm:ss');
+      createEvent(values);
+    }
   };
   return (
     <Formik
       initialValues={{
         eventName: '',
-        date: '2023-12-31 23:59:59',
-        started: Date.now(),
+        date: new Date(),
         notificationTime: '5 minutes',
       }}
       onSubmit={onSubmit}
@@ -42,12 +61,9 @@ const EventsForm = () => {
           </div>
           <div className={styles.container}>
             <span className={styles.label}>Date</span>
-            <EventsFormInput
-              isInputMask
-              mask='9999-99-99 99:99:99'
+            <Field
+              component={FormikDatePicker}
               name='date'
-              placeholder='Date'
-              type='text'
               classes={{
                 container: styles.inputContainer,
                 input: styles.input,

@@ -1,5 +1,6 @@
 import React from 'react';
 import CONSTANTS from '../../../constants';
+import data from './data.json';
 import styles from './HowContestsWork.module.sass';
 
 const HowContestsWork = () => {
@@ -20,31 +21,12 @@ const HowContestsWork = () => {
             alt='how_contests_work'
           />
           <ul>
-            <li>
-              <span>1.</span>
-              <p>
-                Fill out your Naming Brief and begin receiving name ideas in
-                minutes.
-              </p>
-            </li>
-            <li>
-              <span>2.</span>
-              <p>
-                Rate the submissions and provide feedback to creatives.
-                Creatives submit even more names based on your feedback.
-              </p>
-            </li>
-            <li>
-              <span>3.</span>
-              <p>
-                Our team helps you test your favorite names with your target
-                audience. We also assist with Trademark screening.
-              </p>
-            </li>
-            <li>
-              <span>4.</span>
-              <p>Pick a Winner. The winner gets paid for their submission.</p>
-            </li>
+            {data.map(({ id, text }) => (
+              <li key={id}>
+                <span>{id}</span>
+                <p>{text}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

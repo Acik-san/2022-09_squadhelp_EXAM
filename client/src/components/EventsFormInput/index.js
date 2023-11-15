@@ -4,30 +4,12 @@ import { ErrorMessage, useField, Field } from 'formik';
 import classNames from 'classnames';
 
 const EventsFormInput = props => {
-  const { name, placeholder, isInputMask, isSelect, mask, classes } = props;
+  const { name, placeholder, isSelect, classes } = props;
   const [field, meta] = useField(name);
   const inputClassName = classNames(classes.input, {
     [classes.notValid]: meta.touched && meta.error,
     [classes.valid]: meta.touched && !meta.error,
   });
-  if (isInputMask) {
-    return (
-      <div className={classes.container}>
-        <InputMask
-          mask={mask}
-          maskChar={null}
-          {...field}
-          placeholder={placeholder}
-          className={inputClassName}
-        />
-        <ErrorMessage
-          name={name}
-          component='span'
-          className={classes.warning}
-        />
-      </div>
-    );
-  }
   if (isSelect) {
     return (
       <div className={classes.container}>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "listItemName": "Services",
+    "dataId": 0
+  },
+  {
+    "id": 2,
+    "listItemName": "Tools",
+    "dataId": 1
+  },
+  {
+    "id": 3,
+    "listItemName": "SquadHelp",
+    "dataId": 2
+  },
+  {
+    "id": 4,
+    "innerList": [
+      {
+        "innerId": 1,
+        "innerListItemName": "Creatives",
+        "innerDataId": 3
+      },
+      {
+        "innerId": 2,
+        "innerListItemName": "Legal",
+        "innerDataId": 4
+      }
+    ]
+  }
+]

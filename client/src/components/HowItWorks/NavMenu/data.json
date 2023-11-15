@@ -1,0 +1,202 @@
+[
+  {
+    "listItemId": 1,
+    "linkName": "Names For Sale",
+    "arrowUp": "howItWorks/navMenu/nav_arrow_up_blue.svg",
+    "arrowDown": "howItWorks/navMenu/nav_arrow_down.svg",
+    "innerList": [
+      {
+        "innerListItemId": 1,
+        "innerLinkName": "Popular Brandable Names"
+      },
+      {
+        "innerListItemId": 2,
+        "innerLinkName": "Premium Domains For Sale"
+      },
+      {
+        "innerListItemId": 3,
+        "innerLinkName": "Short Domains",
+        "shortList": [
+          {
+            "shortListItemId": 1,
+            "shortLinkName": "3 Letter Domains"
+          },
+          {
+            "shortListItemId": 2,
+            "shortLinkName": "4 Letter Domains"
+          },
+          {
+            "shortListItemId": 3,
+            "shortLinkName": "5 Letter Domains"
+          }
+        ]
+      },
+      {
+        "innerListItemId": 4,
+        "innerLinkName": "One Word Names"
+      },
+      {
+        "innerListItemId": 5,
+        "innerLinkName": "Industry Domains"
+      },
+      {
+        "innerListItemId": 6,
+        "innerLinkName": "Location Based Names"
+      },
+      {
+        "innerListItemId": 7,
+        "innerLinkName": "Recommended For You"
+      },
+      {
+        "innerListItemId": 8,
+        "innerLinkName": "Become A Seller"
+      }
+    ]
+  },
+  {
+    "listItemId": 2,
+    "linkName": "Naming Contests",
+    "arrowUp": "howItWorks/navMenu/nav_arrow_up_blue.svg",
+    "arrowDown": "howItWorks/navMenu/nav_arrow_down.svg",
+    "innerList": [
+      {
+        "innerListItemId": 1,
+        "innerLinkName": "Start A Contest"
+      },
+      {
+        "innerListItemId": 2,
+        "innerLinkName": "How It Works"
+      },
+      {
+        "innerListItemId": 3,
+        "innerLinkName": "Contest Pricing"
+      },
+      {
+        "innerListItemId": 4,
+        "innerLinkName": "Agency Services"
+      },
+      {
+        "innerListItemId": 5,
+        "innerLinkName": "Our Work"
+      },
+      {
+        "innerListItemId": 6,
+        "innerLinkName": "Recent Winners"
+      },
+      {
+        "innerListItemId": 7,
+        "innerLinkName": "Active Contests"
+      },
+      {
+        "innerListItemId": 8,
+        "innerLinkName": "Become A Creative"
+      }
+    ]
+  },
+  {
+    "listItemId": 3,
+    "linkName": "Other Services",
+    "arrowUp": "howItWorks/navMenu/nav_arrow_up_blue.svg",
+    "arrowDown": "howItWorks/navMenu/nav_arrow_down.svg",
+    "innerList": [
+      {
+        "innerListItemId": 1,
+        "innerLinkName": "Logos"
+      },
+      {
+        "innerListItemId": 2,
+        "innerLinkName": "Taglines"
+      },
+      {
+        "innerListItemId": 3,
+        "innerLinkName": "Audience Testing"
+      },
+      {
+        "innerListItemId": 4,
+        "innerLinkName": "Trademark Research"
+      },
+      {
+        "innerListItemId": 5,
+        "innerLinkName": "Trademark Filing"
+      },
+      {
+        "innerListItemId": 6,
+        "innerLinkName": "Video Creation"
+      }
+    ]
+  },
+  {
+    "listItemId": 4,
+    "linkName": "Agency Experience"
+  },
+  {
+    "listItemId": 5,
+    "linkName": "separator_stick"
+  },
+  {
+    "listItemId": 6,
+    "linkName": "Resources",
+    "arrowUp": "howItWorks/navMenu/nav_arrow_up_blue.svg",
+    "arrowDown": "howItWorks/navMenu/nav_arrow_down.svg",
+    "innerList": [
+      {
+        "innerListItemId": 1,
+        "innerLinkName": "Business Name Generator"
+      },
+      {
+        "innerListItemId": 2,
+        "innerLinkName": "How to Naming Your Business"
+      },
+      {
+        "innerListItemId": 3,
+        "innerLinkName": "Free Trademark Checker"
+      },
+      {
+        "innerListItemId": 4,
+        "innerLinkName": " Industry Name Ideas",
+        "dropDownList": [
+          {
+            "dropDownListItemId": 1,
+            "dropDownLinkName": "Clothing Brand Name Ideas"
+          },
+          {
+            "dropDownListItemId": 2,
+            "dropDownLinkName": "Consulting Business Name Ideas"
+          },
+          {
+            "dropDownListItemId": 3,
+            "dropDownLinkName": "Health & Wellness Business Name Ideas"
+          },
+          {
+            "dropDownListItemId": 4,
+            "dropDownLinkName": "Food Brand Name ideas"
+          },
+          {
+            "dropDownListItemId": 5,
+            "dropDownLinkName": "Beauty Business Names"
+          },
+          {
+            "dropDownListItemId": 6,
+            "dropDownLinkName": "Tech Startup Name Ideas"
+          },
+          {
+            "dropDownListItemId": 7,
+            "dropDownLinkName": "Shopping Website Name Ideas"
+          },
+          {
+            "dropDownListItemId": 8,
+            "dropDownLinkName": "Real Estate Business Name Ideas"
+          },
+          {
+            "dropDownListItemId": 9,
+            "dropDownLinkName": "Insurance Business Name Ideas"
+          },
+          {
+            "dropDownListItemId": 10,
+            "dropDownLinkName": "Finance Business Name Ideas"
+          }
+        ]
+      }
+    ]
+  }
+]

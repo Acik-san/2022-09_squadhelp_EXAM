@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../../constants';
+import data from './data.json';
 import styles from './FooterLinks.module.sass';
 
 const FooterLinks = () => {
@@ -11,32 +12,13 @@ const FooterLinks = () => {
         Squadhelp.com has Link Shopper Approved rating of 4.9/5 based on 2782
         ratings and reviews
       </Link>
-      <div className={styles.wrapper}>
-        <Link to='/somwhere'>
-          <img
-            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/linkedin.svg`}
-            alt='linkedin'
-          />
-        </Link>
-        <Link to='/somwhere'>
-          <img
-            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/instagram.svg`}
-            alt='instagram'
-          />
-        </Link>
-        <Link to='/somwhere'>
-          <img
-            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/twitter.svg`}
-            alt='instagram'
-          />
-        </Link>
-        <Link to='/somwhere'>
-          <img
-            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorks/footer/facebook.svg`}
-            alt='facebook'
-          />
-        </Link>
-      </div>
+      <ul className={styles.wrapper}>
+        {data.map(({ id, imgPath, alt }) => (
+          <Link key={id} to='/somwhere'>
+            <img src={`${CONSTANTS.STATIC_IMAGES_PATH}${imgPath}`} alt={alt} />
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 };

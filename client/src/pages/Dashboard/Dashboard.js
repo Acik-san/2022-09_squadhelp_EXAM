@@ -8,7 +8,7 @@ import Header from '../../components/Header/Header';
 const Dashboard = props => {
   const { role, history } = props;
   return (
-    <div>
+    <>
       <Header />
       {role === undefined ? (
         history.replace('./login')
@@ -19,7 +19,7 @@ const Dashboard = props => {
       ) : (
         history.replace('./')
       )}
-    </div>
+    </>
   );
 };
 

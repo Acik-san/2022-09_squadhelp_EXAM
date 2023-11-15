@@ -50,13 +50,3 @@ export const toNotificationDate = (date, notificationTime) => {
   return new Date(...arrayOfYearsMonthsDays, ...arrayOfHoursMinutesSeconds);
 };
 
-// const abu = distance =>
-//   distance === '0 seconds'
-//     ? confirmAlert({
-//         title: 'Upcoming event',
-//         message: `Your event will upcome in ${event.notificationTime}`,
-//         buttons: [{ label: 'Ok' }],
-//         closeOnEscape: false,
-//         closeOnClickOutside: false,
-//       })
-//     : null;

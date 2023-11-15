@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "imgPath": "howItWorks/footer/linkedin.svg",
+    "alt": "linkedin"
+  },
+  {
+    "id": 2,
+    "imgPath": "howItWorks/footer/instagram.svg",
+    "alt": "instagram"
+  },
+  {
+    "id": 3,
+    "imgPath": "howItWorks/footer/twitter.svg",
+    "alt": "twitter"
+  },
+  {
+    "id": 4,
+    "imgPath": "howItWorks/footer/facebook.svg",
+    "alt": "facebook"
+  }
+]
